@@ -5,7 +5,7 @@
     <groupId>de.bausdorf.simracing</groupId>
     <artifactId>ir-data-api-client</artifactId>
     <version>0.1.1-SNAPSHOT</version>
-    <name>iRDataAPIClient</name>
+    <name>${project.groupId}:${project.artifactId}</name>
     <organization>
         <name>bausdorf engineering</name>
         <url>http://www.bausdorf-engineering.de</url>
@@ -13,7 +13,23 @@
     <inceptionYear>2022</inceptionYear>
 
     <description>Java client for iRacing data api</description>
+    <url>https://github.com/simracingtools/ir-data-api-client</url>
 
+    <licenses>
+        <license>
+            <name>GNU GENERAL PUBLIC LICENSE, Version 3</name>
+            <url>http://www.gnu.org/licenses/gpl-3.0.txt</url>
+        </license>
+    </licenses>
+
+    <developers>
+        <developer>
+            <name>Robert Bausdorf</name>
+            <email>rbausdorf@gmail.com</email>
+            <organization>bausdorf engineering</organization>
+            <organizationUrl>http://www.bausdorf-engineering.de</organizationUrl>
+        </developer>
+    </developers>
     <properties>
         <java.version>11</java.version>
         <spring.version>5.3.16</spring.version>
