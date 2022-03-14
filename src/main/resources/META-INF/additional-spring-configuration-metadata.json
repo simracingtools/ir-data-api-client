@@ -1,0 +1,13 @@
+{
+  "properties": [
+    {
+      "name": "irdataapi.password",
+      "type": "java.lang.String",
+      "description": "iRacing password."
+    },
+    {
+      "name": "irdataapi.user",
+      "type": "java.lang.String",
+      "description": "iRacing user name."
+    }
+  ] }
