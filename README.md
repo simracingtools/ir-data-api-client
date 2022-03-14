@@ -13,7 +13,12 @@ irdataapi.user=
 irdataapi.password=
 `
 
-which should be hold your valid iRacing credentials.
+which should hold your valid iRacing credentials.
+For usage hints see 
+
+`
+class IrDataClientTest
+`
 
 ## Currently implemented endpoints:
 
@@ -22,5 +27,11 @@ https://members-ng.iracing.com/auth
 https://members-ng.iracing.com/data/member/get
 
 https://members-ng.iracing.com/data/car/get
+
+https://members-ng.iracing.com/data/car/assets
+
+https://members-ng.iracing.com/data/league/get
+
+https://members-ng.iracing.com/data/track/get
 
 

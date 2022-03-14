@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.client;
  * #L%
  */
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
@@ -37,11 +38,14 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Slf4j
 public class IrDataClient {
 
+    public static final String RETURNED_NULL_BODY = " returned null body";
     private final RestTemplate restTemplate;
     private final ObjectMapper mapper;
 
@@ -54,12 +58,15 @@ public class IrDataClient {
         authResponse = null;
     }
 
-    public AuthResponseDto authenticate(LoginRequestDto requestDto) {
+    public AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto) {
         ResponseEntity<String> response = restTemplate.postForEntity(DataApiConstants.AUTH_URL, requestDto, String.class);
         try {
             String responseBody = response.getBody();
             if (responseBody != null) {
                 authResponse = mapper.readValue(responseBody, AuthResponseDto.class);
+                if(authResponse.getAuthcode().equalsIgnoreCase("0")) {
+                    throw new AuthorizationException(requestDto.getEmail() + " not authorized");
+                }
                 log.info("iRacing DataApi authenticated for custId: {}", authResponse.getCustId());
             } else {
                 throw new DataApiException("Null body when authenticating, status code " + response.getStatusCode());
@@ -74,7 +81,7 @@ public class IrDataClient {
         return authResponse != null;
     }
 
-    public MembersInfoDto getMembersInfo(List<String> custIds) {
+    public MembersInfoDto getMembersInfo(@NonNull List<Long> custIds) {
         if(authResponse == null) {
             throw new DataApiException("Client not authenticated");
         }
@@ -91,9 +98,9 @@ public class IrDataClient {
             LinkResponseDto body = getLinkResponse(uri.toString());
 
             if (body!= null) {
-                return getAwsData(body, MembersInfoDto.class);
+                return getAwsData(body, new TypeReference<MembersInfoDto>(){});
             }
-            throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + " returned null body");
+            throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -103,15 +110,51 @@ public class IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CARS_URL);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, CarInfoDto[].class);
+                return getAwsData(linkResponse, new TypeReference<CarInfoDto[]>() {});
             }
-            throw new DataApiException(DataApiConstants.GET_CARS_URL + " returned null body");
+            throw new DataApiException(DataApiConstants.GET_CARS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
     }
 
-    private LinkResponseDto getLinkResponse(String uri) throws IOException {
+    public Map<Long, CarAssetDto> getCarAssets() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_ASSETS_URL);
+            if(linkResponse != null) {
+                return getAwsData(linkResponse, new TypeReference<HashMap<Long, CarAssetDto>>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_CAR_ASSETS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    public LeagueInfoDto getLeagueInfo(long leagueId) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + "?league_id=" + leagueId);
+            if(linkResponse != null) {
+                return getAwsData(linkResponse, new TypeReference<LeagueInfoDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    public TrackInfoDto[] getTrackInfos() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);
+            if(linkResponse != null) {
+                return getAwsData(linkResponse, new TypeReference<TrackInfoDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TRACKS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
         String response = restTemplate.getForEntity(URI.create(uri), String.class).getBody();
         if(response != null && response.contains("Unauthorized")) {
             authResponse = null;
@@ -123,7 +166,7 @@ public class IrDataClient {
         return mapper.readValue(response, LinkResponseDto.class);
     }
 
-    private <T> T getAwsData(@NonNull LinkResponseDto linkResponse, @NonNull Class<T> targetType) throws IOException {
+    private <T> T getAwsData(@NonNull LinkResponseDto linkResponse, @NonNull TypeReference<T> targetType) throws IOException {
         String awsLink = linkResponse.getLink();
         var uriBuilder = UriComponentsBuilder.fromUriString(awsLink);
         ResponseEntity<String> infoResponse = restTemplate.getForEntity(uriBuilder.build(true).toUri(), String.class);

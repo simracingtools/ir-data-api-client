@@ -23,20 +23,21 @@ package de.bausdorf.simracing.irdataapi.client;
  */
 
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
-import de.bausdorf.simracing.irdataapi.model.AuthResponseDto;
-import de.bausdorf.simracing.irdataapi.model.CarInfoDto;
-import de.bausdorf.simracing.irdataapi.model.LoginRequestDto;
-import de.bausdorf.simracing.irdataapi.model.MembersInfoDto;
+import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
+
+import static org.junit.jupiter.api.Assertions.fail;
 
 @SpringBootTest(classes = {IrDataClientTest.class})
 @EnableConfigurationProperties(value = ConfigProperties.class)
@@ -52,8 +53,19 @@ class IrDataClientTest {
     @Test
     void testGetMembersInfo() {
         authenticate();
-        List<String> ids = new ArrayList<>();
-        ids.add("229120");
+        List<Long> ids = new ArrayList<>();
+        ids.add(229120L);
+
+        MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);
+        log.info(membersInfoDto.toString());
+    }
+
+    @Test
+    void testGetMembersInfoWithInvalidId() {
+        authenticate();
+        List<Long> ids = new ArrayList<>();
+        ids.add(229120L);
+        ids.add(0L);
 
         MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);
         log.info(membersInfoDto.toString());
@@ -66,6 +78,62 @@ class IrDataClientTest {
         Arrays.asList(carInfoDtos).forEach(s -> log.info(s.toString()));
 
         log.info("got {} car infos", carInfoDtos.length);
+    }
+
+    @Test
+    void testGetCarAssets() {
+        authenticate();
+        Map<Long, CarAssetDto> carAssetDtoMap = dataClient.getCarAssets();
+
+        log.info("got {} car asset infos", carAssetDtoMap.size());
+    }
+
+    @Test
+    void testGetLeagueInfo() {
+        authenticate();
+        LeagueInfoDto leagueInfoDto = dataClient.getLeagueInfo(3693);
+
+        log.info("got league {} infos", leagueInfoDto.getLeague_name());
+        Arrays.stream(leagueInfoDto.getRoster())
+                .filter(LeagueMemberDto::getAdmin)
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetLeagueInfoWithInvalidId() {
+        authenticate();
+        try {
+            dataClient.getLeagueInfo(0);
+            fail("Exception expected");
+        } catch( HttpClientErrorException e) {
+            log.info(e.getMessage());
+        }
+    }
+
+    @Test
+    void testGetTrackInfo() {
+        authenticate();
+        TrackInfoDto[] trackInfoDtos = dataClient.getTrackInfos();
+
+        Arrays.stream(trackInfoDtos)
+                .filter(s -> (s.getSku() == 0L))
+                .forEach(s -> log.info(s.toString()));
+
+        log.info("got {} track infos", trackInfoDtos.length);
+    }
+
+    @Test
+    void testInvalidAuthentication() {
+        LoginRequestDto dto = LoginRequestDto.builder()
+                .email("kirk@starfleet.com")
+                .password("spock")
+                .build();
+        try {
+            dataClient.authenticate(dto);
+            fail("Exception expected");
+        } catch(AuthorizationException e) {
+            log.info(e.getMessage());
+        }
     }
 
     private void authenticate() {

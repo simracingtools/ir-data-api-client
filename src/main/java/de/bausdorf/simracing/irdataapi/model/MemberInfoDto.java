@@ -28,12 +28,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 public class MemberInfoDto {
-    private String cust_id;
+    private Long cust_id;
     private String display_name;
     private HelmetDto helmet;
     private String last_login;
     private String member_since;
-    private String club_id;
+    private Long club_id;
     private String club_name;
-    private String ai;
+    private Boolean ai;
 }

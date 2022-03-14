@@ -31,6 +31,9 @@ import lombok.ToString;
 @ToString
 public class AuthResponseDto {
     private String authcode;
+    private Boolean inactive;
+    private String message;
+    private Boolean verificationRequired;
     private String autoLoginSeries;
     private String autoLoginToken;
     private String custId;
