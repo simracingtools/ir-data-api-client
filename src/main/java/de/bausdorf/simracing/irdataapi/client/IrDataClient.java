@@ -82,9 +82,6 @@ public class IrDataClient {
     }
 
     public MembersInfoDto getMembersInfo(@NonNull List<Long> custIds) {
-        if(authResponse == null) {
-            throw new DataApiException("Client not authenticated");
-        }
         var uri = new StringBuilder(DataApiConstants.GET_MEMBERS_URL);
         uri.append("?cust_ids=");
         for(var i = 0; i < custIds.size(); i++) {
@@ -107,11 +104,8 @@ public class IrDataClient {
     }
 
     public MemberSummaryDto getMemberSummary(@NonNull Long custId) {
-//        if(authResponse == null) {
-//            throw new DataApiException("Client not authenticated");
-//        }
-        var uri = new StringBuilder(DataApiConstants.GET_MEMBERS_SUMMARY_URL);
-        uri.append("?cust_ids=");
+        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_SUMMARY_URL);
+        uri.append("?cust_id=");
         uri.append(custId);
 
         try {
@@ -120,7 +114,24 @@ public class IrDataClient {
             if (linkResponse!= null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>(){});
             }
-            throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + RETURNED_NULL_BODY);
+            throw new DataApiException(DataApiConstants.GET_MEMBER_SUMMARY_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    public MemberYearlyDto getMemberStatsYearly(@NonNull Long custId) {
+        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_YEARLY_URL);
+        uri.append("?cust_id=");
+        uri.append(custId);
+
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberYearlyDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_YEARLY_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }

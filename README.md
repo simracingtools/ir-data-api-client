@@ -42,4 +42,6 @@ https://members-ng.iracing.com/data/lookup/licenses
 
 https://members-ng.iracing.com/data/stats/member_summary
 
+https://members-ng.iracing.com/data/stats/member_yearly
+
 

@@ -7,7 +7,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class MemberSummaryDto {
+public class MemberYearlyDto {
     private Long cust_id;
-    private MemberSummaryStatsDto this_year;
+    private MemberStatsDto[] stats;
 }

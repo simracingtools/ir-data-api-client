@@ -45,6 +45,7 @@ import static org.junit.jupiter.api.Assertions.fail;
 @Slf4j
 class IrDataClientTest {
 
+    public static final long CUST_ID = 229120L;
     @Autowired
     ConfigProperties config;
 
@@ -54,7 +55,7 @@ class IrDataClientTest {
     void testGetMembersInfo() {
         authenticate();
         List<Long> ids = new ArrayList<>();
-        ids.add(229120L);
+        ids.add(CUST_ID);
 
         MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);
         log.info(membersInfoDto.toString());
@@ -63,15 +64,22 @@ class IrDataClientTest {
     @Test
     void testGetMemberSummary() {
         authenticate();
-        MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary(229120L);
+        MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary(CUST_ID);
         log.info(memberSummaryDto.toString());
+    }
+
+    @Test
+    void testGetMemberYearlyStats() {
+        authenticate();
+        MemberYearlyDto yearlyDto = dataClient.getMemberStatsYearly(CUST_ID);
+        Arrays.asList(yearlyDto.getStats()).forEach(s -> log.info(s.toString()));
     }
 
     @Test
     void testGetMembersInfoWithInvalidId() {
         authenticate();
         List<Long> ids = new ArrayList<>();
-        ids.add(229120L);
+        ids.add(CUST_ID);
         ids.add(0L);
 
         MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);

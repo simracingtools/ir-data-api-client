@@ -26,7 +26,8 @@ public class DataApiConstants {
 
     public static final String AUTH_URL = "https://members-ng.iracing.com/auth";
     public static final String GET_MEMBERS_URL = "https://members-ng.iracing.com/data/member/get";
-    public static final String GET_MEMBERS_SUMMARY_URL = "https://members-ng.iracing.com/data/stats/member_summary";
+    public static final String GET_MEMBER_SUMMARY_URL = "https://members-ng.iracing.com/data/stats/member_summary";
+    public static final String GET_MEMBER_YEARLY_URL = "https://members-ng.iracing.com/data/stats/member_yearly";
     public static final String GET_CARS_URL = "https://members-ng.iracing.com/data/car/get";
     public static final String GET_CAR_ASSETS_URL = "https://members-ng.iracing.com/data/car/assets";
     public static final String GET_CAR_CLASSES_URL = "https://members-ng.iracing.com/data/carclass/get";
