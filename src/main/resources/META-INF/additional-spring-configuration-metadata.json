@@ -9,5 +9,10 @@
       "name": "irdataapi.user",
       "type": "java.lang.String",
       "description": "iRacing user name."
+    },
+    {
+      "name": "irdataapi.log-response-json",
+      "type": "java.lang.Boolean",
+      "description": "Log the iRacing response json."
     }
   ] }

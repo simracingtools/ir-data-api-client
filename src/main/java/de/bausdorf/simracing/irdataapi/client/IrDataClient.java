@@ -26,6 +26,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpRequest;
 import org.springframework.http.ResponseEntity;
@@ -50,12 +52,22 @@ public class IrDataClient {
     private final ObjectMapper mapper;
 
     private AuthResponseDto authResponse;
+    private boolean logResponseJson;
+    private final Logger jsonLogger = LoggerFactory.getLogger("JsonResponse");
 
     public IrDataClient() {
         restTemplate = new RestTemplate();
         restTemplate.getInterceptors().add(new StatefulRestTemplateInterceptor());
         mapper = new ObjectMapper();
         authResponse = null;
+    }
+
+    public void setLogResponseJson(@NonNull Boolean logResponse) {
+        this.logResponseJson = logResponse;
+    }
+
+    public boolean isLogResponseJson() {
+        return logResponseJson;
     }
 
     public AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto) {
@@ -275,6 +287,9 @@ public class IrDataClient {
         var uriBuilder = UriComponentsBuilder.fromUriString(link);
         ResponseEntity<String> infoResponse = restTemplate.getForEntity(uriBuilder.build(true).toUri(), String.class);
         String infoResponseBody = infoResponse.getBody();
+        if(isLogResponseJson()) {
+            jsonLogger.info("{}: {}", targetType.getType().getTypeName(), infoResponseBody);
+        }
         if (infoResponseBody != null) {
             return mapper.readValue(infoResponseBody, targetType);
         } else {

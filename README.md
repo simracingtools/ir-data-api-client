@@ -54,8 +54,8 @@ https://members-ng.iracing.com/data/series/seasons
 
 Although all current occurring fields are mapped there is no guarantee
 additional fields will appear without warning. If this is the case please
-open an issue stating the request you made and the exception stacktrace
-logged.
+open an issue stating the exception stacktrace and the response logged while having `setLogJsonResponse(true)` in `IrDataClient`.
+
 
 Always be aware that not all fields in a DTO are filled. Some DTO's are
 used as subtypes more than one other DTO on different detail grade. Do ` null` checks when using DTO field content. 

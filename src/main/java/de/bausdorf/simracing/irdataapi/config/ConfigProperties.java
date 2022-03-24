@@ -34,4 +34,5 @@ import org.springframework.context.annotation.Configuration;
 public class ConfigProperties {
     private String user;
     private String password;
+    private Boolean logResponseJson;
 }
