@@ -223,6 +223,18 @@ public class IrDataClient {
         }
     }
 
+    public SeasonDto[] getSeasonInfo(Boolean includeSeries) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SEASONS_URL + "?include_series=" + includeSeries.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SEASONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public TrackInfoDto[] getTrackInfos() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);

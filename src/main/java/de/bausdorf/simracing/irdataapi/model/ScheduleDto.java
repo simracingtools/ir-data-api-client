@@ -29,10 +29,24 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class TrackRefDto {
-    private Long track_id;
-    private String track_name;
-    private String config_name;
-    private String category;
-    private Long category_id;
+public class ScheduleDto {
+    private Long season_id;
+    private Long race_week_num;
+    private Long series_id;
+    private String series_name;
+    private String season_name;
+    private String schedule_name;
+    private String start_date;
+    private Long simulated_time_multiplier;
+    private Long race_lap_limit;
+    private Long race_time_limit;
+    private String start_type;
+    private String restart_type;
+    private Boolean qual_attached;
+    private Boolean yellow_flags;
+    private String special_event_type;
+    private TrackRefDto track;
+    private TrackStateDto track_state;
+    private WeatherDto weather;
+    private CarRestrictionDto[] car_restrictions;
 }

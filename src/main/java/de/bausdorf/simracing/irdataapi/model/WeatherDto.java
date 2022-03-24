@@ -29,10 +29,21 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class TrackRefDto {
-    private Long track_id;
-    private String track_name;
-    private String config_name;
-    private String category;
-    private Long category_id;
+public class WeatherDto {
+    private Long type;
+    private Long temp_units;
+    private Long temp_value;
+    private Long rel_humidity;
+    private Long fog;
+    private Long wind_dir;
+    private Long wind_units;
+    private Long wind_value;
+    private Long skies;
+    private Long weather_var_initial;
+    private Long weather_var_ongoing;
+    private Long time_of_day;
+    private String simulated_start_time;
+    private Long[] simulated_time_offsets;
+    private Long simulated_time_multiplier;
+    private String simulated_start_utc_time;
 }

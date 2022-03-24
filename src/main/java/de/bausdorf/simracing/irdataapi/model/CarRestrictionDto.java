@@ -29,10 +29,12 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class TrackRefDto {
-    private Long track_id;
-    private String track_name;
-    private String config_name;
-    private String category;
-    private Long category_id;
+public class CarRestrictionDto {
+    private Long car_id;
+    private Long race_setup_id;
+    private Long qual_setup_id;
+    private Long max_pct_fuel_fill;
+    private Long weight_penalty_kg;
+    private Long power_adjust_pct;
+    private Long max_dry_tire_sets;
 }

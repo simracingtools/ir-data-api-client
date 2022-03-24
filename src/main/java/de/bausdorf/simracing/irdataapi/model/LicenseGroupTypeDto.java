@@ -29,10 +29,6 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class TrackRefDto {
-    private Long track_id;
-    private String track_name;
-    private String config_name;
-    private String category;
-    private Long category_id;
+public class LicenseGroupTypeDto {
+    private String license_group_type;
 }

@@ -189,6 +189,22 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetSeasonInfoWithoutSeries() {
+        authenticate();
+        SeasonDto[] seasonDtos = dataClient.getSeasonInfo(false);
+
+        log.info("got {} season infos", seasonDtos.length);
+    }
+
+    @Test
+    void testGetSeasonInfoWithSeries() {
+        authenticate();
+        SeasonDto[] seasonDtos = dataClient.getSeasonInfo(true);
+
+        log.info("got {} season infos", seasonDtos.length);
+    }
+
+    @Test
     void testInvalidAuthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")
