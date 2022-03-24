@@ -48,4 +48,15 @@ https://members-ng.iracing.com/data/stats/member_career
 
 https://members-ng.iracing.com/data/track/assets
 
+https://members-ng.iracing.com/data/series/seasons
+
+## Hints
+
+Although all current occurring fields are mapped there is no guarantee
+additional fields will appear without warning. If this is the case please
+open an issue stating the request you made and the exception stacktrace
+logged.
+
+Always be aware that not all fields in a DTO are filled. Some DTO's are
+used as subtypes more than one other DTO on different detail grade. Do ` null` checks when using DTO field content. 
 
