@@ -104,12 +104,8 @@ public class IrDataClient {
     }
 
     public MemberSummaryDto getMemberSummary(@NonNull Long custId) {
-        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_SUMMARY_URL);
-        uri.append("?cust_id=");
-        uri.append(custId);
-
         try {
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_SUMMARY_URL, custId));
 
             if (linkResponse!= null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>(){});
@@ -121,12 +117,8 @@ public class IrDataClient {
     }
 
     public MemberYearlyDto getMemberStatsYearly(@NonNull Long custId) {
-        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_YEARLY_URL);
-        uri.append("?cust_id=");
-        uri.append(custId);
-
         try {
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_YEARLY_URL, custId));
 
             if (linkResponse!= null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberYearlyDto>(){});
@@ -137,13 +129,22 @@ public class IrDataClient {
         }
     }
 
-    public MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId) {
-        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_RECENT_RACES_URL);
-        uri.append("?cust_id=");
-        uri.append(custId);
-
+    public MemberCareerDto getMemberCareer(@NonNull Long custId) {
         try {
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CAREER_URL, custId));
+
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberCareerDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_CAREER_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    public MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_RECENT_RACES_URL, custId));
 
             if (linkResponse!= null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberRecentRacesDto>(){});
@@ -267,6 +268,12 @@ public class IrDataClient {
         } else {
             throw new DataApiException("Null body from AWS, status code " + infoResponse.getStatusCode());
         }
+    }
+
+    private String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
+        var stringBuilder = new StringBuilder(baseUri);
+        stringBuilder.append("?cust_id=").append(custId);
+        return stringBuilder.toString();
     }
 
     public static class StatefulRestTemplateInterceptor implements ClientHttpRequestInterceptor {

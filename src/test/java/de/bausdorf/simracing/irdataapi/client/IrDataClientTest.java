@@ -83,6 +83,13 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberCareer() {
+        authenticate();
+        MemberCareerDto memberCareerDto = dataClient.getMemberCareer(CUST_ID);
+        Arrays.asList(memberCareerDto.getStats()).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetMembersInfoWithInvalidId() {
         authenticate();
         List<Long> ids = new ArrayList<>();
