@@ -36,4 +36,6 @@ https://members-ng.iracing.com/data/league/get
 
 https://members-ng.iracing.com/data/track/get
 
+https://members-ng.iracing.com/data/constants/divisions
+
 

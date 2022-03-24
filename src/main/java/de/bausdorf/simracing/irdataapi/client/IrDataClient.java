@@ -95,10 +95,10 @@ public class IrDataClient {
         }
 
         try {
-            LinkResponseDto body = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
 
-            if (body!= null) {
-                return getAwsData(body, new TypeReference<MembersInfoDto>(){});
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MembersInfoDto>(){});
             }
             throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -110,7 +110,7 @@ public class IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CARS_URL);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, new TypeReference<CarInfoDto[]>() {});
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CarInfoDto[]>() {});
             }
             throw new DataApiException(DataApiConstants.GET_CARS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -122,9 +122,17 @@ public class IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_CLASSES_URL);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, new TypeReference<CarClassDto[]>() {});
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CarClassDto[]>() {});
             }
             throw new DataApiException(DataApiConstants.GET_CAR_CLASSES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    public DivisionDto[] getDivisions() {
+        try {
+            return getStructuredData(DataApiConstants.GET_DIVISIONS_URL, new TypeReference<DivisionDto[]>() {});
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -134,7 +142,7 @@ public class IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_ASSETS_URL);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, new TypeReference<HashMap<Long, CarAssetDto>>() {});
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, CarAssetDto>>() {});
             }
             throw new DataApiException(DataApiConstants.GET_CAR_ASSETS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -146,7 +154,7 @@ public class IrDataClient {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + "?league_id=" + leagueId);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, new TypeReference<LeagueInfoDto>() {});
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueInfoDto>() {});
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -158,7 +166,7 @@ public class IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);
             if(linkResponse != null) {
-                return getAwsData(linkResponse, new TypeReference<TrackInfoDto[]>() {});
+                return getStructuredData(linkResponse.getLink(), new TypeReference<TrackInfoDto[]>() {});
             }
             throw new DataApiException(DataApiConstants.GET_TRACKS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -178,9 +186,8 @@ public class IrDataClient {
         return mapper.readValue(response, LinkResponseDto.class);
     }
 
-    private <T> T getAwsData(@NonNull LinkResponseDto linkResponse, @NonNull TypeReference<T> targetType) throws IOException {
-        String awsLink = linkResponse.getLink();
-        var uriBuilder = UriComponentsBuilder.fromUriString(awsLink);
+    private <T> T getStructuredData(@NonNull String link, @NonNull TypeReference<T> targetType) throws IOException {
+        var uriBuilder = UriComponentsBuilder.fromUriString(link);
         ResponseEntity<String> infoResponse = restTemplate.getForEntity(uriBuilder.build(true).toUri(), String.class);
         String infoResponseBody = infoResponse.getBody();
         if (infoResponseBody != null) {

@@ -98,6 +98,14 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetDivisions() {
+        authenticate();
+        DivisionDto[] divisionDtos = dataClient.getDivisions();
+
+        Arrays.asList(divisionDtos).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetLeagueInfo() {
         authenticate();
         LeagueInfoDto leagueInfoDto = dataClient.getLeagueInfo(3693);
