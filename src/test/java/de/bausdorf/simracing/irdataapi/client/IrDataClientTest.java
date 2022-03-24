@@ -76,6 +76,13 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberRecentRaces() {
+        authenticate();
+        MemberRecentRacesDto recentRacesDto = dataClient.getMemberRecentRaces(CUST_ID);
+        Arrays.asList(recentRacesDto.getRaces()).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetMembersInfoWithInvalidId() {
         authenticate();
         List<Long> ids = new ArrayList<>();

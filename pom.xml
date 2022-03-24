@@ -126,6 +126,9 @@
                 <version>2.0.0</version>
                 <configuration>
                     <licenseName>gpl_v3</licenseName>
+                    <excludes>
+                        <exclude>**/*.json</exclude>
+                    </excludes>
                 </configuration>
             </plugin>
 

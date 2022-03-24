@@ -137,6 +137,23 @@ public class IrDataClient {
         }
     }
 
+    public MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId) {
+        var uri = new StringBuilder(DataApiConstants.GET_MEMBER_RECENT_RACES_URL);
+        uri.append("?cust_id=");
+        uri.append(custId);
+
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberRecentRacesDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_RECENT_RACES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public CarInfoDto[] getCarInfo() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CARS_URL);
