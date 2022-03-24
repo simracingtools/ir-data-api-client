@@ -106,6 +106,26 @@ public class IrDataClient {
         }
     }
 
+    public MemberSummaryDto getMemberSummary(@NonNull Long custId) {
+//        if(authResponse == null) {
+//            throw new DataApiException("Client not authenticated");
+//        }
+        var uri = new StringBuilder(DataApiConstants.GET_MEMBERS_SUMMARY_URL);
+        uri.append("?cust_ids=");
+        uri.append(custId);
+
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public CarInfoDto[] getCarInfo() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CARS_URL);

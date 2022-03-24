@@ -61,6 +61,13 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberSummary() {
+        authenticate();
+        MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary(229120L);
+        log.info(memberSummaryDto.toString());
+    }
+
+    @Test
     void testGetMembersInfoWithInvalidId() {
         authenticate();
         List<Long> ids = new ArrayList<>();
