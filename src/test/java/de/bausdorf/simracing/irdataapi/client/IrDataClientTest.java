@@ -37,7 +37,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.fail;
+import static org.junit.jupiter.api.Assertions.*;
+
 
 @SpringBootTest(classes = {IrDataClientTest.class})
 @EnableConfigurationProperties(value = ConfigProperties.class)
@@ -58,6 +59,7 @@ class IrDataClientTest {
         ids.add(CUST_ID);
 
         MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);
+        assertNotNull(membersInfoDto);
         log.info(membersInfoDto.toString());
     }
 
@@ -65,6 +67,7 @@ class IrDataClientTest {
     void testGetMemberSummary() {
         authenticate();
         MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary(CUST_ID);
+        assertNotNull(memberSummaryDto);
         log.info(memberSummaryDto.toString());
     }
 
@@ -72,6 +75,8 @@ class IrDataClientTest {
     void testGetMemberYearlyStats() {
         authenticate();
         MemberYearlyDto yearlyDto = dataClient.getMemberStatsYearly(CUST_ID);
+        assertNotNull(yearlyDto);
+        assertTrue(yearlyDto.getStats().length > 0);
         Arrays.asList(yearlyDto.getStats()).forEach(s -> log.info(s.toString()));
     }
 
@@ -79,6 +84,8 @@ class IrDataClientTest {
     void testGetMemberRecentRaces() {
         authenticate();
         MemberRecentRacesDto recentRacesDto = dataClient.getMemberRecentRaces(CUST_ID);
+        assertNotNull(recentRacesDto);
+        assertTrue(recentRacesDto.getRaces().length > 0);
         Arrays.asList(recentRacesDto.getRaces()).forEach(s -> log.info(s.toString()));
     }
 
@@ -86,6 +93,8 @@ class IrDataClientTest {
     void testGetMemberCareer() {
         authenticate();
         MemberCareerDto memberCareerDto = dataClient.getMemberCareer(CUST_ID);
+        assertNotNull(memberCareerDto);
+        assertTrue(memberCareerDto.getStats().length > 0);
         Arrays.asList(memberCareerDto.getStats()).forEach(s -> log.info(s.toString()));
     }
 
@@ -97,6 +106,8 @@ class IrDataClientTest {
         ids.add(0L);
 
         MembersInfoDto membersInfoDto = dataClient.getMembersInfo(ids);
+        assertNotNull(membersInfoDto);
+        assertTrue(membersInfoDto.getMembers().length > 0);
         log.info(membersInfoDto.toString());
     }
 
@@ -104,6 +115,8 @@ class IrDataClientTest {
     void testGetCarInfo() {
         authenticate();
         CarInfoDto[] carInfoDtos = dataClient.getCarInfo();
+        assertNotNull(carInfoDtos);
+        assertTrue(carInfoDtos.length > 0);
         Arrays.asList(carInfoDtos).forEach(s -> log.info(s.toString()));
 
         log.info("got {} car infos", carInfoDtos.length);
@@ -113,6 +126,8 @@ class IrDataClientTest {
     void testGetCarClasses() {
         authenticate();
         CarClassDto[] carClassDtos = dataClient.getCarClasses();
+        assertNotNull(carClassDtos);
+        assertTrue(carClassDtos.length > 0);
         Arrays.asList(carClassDtos).forEach(s -> log.info(s.toString()));
 
         log.info("got {} car classes", carClassDtos.length);
@@ -122,6 +137,8 @@ class IrDataClientTest {
     void testGetCarAssets() {
         authenticate();
         Map<Long, CarAssetDto> carAssetDtoMap = dataClient.getCarAssets();
+        assertNotNull(carAssetDtoMap);
+        assertTrue(carAssetDtoMap.size() > 0);
 
         log.info("got {} car asset infos", carAssetDtoMap.size());
     }
@@ -130,6 +147,8 @@ class IrDataClientTest {
     void testGetTrackAssets() {
         authenticate();
         Map<Long, TrackAssetDto> trackAssetDtoMap = dataClient.getTrackAssets();
+        assertNotNull(trackAssetDtoMap);
+        assertTrue(trackAssetDtoMap.size() > 0);
         trackAssetDtoMap.entrySet().stream()
                 .filter(e -> e.getValue().getDetail_techspecs_copy() != null)
                 .forEach(e -> log.info("{}: {}", e.getValue().getFolder(), e.getValue().getDetail_techspecs_copy()));
@@ -141,6 +160,8 @@ class IrDataClientTest {
     void testGetDivisions() {
         authenticate();
         DivisionDto[] divisionDtos = dataClient.getDivisions();
+        assertNotNull(divisionDtos);
+        assertTrue(divisionDtos.length > 0);
 
         Arrays.asList(divisionDtos).forEach(s -> log.info(s.toString()));
     }
@@ -149,6 +170,8 @@ class IrDataClientTest {
     void testGetLicenseGroups() {
         authenticate();
         LicenseGroupDto[] licenseGroups = dataClient.getLicenseGroups();
+        assertNotNull(licenseGroups);
+        assertTrue(licenseGroups.length > 0);
         Arrays.asList(licenseGroups).forEach(s -> log.info(s.toString()));
 
         log.info("got {} license groups", licenseGroups.length);
@@ -158,6 +181,8 @@ class IrDataClientTest {
     void testGetLeagueInfo() {
         authenticate();
         LeagueInfoDto leagueInfoDto = dataClient.getLeagueInfo(3693);
+        assertNotNull(leagueInfoDto);
+        assertTrue(leagueInfoDto.getRoster().length > 0);
 
         log.info("got league {} infos", leagueInfoDto.getLeague_name());
         Arrays.stream(leagueInfoDto.getRoster())
@@ -180,6 +205,8 @@ class IrDataClientTest {
     void testGetTrackInfo() {
         authenticate();
         TrackInfoDto[] trackInfoDtos = dataClient.getTrackInfos();
+        assertNotNull(trackInfoDtos);
+        assertTrue(trackInfoDtos.length > 0);
 
         Arrays.stream(trackInfoDtos)
                 .filter(s -> (s.getSku() == 0L))
@@ -192,6 +219,8 @@ class IrDataClientTest {
     void testGetSeasonInfoWithoutSeries() {
         authenticate();
         SeasonDto[] seasonDtos = dataClient.getSeasonInfo(false);
+        assertNotNull(seasonDtos);
+        assertTrue(seasonDtos.length > 0);
 
         log.info("got {} season infos", seasonDtos.length);
     }
@@ -200,6 +229,8 @@ class IrDataClientTest {
     void testGetSeasonInfoWithSeries() {
         authenticate();
         SeasonDto[] seasonDtos = dataClient.getSeasonInfo(true);
+        assertNotNull(seasonDtos);
+        assertTrue(seasonDtos.length > 0);
 
         log.info("got {} season infos", seasonDtos.length);
     }
