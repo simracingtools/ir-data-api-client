@@ -118,6 +118,18 @@ public class IrDataClient {
         }
     }
 
+    public CarClassDto[] getCarClasses() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_CLASSES_URL);
+            if(linkResponse != null) {
+                return getAwsData(linkResponse, new TypeReference<CarClassDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_CAR_CLASSES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public Map<Long, CarAssetDto> getCarAssets() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_ASSETS_URL);

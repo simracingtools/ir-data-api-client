@@ -30,6 +30,8 @@ https://members-ng.iracing.com/data/car/get
 
 https://members-ng.iracing.com/data/car/assets
 
+https://members-ng.iracing.com/data/carclass/get
+
 https://members-ng.iracing.com/data/league/get
 
 https://members-ng.iracing.com/data/track/get

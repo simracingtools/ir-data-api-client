@@ -81,6 +81,15 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetCarClasses() {
+        authenticate();
+        CarClassDto[] carClassDtos = dataClient.getCarClasses();
+        Arrays.asList(carClassDtos).forEach(s -> log.info(s.toString()));
+
+        log.info("got {} car classes", carClassDtos.length);
+    }
+
+    @Test
     void testGetCarAssets() {
         authenticate();
         Map<Long, CarAssetDto> carAssetDtoMap = dataClient.getCarAssets();
