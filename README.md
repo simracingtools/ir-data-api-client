@@ -38,4 +38,6 @@ https://members-ng.iracing.com/data/track/get
 
 https://members-ng.iracing.com/data/constants/divisions
 
+https://members-ng.iracing.com/data/lookup/licenses
+
 

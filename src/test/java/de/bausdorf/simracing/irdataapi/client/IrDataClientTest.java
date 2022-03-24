@@ -106,6 +106,15 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetLicenseGroups() {
+        authenticate();
+        LicenseGroupDto[] licenseGroups = dataClient.getLicenseGroups();
+        Arrays.asList(licenseGroups).forEach(s -> log.info(s.toString()));
+
+        log.info("got {} license groups", licenseGroups.length);
+    }
+
+    @Test
     void testGetLeagueInfo() {
         authenticate();
         LeagueInfoDto leagueInfoDto = dataClient.getLeagueInfo(3693);

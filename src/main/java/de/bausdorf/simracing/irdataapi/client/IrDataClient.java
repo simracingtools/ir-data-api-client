@@ -174,6 +174,18 @@ public class IrDataClient {
         }
     }
 
+    public LicenseGroupDto[] getLicenseGroups() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LICENSES_URL);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LicenseGroupDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LICENSES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
         String response = restTemplate.getForEntity(URI.create(uri), String.class).getBody();
         if(response != null && response.contains("Unauthorized")) {
