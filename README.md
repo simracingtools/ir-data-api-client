@@ -44,4 +44,6 @@ https://members-ng.iracing.com/data/stats/member_summary
 
 https://members-ng.iracing.com/data/stats/member_yearly
 
+https://members-ng.iracing.com/data/track/assets
+
 

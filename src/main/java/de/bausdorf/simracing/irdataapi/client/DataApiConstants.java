@@ -33,6 +33,7 @@ public class DataApiConstants {
     public static final String GET_CAR_CLASSES_URL = "https://members-ng.iracing.com/data/carclass/get";
     public static final String GET_LEAGUE_URL = "https://members-ng.iracing.com/data/league/get";
     public static final String GET_TRACKS_URL = "https://members-ng.iracing.com/data/track/get";
+    public static final String GET_TRACK_ASSETS_URL = "https://members-ng.iracing.com/data/track/assets";
     public static final String GET_DIVISIONS_URL = "https://members-ng.iracing.com/data/constants/divisions";
     public static final String GET_LICENSES_URL = "https://members-ng.iracing.com/data/lookup/licenses";
 

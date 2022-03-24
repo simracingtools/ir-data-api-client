@@ -113,6 +113,17 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetTrackAssets() {
+        authenticate();
+        Map<Long, TrackAssetDto> trackAssetDtoMap = dataClient.getTrackAssets();
+        trackAssetDtoMap.entrySet().stream()
+                .filter(e -> e.getValue().getDetail_techspecs_copy() != null)
+                .forEach(e -> log.info("{}: {}", e.getValue().getFolder(), e.getValue().getDetail_techspecs_copy()));
+
+        log.info("got {} car asset infos", trackAssetDtoMap.size());
+    }
+
+    @Test
     void testGetDivisions() {
         authenticate();
         DivisionDto[] divisionDtos = dataClient.getDivisions();

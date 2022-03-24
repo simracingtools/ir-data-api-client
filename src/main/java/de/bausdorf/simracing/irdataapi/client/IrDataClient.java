@@ -181,6 +181,18 @@ public class IrDataClient {
         }
     }
 
+    public Map<Long, TrackAssetDto> getTrackAssets() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACK_ASSETS_URL);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, TrackAssetDto>>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TRACK_ASSETS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public LeagueInfoDto getLeagueInfo(long leagueId) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + "?league_id=" + leagueId);
