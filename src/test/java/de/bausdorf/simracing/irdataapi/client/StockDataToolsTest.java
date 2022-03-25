@@ -1,5 +1,27 @@
 package de.bausdorf.simracing.irdataapi.client;
 
+/*-
+ * #%L
+ * de.bausdorf.simracing:ir-data-api-client
+ * %%
+ * Copyright (C) 2022 bausdorf engineering
+ * %%
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as
+ * published by the Free Software Foundation, either version 3 of the
+ * License, or (at your option) any later version.
+ * 
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ * 
+ * You should have received a copy of the GNU General Public
+ * License along with this program.  If not, see
+ * <http://www.gnu.org/licenses/gpl-3.0.html>.
+ * #L%
+ */
+
 import de.bausdorf.simracing.irdataapi.model.CarClassKey;
 import de.bausdorf.simracing.irdataapi.model.CarInfoDto;
 import de.bausdorf.simracing.irdataapi.model.TrackInfoDto;
@@ -10,6 +32,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -21,9 +44,12 @@ class StockDataToolsTest {
     static final StockDataCache dataCache = new StockDataCache(".cache");
 
     @BeforeAll
-    @SneakyThrows
     static void fetchCacheData() {
-        dataCache.fetchFromCache();
+        try {
+            dataCache.fetchFromCache();
+        } catch (IOException e) {
+            log.warn(e.getMessage());
+        }
     }
 
     @Test
@@ -31,9 +57,9 @@ class StockDataToolsTest {
         Map<Long, List<TrackInfoDto>> trackMap = StockDataTools.trackConfigurationMap(dataCache.getTracks());
         assertFalse(trackMap.isEmpty());
 
-        trackMap.entrySet().stream().forEach(e -> {
+        trackMap.entrySet().forEach(e -> {
             log.info("SKU: {}", e.getKey());
-            e.getValue().stream().forEach(t -> log.info("{}: {} - {}", t.getTrackId(), t.getTrackName(), t.getConfigName()));
+            e.getValue().forEach(t -> log.info("{}: {} - {}", t.getTrackId(), t.getTrackName(), t.getConfigName()));
         });
     }
 
@@ -42,9 +68,9 @@ class StockDataToolsTest {
         Map<CarClassKey, List<CarInfoDto>> carClassMap = StockDataTools.carClassMap(dataCache.getCarClasses(), dataCache.getCars());
         assertFalse(carClassMap.isEmpty());
 
-        carClassMap.entrySet().stream().forEach(e -> {
+        carClassMap.entrySet().forEach(e -> {
             log.info("Class {}: {}", e.getKey().getCarClassId(), e.getKey().getName());
-            e.getValue().stream().forEach(c -> log.info("    Car {}: {}", c.getCarId(), c.getCarName()));
+            e.getValue().forEach(c -> log.info("    Car {}: {}", c.getCarId(), c.getCarName()));
         });
     }
 }
