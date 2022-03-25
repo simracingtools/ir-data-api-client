@@ -37,3 +37,4 @@ build/
 /mvnw.cmd
 /src/test/resources/application-test.properties
 /.mvn/
+/.cache/

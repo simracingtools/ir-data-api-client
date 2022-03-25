@@ -35,4 +35,5 @@ public class ConfigProperties {
     private String user;
     private String password;
     private Boolean logResponseJson;
+    private String cacheDirectory;
 }

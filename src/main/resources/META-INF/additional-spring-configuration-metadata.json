@@ -14,5 +14,11 @@
       "name": "irdataapi.log-response-json",
       "type": "java.lang.Boolean",
       "description": "Log the iRacing response json."
+    },
+    {
+      "name": "irdataapi.cache-directory",
+      "type": "java.lang.String",
+      "description": "Directory used for caching stock data json files."
     }
-  ] }
+  ]
+}
