@@ -2,6 +2,58 @@
 
 Changelog of ir-data-api-client.
 
+## v0.8.0 (2022-03-25)
+
+
+
+
+
+### Bug Fixes
+
+-  Test fixes ([e9085](https://github.com/simracingtools/ir-data-api-client/commit/e90851f20877216) Robert Bausdorf)  
+-  License info added ([fadce](https://github.com/simracingtools/ir-data-api-client/commit/fadcefc7234f140) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v0.8.0**
+
+
+[09dff](https://github.com/simracingtools/ir-data-api-client/commit/09dffb79e0ce225) Robert Bausdorf *2022-03-25 18:13:21*
+
+**Changelog added**
+
+
+[439fe](https://github.com/simracingtools/ir-data-api-client/commit/439fe7cd81b143f) Robert Bausdorf *2022-03-25 18:11:12*
+
+**Cache for stock data (tracks, cars, license groups, divisions) added.**
+
+* Some tooling support on stock data. 
+
+[2a653](https://github.com/simracingtools/ir-data-api-client/commit/2a653a464461e1b) robert *2022-03-25 17:07:16*
+
+**Object Mapper for convenience**
+
+
+[c0533](https://github.com/simracingtools/ir-data-api-client/commit/c0533141eeb6eea) robert *2022-03-25 15:52:42*
+
+**Dates / times mapped to**
+
+
+[d8a71](https://github.com/simracingtools/ir-data-api-client/commit/d8a710fa90bd4f4) robert *2022-03-25 15:50:48*
+
+**Switched to JsonProperty annotations.**
+
+* Dto getter/setter are now strictly camelCase. 
+
+[6f037](https://github.com/simracingtools/ir-data-api-client/commit/6f03727a41f569a) robert *2022-03-25 13:25:06*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[4f8b8](https://github.com/simracingtools/ir-data-api-client/commit/4f8b8e14d27b37e) Robert Bausdorf *2022-03-24 17:19:19*
+
+
 ## v0.7.0 (2022-03-24)
 
 
