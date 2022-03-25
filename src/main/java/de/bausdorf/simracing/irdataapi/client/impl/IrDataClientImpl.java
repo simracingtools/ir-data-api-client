@@ -23,8 +23,6 @@ package de.bausdorf.simracing.irdataapi.client.impl;
  */
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import de.bausdorf.simracing.irdataapi.client.AuthorizationException;
 import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import de.bausdorf.simracing.irdataapi.client.DataApiException;
@@ -54,7 +52,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     public static final String RETURNED_NULL_BODY = " returned null body";
     private final RestTemplate restTemplate;
-    private final ObjectMapper mapper;
+    private final IRacingObjectMapper mapper;
 
     private AuthResponseDto authResponse;
     private boolean logResponseJson;
@@ -63,8 +61,7 @@ public class IrDataClientImpl implements IrDataClient {
     public IrDataClientImpl() {
         restTemplate = new RestTemplate();
         restTemplate.getInterceptors().add(new StatefulRestTemplateInterceptor());
-        mapper = new ObjectMapper()
-                .registerModule(new JavaTimeModule());
+        mapper = new IRacingObjectMapper();
         authResponse = null;
     }
 
