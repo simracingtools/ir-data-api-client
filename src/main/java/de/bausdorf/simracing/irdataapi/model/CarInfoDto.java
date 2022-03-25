@@ -22,11 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -62,7 +66,8 @@ public class CarInfoDto {
     @JsonProperty("categories")
     private String[] categories;
     @JsonProperty("created")
-    private String created;
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime created;
     @JsonProperty("free_with_subscription")
     private Boolean freeWithSubscription;
     @JsonProperty("has_headlights")

@@ -22,10 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.LocalDate;
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -42,13 +47,15 @@ public class TrackInfoDto {
     @JsonProperty("category_id")
     private Long categoryId;
     @JsonProperty("closes")
-    private String closes;
+    @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
+    private LocalDate closes;
     @JsonProperty("config_name")
     private String configName;
     @JsonProperty("corners_per_lap")
     private Long cornersPerLap;
     @JsonProperty("created")
-    private String created;
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime created;
     @JsonProperty("free_with_subscription")
     private Boolean freeWithSubscription;
     @JsonProperty("fully_lit")
@@ -82,7 +89,8 @@ public class TrackInfoDto {
     @JsonProperty("number_pitstalls")
     private Long numberPitstalls;
     @JsonProperty("opens")
-    private String opens;
+    @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
+    private LocalDate opens;
     @JsonProperty("package_id")
     private Long packageId;
     @JsonProperty("pit_road_speed_limit")

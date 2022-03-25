@@ -22,10 +22,14 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -46,7 +50,8 @@ public class RecentRaceDto {
     @JsonProperty("license_level")
     private Long licenseLevel;
     @JsonProperty("session_start_time")
-    private String sessionStartTime;
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime sessionStartTime;
     @JsonProperty("winner_group_id")
     private Long winnerGroupId;
     @JsonProperty("winner_name")

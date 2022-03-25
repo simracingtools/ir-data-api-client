@@ -22,10 +22,14 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -38,7 +42,8 @@ public class HeatSessionInfoDto {
     @JsonProperty("hidden")
     private Boolean hidden;
     @JsonProperty("created")
-    private String created;
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime created;
     @JsonProperty("heat_info_name")
     private String heatInfoName;
     @JsonProperty("description")
