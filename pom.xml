@@ -137,6 +137,51 @@
                     </excludes>
                 </configuration>
             </plugin>
+            <plugin>
+                <groupId>se.bjurr.gitchangelog</groupId>
+                <artifactId>git-changelog-maven-plugin</artifactId>
+                <version>1.88</version>
+                <executions>
+                    <execution>
+                        <id>GenerateGitChangelog</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>git-changelog</goal>
+                        </goals>
+                        <configuration>
+                            <templateContent>
+                                <![CDATA[
+{{#tags}}
+{{#ifReleaseTag .}}
+## [{{name}}](https://gitservice/{{name}}) ({{tagDate .}})
+
+  {{#ifContainsType commits type='feat'}}
+### Features
+
+    {{#commits}}
+      {{#ifCommitType . type='feat'}}
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://gitservice/commit/{{hashFull}}))
+      {{/ifCommitType}}
+    {{/commits}}
+  {{/ifContainsType}}
+
+  {{#ifContainsType commits type='fix'}}
+### Bug Fixes
+
+    {{#commits}}
+      {{#ifCommitType . type='fix'}}
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://gitservice/commit/{{hashFull}}))
+      {{/ifCommitType}}
+    {{/commits}}
+  {{/ifContainsType}}
+
+{{/ifReleaseTag}}
+{{/tags}}]]>
+                            </templateContent>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
