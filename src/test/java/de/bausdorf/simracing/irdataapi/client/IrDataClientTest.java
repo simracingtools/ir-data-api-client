@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.client;
  * #L%
  */
 
+import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
@@ -50,7 +51,7 @@ class IrDataClientTest {
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClient();
+    IrDataClient dataClient = new IrDataClientImpl();
 
     @Test
     void testGetMembersInfo() {
@@ -150,8 +151,8 @@ class IrDataClientTest {
         assertNotNull(trackAssetDtoMap);
         assertTrue(trackAssetDtoMap.size() > 0);
         trackAssetDtoMap.entrySet().stream()
-                .filter(e -> e.getValue().getDetail_techspecs_copy() != null)
-                .forEach(e -> log.info("{}: {}", e.getValue().getFolder(), e.getValue().getDetail_techspecs_copy()));
+                .filter(e -> e.getValue().getDetailTechspecsCopy() != null)
+                .forEach(e -> log.info("{}: {}", e.getValue().getFolder(), e.getValue().getDetailTechspecsCopy()));
 
         log.info("got {} car asset infos", trackAssetDtoMap.size());
     }
@@ -184,7 +185,7 @@ class IrDataClientTest {
         assertNotNull(leagueInfoDto);
         assertTrue(leagueInfoDto.getRoster().length > 0);
 
-        log.info("got league {} infos", leagueInfoDto.getLeague_name());
+        log.info("got league {} infos", leagueInfoDto.getLeagueName());
         Arrays.stream(leagueInfoDto.getRoster())
                 .filter(LeagueMemberDto::getAdmin)
                 .forEach(s -> log.info(s.toString()));

@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,51 +31,98 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class TrackInfoDto {
-    private Boolean ai_enabled;
-    private Boolean award_exempt;
+    @JsonProperty("ai_enabled")
+    private Boolean aiEnabled;
+    @JsonProperty("award_exempt")
+    private Boolean awardExempt;
+    @JsonProperty("banking")
     private String banking;
+    @JsonProperty("category")
     private String category;
-    private Long category_id;
+    @JsonProperty("category_id")
+    private Long categoryId;
+    @JsonProperty("closes")
     private String closes;
-    private String config_name;
-    private Long corners_per_lap;
+    @JsonProperty("config_name")
+    private String configName;
+    @JsonProperty("corners_per_lap")
+    private Long cornersPerLap;
+    @JsonProperty("created")
     private String created;
-    private Boolean free_with_subscription;
-    private Boolean fully_lit;
-    private Long grid_stalls;
-    private Boolean has_opt_path;
-    private Boolean has_short_parade_lap;
-    private Boolean has_svg_map;
-    private Boolean is_dirt;
-    private Boolean is_oval;
-    private Long lap_scoring;
+    @JsonProperty("free_with_subscription")
+    private Boolean freeWithSubscription;
+    @JsonProperty("fully_lit")
+    private Boolean fullyLit;
+    @JsonProperty("grid_stalls")
+    private Long gridStalls;
+    @JsonProperty("has_opt_path")
+    private Boolean hasOptPath;
+    @JsonProperty("has_short_parade_lap")
+    private Boolean hasShortParadeLap;
+    @JsonProperty("has_svg_map")
+    private Boolean hasSvgMap;
+    @JsonProperty("is_dirt")
+    private Boolean isDirt;
+    @JsonProperty("is_oval")
+    private Boolean isOval;
+    @JsonProperty("lap_scoring")
+    private Long lapScoring;
+    @JsonProperty("latitude")
     private Double latitude;
+    @JsonProperty("location")
     private String location;
+    @JsonProperty("longitude")
     private Double longitude;
-    private Long max_cars;
-    private Boolean night_lighting;
-    private Double nominal_lap_time;
-    private Long number_pitstalls;
+    @JsonProperty("max_cars")
+    private Long maxCars;
+    @JsonProperty("night_lighting")
+    private Boolean nightLighting;
+    @JsonProperty("nominal_lap_time")
+    private Double nominalLapTime;
+    @JsonProperty("number_pitstalls")
+    private Long numberPitstalls;
+    @JsonProperty("opens")
     private String opens;
-    private Long package_id;
-    private Long pit_road_speed_limit;
+    @JsonProperty("package_id")
+    private Long packageId;
+    @JsonProperty("pit_road_speed_limit")
+    private Long pitRoadSpeedLimit;
+    @JsonProperty("price")
     private Double price;
+    @JsonProperty("priority")
     private Long priority;
+    @JsonProperty("purchasable")
     private Boolean purchasable;
-    private Long qualify_laps;
-    private Boolean restart_on_left;
+    @JsonProperty("qualify_laps")
+    private Long qualifyLaps;
+    @JsonProperty("restart_on_left")
+    private Boolean restartOnLeft;
+    @JsonProperty("retired")
     private Boolean retired;
-    private String search_filters;
-    private String site_url;
+    @JsonProperty("search_filters")
+    private String searchFilters;
+    @JsonProperty("site_url")
+    private String siteUrl;
+    @JsonProperty("sku")
     private Long sku;
-    private Long solo_laps;
-    private Boolean start_on_left;
-    private Boolean supports_grip_compound;
-    private Boolean tech_track;
-    private String time_zone;
-    private Double track_config_length;
-    private String track_dirpath;
-    private Long track_id;
-    private String track_name;
-    private TrackTypeDto[] track_types;
+    @JsonProperty("solo_laps")
+    private Long soloLaps;
+    @JsonProperty("start_on_left")
+    private Boolean startOnLeft;
+    @JsonProperty("supports_grip_compound")
+    private Boolean supportsGripCompound;
+    @JsonProperty("tech_track")
+    private Boolean techTrack;
+    @JsonProperty("time_zone")
+    private String timezone;
+    @JsonProperty("track_config_length")
+    private Double trackConfigLength;
+    @JsonProperty("track_dirpath")
+    private String trackDirpath;
+    @JsonProperty("track_id")
+    private Long trackId;
+    @JsonProperty("track_name")
+    private String trackName;
+    @JsonProperty("track_types")
+    private TrackTypeDto[] trackTypes;
 }

@@ -22,12 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class TagDto {
-    private Long tag_id;
-    private String tag_name;
+    @JsonProperty("tag_id")
+    private Long tagId;
+    @JsonProperty("tag_name")
+    private String tagName;
 }

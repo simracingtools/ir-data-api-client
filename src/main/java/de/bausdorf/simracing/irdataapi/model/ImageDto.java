@@ -22,12 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class ImageDto {
-    private String small_logo;
-    private String large_logo;
+    @JsonProperty("small_logo")
+    private String smallLogo;
+    @JsonProperty("large_logo")
+    private String largeLogo;
 }

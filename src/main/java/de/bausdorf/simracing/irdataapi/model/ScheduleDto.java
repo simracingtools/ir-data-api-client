@@ -22,31 +22,56 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
 @ToString
 public class ScheduleDto {
-    private Long season_id;
-    private Long race_week_num;
-    private Long series_id;
-    private String series_name;
-    private String season_name;
-    private String schedule_name;
-    private String start_date;
-    private Long simulated_time_multiplier;
-    private Long race_lap_limit;
-    private Long race_time_limit;
-    private String start_type;
-    private String restart_type;
-    private Boolean qual_attached;
-    private Boolean yellow_flags;
-    private String special_event_type;
+    @JsonProperty("season_id")
+    private Long seasonId;
+    @JsonProperty("race_week_num")
+    private Long raceWeekNum;
+    @JsonProperty("series_id")
+    private Long seriesId;
+    @JsonProperty("series_name")
+    private String seriesName;
+    @JsonProperty("season_name")
+    private String seasonName;
+    @JsonProperty("schedule_name")
+    private String scheduleName;
+    @JsonProperty("start_date")
+    @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
+    private LocalDate startDate;
+    @JsonProperty("simulated_time_multiplier")
+    private Long simulatedTimeMultiplier;
+    @JsonProperty("race_lap_limit")
+    private Long raceLapLimit;
+    @JsonProperty("race_time_limit")
+    private Long raceTimeLimit;
+    @JsonProperty("start_type")
+    private String startType;
+    @JsonProperty("restart_type")
+    private String restartType;
+    @JsonProperty("qual_attached")
+    private Boolean qualAttached;
+    @JsonProperty("yellow_flags")
+    private Boolean yellowFlags;
+    @JsonProperty("special_event_type")
+    private String specialEventType;
+    @JsonProperty("track")
     private TrackRefDto track;
-    private TrackStateDto track_state;
+    @JsonProperty("track_state")
+    private TrackStateDto trackState;
+    @JsonProperty("weather")
     private WeatherDto weather;
-    private CarRestrictionDto[] car_restrictions;
+    @JsonProperty("car_restrictions")
+    private CarRestrictionDto[] carRestrictions;
 }

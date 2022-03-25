@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,9 +31,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class TrackRefDto {
-    private Long track_id;
-    private String track_name;
-    private String config_name;
+    @JsonProperty("track_id")
+    private Long trackId;
+    @JsonProperty("track_name")
+    private String trackName;
+    @JsonProperty("config_name")
+    private String configName;
+    @JsonProperty("category")
     private String category;
-    private Long category_id;
+    @JsonProperty("category_id")
+    private Long categoryId;
 }

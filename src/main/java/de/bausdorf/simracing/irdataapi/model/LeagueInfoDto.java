@@ -22,27 +22,45 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class LeagueInfoDto {
-    private Long league_id;
-    private Long owner_id;
-    private String league_name;
+    @JsonProperty("league_id")
+    private Long leagueId;
+    @JsonProperty("owner_id")
+    private Long ownerId;
+    @JsonProperty("league_name")
+    private String leagueName;
+    @JsonProperty("created")
     private String created;
+    @JsonProperty("hidden")
     private Boolean hidden;
+    @JsonProperty("message")
     private String message;
+    @JsonProperty("url")
     private String url;
+    @JsonProperty("recruiting")
     private Boolean recruiting;
-    private Boolean private_wall;
-    private Boolean private_roster;
-    private Boolean private_schedule;
-    private Boolean private_results;
-    private Long roster_count;//": 573,
+    @JsonProperty("private_wall")
+    private Boolean privateWall;
+    @JsonProperty("private_roster")
+    private Boolean privateRoster;
+    @JsonProperty("private_schedule")
+    private Boolean privateSchedule;
+    @JsonProperty("private_results")
+    private Boolean privateResults;
+    @JsonProperty("roster_count")
+    private Long rosterCount;
+    @JsonProperty("owner")
     private LeagueOwnerDto owner;
+    @JsonProperty("image")
     private ImageDto image;
+    @JsonProperty("tags")
     private TagsDto tags;
+    @JsonProperty("roster")
     private LeagueMemberDto[] roster;
 }

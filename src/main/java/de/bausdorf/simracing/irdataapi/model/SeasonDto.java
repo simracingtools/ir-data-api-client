@@ -22,66 +22,128 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
 public class SeasonDto {
+    @JsonProperty("active")
     private Boolean active;
-    private String allowed_season_members;
-    private Long[] car_class_ids;
-    private CarTypeDto[] car_types;
-    private Boolean caution_laps_do_not_count;
+    @JsonProperty("allowed_season_members")
+    private String allowedSeasonMembers;
+    @JsonProperty("car_class_ids")
+    private Long[] carClassIds;
+    @JsonProperty("car_types")
+    private CarTypeDto[] carTypes;
+    @JsonProperty("caution_laps_do_not_count")
+    private Boolean cautionLapsDoNotCount;
+    @JsonProperty("complete")
     private Boolean complete;
-    private Boolean cross_license;
-    private Long driver_change_rule;
-    private Boolean driver_changes;
+    @JsonProperty("cross_license")
+    private Boolean crossLicense;
+    @JsonProperty("driver_change_rule")
+    private Long driverChangeRule;
+    @JsonProperty("driver_changes")
+    private Boolean driverChanges;
+    @JsonProperty("drops")
     private Long drops;
-    private Boolean fixed_setup;
-    private Long green_white_checkered_limit;
-    private Boolean grid_by_class;
-    private Boolean ignore_license_for_practice;
-    private Long incident_limit;
-    private Long incident_warn_mode;
-    private Long incident_warn_param1;
-    private Long incident_warn_param2;
-    private Boolean is_heat_racing;
-    private Long license_group;
-    private LicenseGroupTypeDto[] license_group_types;
-    private Boolean lucky_dog;
-    private Long max_team_drivers;
-    private Long max_weeks;
-    private Long min_team_drivers;
+    @JsonProperty("fixed_setup")
+    private Boolean fixedSetup;
+    @JsonProperty("green_white_checkered_limit")
+    private Long greenWhiteCheckeredLimit;
+    @JsonProperty("grid_by_class")
+    private Boolean gridByClass;
+    @JsonProperty("ignore_license_for_practice")
+    private Boolean ignoreLicenseForPractice;
+    @JsonProperty("incident_limit")
+    private Long incidentLimit;
+    @JsonProperty("incident_warn_mode")
+    private Long incidentWarnMode;
+    @JsonProperty("incident_warn_param1")
+    private Long incidentWarnParam1;
+    @JsonProperty("incident_warn_param2")
+    private Long incidentWarnParam2;
+    @JsonProperty("is_heat_racing")
+    private Boolean isHeatRacing;
+    @JsonProperty("license_group")
+    private Long licenseGroup;
+    @JsonProperty("license_group_types")
+    private LicenseGroupTypeDto[] licenseGroupTypes;
+    @JsonProperty("lucky_dog")
+    private Boolean luckyDog;
+    @JsonProperty("max_team_drivers")
+    private Long maxTeamDrivers;
+    @JsonProperty("max_weeks")
+    private Long maxWeeks;
+    @JsonProperty("min_team_drivers")
+    private Long minTeamDrivers;
+    @JsonProperty("multiclass")
     private Boolean multiclass;
-    private Boolean must_use_diff_tire_types_in_race;
-    private String next_race_session;
-    private Long num_opt_laps;
+    @JsonProperty("must_use_diff_tire_types_in_race")
+    private Boolean mustUseDiffTireTypesInRace;
+    @JsonProperty("next_race_session")
+    private String nextRaceSession;
+    @JsonProperty("num_opt_laps")
+    private Long numOptLaps;
+    @JsonProperty("official")
     private Boolean official;
-    private Long op_duration;
-    private Long open_practice_session_type_id;
-    private Boolean qualifier_must_start_race;
-    private Long race_week;
-    private Long race_week_to_make_divisions;
-    private Long reg_open_minutes;
-    private Long reg_user_count;
-    private Boolean region_competition;
-    private Boolean restrict_by_member;
-    private Boolean restrict_to_car;
-    private Boolean restrict_viewing;
-    private String rookie_season;
-    private String schedule_description;
+    @JsonProperty("op_duration")
+    private Long opDuration;
+    @JsonProperty("open_practice_session_type_id")
+    private Long openPracticeSessionTypeId;
+    @JsonProperty("qualifier_must_start_race")
+    private Boolean qualifierMustStartRace;
+    @JsonProperty("race_week")
+    private Long raceWeek;
+    @JsonProperty("race_week_to_make_divisions")
+    private Long raceWeekToMakeDivisions;
+    @JsonProperty("reg_open_minutes")
+    private Long regOpenMinutes;
+    @JsonProperty("reg_user_count")
+    private Long regUserCount;
+    @JsonProperty("region_competition")
+    private Boolean regionCompetition;
+    @JsonProperty("restrict_by_member")
+    private Boolean restrictByMember;
+    @JsonProperty("restrict_to_car")
+    private Boolean restrictToCar;
+    @JsonProperty("restrict_viewing")
+    private Boolean restrictViewing;
+    @JsonProperty("rookie_season")
+    private String rookieSeason;
+    @JsonProperty("schedule_description")
+    private String scheduleDescription;
+    @JsonProperty("schedules")
     private ScheduleDto[] schedules;
-    private Long season_id;
-    private String season_name;
-    private Long season_quarter;
-    private String season_short_name;
-    private Long season_year;
-    private Boolean send_to_open_practice;
-    private Long series_id;
-    private String start_date;
-    private Boolean start_on_qual_tire;
-    private TrackTypeDto[] track_types;
-    private Long unsport_conduct_rule_mode;
-    private HeatSessionInfoDto heat_ses_info;
+    @JsonProperty("season_id")
+    private Long seasonId;
+    @JsonProperty("season_name")
+    private String seasonName;
+    @JsonProperty("season_quarter")
+    private Long seasonQuarter;
+    @JsonProperty("season_short_name")
+    private String seasonShortName;
+    @JsonProperty("season_year")
+    private Long seasonYear;
+    @JsonProperty("send_to_open_practice")
+    private Boolean sendToOpenPractice;
+    @JsonProperty("series_id")
+    private Long seriesId;
+    @JsonProperty("start_date")
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone="GMT")
+    private ZonedDateTime startDate;
+    @JsonProperty("start_on_qual_tire")
+    private Boolean startOnQualTire;
+    @JsonProperty("track_types")
+    private TrackTypeDto[] trackTypes;
+    @JsonProperty("unsport_conduct_rule_mode")
+    private Long unsportConductRuleMode;
+    @JsonProperty("heat_ses_info")
+    private HeatSessionInfoDto heatSesInfo;
 }

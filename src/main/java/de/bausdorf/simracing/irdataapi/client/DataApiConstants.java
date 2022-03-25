@@ -24,6 +24,7 @@ package de.bausdorf.simracing.irdataapi.client;
 
 public class DataApiConstants {
 
+    // Endpoint urls
     public static final String AUTH_URL = "https://members-ng.iracing.com/auth";
     public static final String GET_MEMBERS_URL = "https://members-ng.iracing.com/data/member/get";
     public static final String GET_MEMBER_SUMMARY_URL = "https://members-ng.iracing.com/data/stats/member_summary";
@@ -39,6 +40,11 @@ public class DataApiConstants {
     public static final String GET_DIVISIONS_URL = "https://members-ng.iracing.com/data/constants/divisions";
     public static final String GET_LICENSES_URL = "https://members-ng.iracing.com/data/lookup/licenses";
     public static final String GET_SEASONS_URL = "https://members-ng.iracing.com/data/series/seasons";
+
+    // Date and time format constants for json deserialization
+    public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    public static final String LOCAL_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String LOCAL_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     private DataApiConstants() {
         super();

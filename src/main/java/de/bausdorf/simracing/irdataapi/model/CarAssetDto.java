@@ -22,25 +22,41 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class CarAssetDto {
-    private Long car_id;
-    private CarRuleDto[] car_rules;
-    private String detail_copy;
-    private String detail_screen_shot_images;//": "formula_skipbarber/fsb2000_ss_1,formula_skipbarber/fsb2000_ss_2,formula_skipbarber/fsb2000_ss_3,formula_skipbarber/fsb2000_ss_4,formula_skipbarber/fsb2000_ss_5,formula_skipbarber/fsb2000_ss_6,formula_skipbarber/fsb2000_ss_7,formula_skipbarber/fsb2000_ss_8",
-    private String detail_techspecs_copy;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("car_rules")
+    private CarRuleDto[] carRules;
+    @JsonProperty("detail_copy")
+    private String detailCopy;
+    @JsonProperty("detail_screen_shot_images")
+    private String detailScreenShotImages;
+    @JsonProperty("detail_techspecs_copy")
+    private String detailTechspecsCopy;
+    @JsonProperty("folder")
     private String folder;
-    private String gallery_images;
-    private String gallery_prefix;
-    private String group_image;
-    private String group_name;
-    private String large_image;
+    @JsonProperty("gallery_images")
+    private String galleryImages;
+    @JsonProperty("gallery_prefix")
+    private String galleryPrefix;
+    @JsonProperty("group_image")
+    private String groupImage;
+    @JsonProperty("group_name")
+    private String groupName;
+    @JsonProperty("large_image")
+    private String largeImage;
+    @JsonProperty("logo")
     private String logo;
-    private String small_image;
-    private String sponsor_logo;
-    private String template_path;
+    @JsonProperty("small_image")
+    private String smallImage;
+    @JsonProperty("sponsor_logo")
+    private String sponsorLogo;
+    @JsonProperty("template_path")
+    private String templatePath;
 }

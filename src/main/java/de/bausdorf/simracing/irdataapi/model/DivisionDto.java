@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,6 +31,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class DivisionDto {
+    @JsonProperty("label")
     private String label;
+    @JsonProperty("value")
     private Long value;
 }

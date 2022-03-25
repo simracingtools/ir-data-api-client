@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,21 +31,38 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class MemberStatsDto {
-    private Long category_id;
+    @JsonProperty("category_id")
+    private Long categoryId;
+    @JsonProperty("category")
     private String category;
+    @JsonProperty("starts")
     private Long starts;
+    @JsonProperty("wins")
     private Long wins;
+    @JsonProperty("top5")
     private Long top5;
+    @JsonProperty("poles")
     private Long poles;
-    private Long avg_start_position;
-    private Long avg_finish_position;
+    @JsonProperty("avg_start_position")
+    private Long avgStartPosition;
+    @JsonProperty("avg_finish_position")
+    private Long avgFinishPosition;
+    @JsonProperty("laps")
     private Long laps;
-    private Long laps_led;
-    private Long avg_incidents;
-    private Long avg_points;
-    private Long win_percentage;
-    private Long top5_percentage;
-    private Long laps_led_percentage;
-    private Long total_club_points;
+    @JsonProperty("laps_led")
+    private Long lapsLed;
+    @JsonProperty("avg_incidents")
+    private Long avgIncidents;
+    @JsonProperty("avg_points")
+    private Long avgPoints;
+    @JsonProperty("win_percentage")
+    private Long winPercentage;
+    @JsonProperty("top5_percentage")
+    private Long top5Percentage;
+    @JsonProperty("laps_led_percentage")
+    private Long lapsLedPercentage;
+    @JsonProperty("total_club_points")
+    private Long totalClubPoints;
+    @JsonProperty("year")
     private Long year;
 }

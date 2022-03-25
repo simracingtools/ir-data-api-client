@@ -23,6 +23,7 @@ package de.bausdorf.simracing.irdataapi.model;
  */
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -32,32 +33,60 @@ import lombok.ToString;
 @ToString
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class CarInfoDto {
-    private String ai_enabled;
-    private Boolean allow_number_colors;
-    private Boolean allow_number_font;
-    private Boolean allow_sponsor1;
-    private Boolean allow_sponsor2;
-    private Boolean allow_wheel_color;
-    private Boolean award_exempt;
-    private String car_dirpath;
-    private Long car_id;
-    private String car_name;
-    private String car_name_abbreviated;
-    private CarTypeDto[] car_types;
-    private Long car_weight;
+    @JsonProperty("ai_enabled")
+    private String aiEnabled;
+    @JsonProperty("allow_number_colors")
+    private Boolean allowNumberColors;
+    @JsonProperty("allow_number_font")
+    private Boolean allowNumberFont;
+    @JsonProperty("allow_sponsor1")
+    private Boolean allowSponsor1;
+    @JsonProperty("allow_sponsor2")
+    private Boolean allowSponsor2;
+    @JsonProperty("allow_wheel_color")
+    private Boolean allowWheelColor;
+    @JsonProperty("award_exempt")
+    private Boolean awardExempt;
+    @JsonProperty("car_dirpath")
+    private String carDirpath;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("car_name")
+    private String carName;
+    @JsonProperty("car_name_abbreviated")
+    private String carNameAbbreviated;
+    @JsonProperty("car_types")
+    private CarTypeDto[] carTypes;
+    @JsonProperty("car_weight")
+    private Long carWeight;
+    @JsonProperty("categories")
     private String[] categories;
+    @JsonProperty("created")
     private String created;
-    private Boolean free_with_subscription;
-    private Boolean has_headlights;
-    private Boolean has_multiple_dry_tire_types;
+    @JsonProperty("free_with_subscription")
+    private Boolean freeWithSubscription;
+    @JsonProperty("has_headlights")
+    private Boolean hasHeadlights;
+    @JsonProperty("has_multiple_dry_tire_types")
+    private Boolean hasMultipleDryTireTypes;
+    @JsonProperty("hp")
     private Long hp;
-    private Long max_power_adjust_pct;
-    private Long max_weight_penalty_kg;
-    private Long min_power_adjust_pct;
-    private Long package_id;
+    @JsonProperty("max_power_adjust_pct")
+    private Long maxPowerAdjustPct;
+    @JsonProperty("max_weight_penalty_kg")
+    private Long maxWeightPenaltyKg;
+    @JsonProperty("min_power_adjust_pct")
+    private Long minPowerAdjustPct;
+    @JsonProperty("package_id")
+    private Long packageId;
+    @JsonProperty("patterns")
     private Long patterns;
+    @JsonProperty("price")
     private Double price;
+    @JsonProperty("retired")
     private Boolean retired;
-    private String search_filters;
+    @JsonProperty("search_filters")
+    private String searchFilters;
+    @JsonProperty("sku")
     private Long sku;
 }

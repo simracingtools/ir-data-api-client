@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,11 +31,18 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CarRestrictionDto {
-    private Long car_id;
-    private Long race_setup_id;
-    private Long qual_setup_id;
-    private Long max_pct_fuel_fill;
-    private Long weight_penalty_kg;
-    private Long power_adjust_pct;
-    private Long max_dry_tire_sets;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("race_setup_id")
+    private Long raceSetupId;
+    @JsonProperty("qual_setup_id")
+    private Long qualSetupId;
+    @JsonProperty("max_pct_fuel_fill")
+    private Long maxPctFuelFill;
+    @JsonProperty("weight_penalty_kg")
+    private Long weightPenaltyKg;
+    @JsonProperty("power_adjust_pct")
+    private Long powerAdjustPct;
+    @JsonProperty("max_dry_tire_sets")
+    private Long maxDryTireSets;
 }

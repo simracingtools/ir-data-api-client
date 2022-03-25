@@ -22,17 +22,24 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class HelmetDto {
-    private String pattern;//": 67,
-    private String color1;//": "000000",
-    private String color2;//": "10cf15",
-    private String color3;//": "111111",
-    private String face_type;//": 0,
-    private String helmet_type;//": 0
+    @JsonProperty("pattern")
+    private String pattern;
+    @JsonProperty("color1")
+    private String color1;
+    @JsonProperty("color2")
+    private String color2;
+    @JsonProperty("color3")
+    private String color3;
+    @JsonProperty("face_type")
+    private String faceType;
+    @JsonProperty("helmet_type")
+    private String helmetType;
 
 }

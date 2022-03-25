@@ -22,12 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class TagsDto {
+    @JsonProperty("categorized")
     private CategoryDto[] categorized;
-    private CategoryDto[] not_categorized;
+    @JsonProperty("not_categorized")
+    private CategoryDto[] notCategorized;
 }

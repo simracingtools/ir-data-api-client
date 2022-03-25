@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,11 +31,18 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class LicenseGroupDto {
-    private Long license_group;
-    private String group_name;
-    private Long min_num_races;
-    private Long participation_credits;
-    private Long min_sr_to_fast_track;
-    private Long min_num_tt;
+    @JsonProperty("license_group")
+    private Long licenseGroup;
+    @JsonProperty("group_name")
+    private String groupName;
+    @JsonProperty("min_num_races")
+    private Long minNumRaces;
+    @JsonProperty("participation_credits")
+    private Long participationCredits;
+    @JsonProperty("min_sr_to_fast_track")
+    private Long minSrToFastTrack;
+    @JsonProperty("min_num_tt")
+    private Long minNumTt;
+    @JsonProperty("levels")
     private LicenseLevelDto[] levels;
 }

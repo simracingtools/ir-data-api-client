@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,7 +31,10 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class CarInClassDto {
-    private String car_dirpath;
-    private Long car_id;
+    @JsonProperty("car_dirpath")
+    private String carDirpath;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("retired")
     private Boolean retired;
 }

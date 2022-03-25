@@ -22,12 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class CarRuleDto {
-    private String rule_category;
+    @JsonProperty("rule_category")
+    private String ruleCategory;
+    @JsonProperty("text")
     private String text;
 }

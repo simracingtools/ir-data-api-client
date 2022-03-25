@@ -22,18 +22,27 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class MemberInfoDto {
-    private Long cust_id;
-    private String display_name;
+    @JsonProperty("cust_id")
+    private Long custId;
+    @JsonProperty("display_name")
+    private String displayName;
+    @JsonProperty("helmet")
     private HelmetDto helmet;
-    private String last_login;
-    private String member_since;
-    private Long club_id;
-    private String club_name;
+    @JsonProperty("last_login")
+    private String lastLogin;
+    @JsonProperty("member_since")
+    private String memberSince;
+    @JsonProperty("club_id")
+    private Long clubId;
+    @JsonProperty("club_name")
+    private String clubName;
+    @JsonProperty("ai")
     private Boolean ai;
 }

@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,47 +31,90 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class HeatSessionInfoDto {
-    private Long heat_info_id;
-    private Long cust_id;
+    @JsonProperty("heat_info_id")
+    private Long heatInfoId;
+    @JsonProperty("cust_id")
+    private Long custId;
+    @JsonProperty("hidden")
     private Boolean hidden;
+    @JsonProperty("created")
     private String created;
-    private String heat_info_name;
+    @JsonProperty("heat_info_name")
+    private String heatInfoName;
+    @JsonProperty("description")
     private String description;
-    private Long max_entrants;
-    private Long race_style;
-    private Boolean open_practice;
-    private Long pre_qual_practice_length_minutes;
-    private Long pre_qual_num_to_main;
-    private Long qual_style;
-    private Long qual_length_minutes;
-    private Long qual_laps;
-    private Long qual_num_to_main;
-    private Long qual_scoring;
-    private Long qual_caution_type;
-    private Long qual_open_delay_seconds;
-    private Boolean qual_scores_champ_points;
-    private Long heat_length_minutes;
-    private Long heat_laps;
-    private Long heat_max_field_size;
-    private Long heat_num_position_to_invert;
-    private Long heat_caution_type;
-    private Long heat_num_from_each_to_main;
-    private Boolean heat_scores_champ_points;
-    private Long consolation_num_to_consolation;
-    private Long consolation_num_to_main;
-    private Long consolation_first_max_field_size;
-    private Long consolation_first_session_length_minutes;
-    private Long consolation_first_session_laps;
-    private Long consolation_delta_max_field_size;
-    private Long consolation_delta_session_length_minutes;
-    private Long consolation_delta_session_laps;
-    private Long consolation_num_position_to_invert;
-    private Boolean consolation_scores_champ_points;
-    private Boolean consolation_run_always;
-    private Long pre_main_practice_length_minutes;
-    private Long main_length_minutes;
-    private Long main_laps;
-    private Long main_max_field_size;
-    private Long main_num_position_to_invert;
-    private Long heat_session_minutes_estimate;
+    @JsonProperty("max_entrants")
+    private Long maxEntrants;
+    @JsonProperty("race_style")
+    private Long raceStyle;
+    @JsonProperty("open_practice")
+    private Boolean openPractice;
+    @JsonProperty("pre_qual_practice_length_minutes")
+    private Long preQualPracticeLengthMinutes;
+    @JsonProperty("pre_qual_num_to_main")
+    private Long preQualNumToMain;
+    @JsonProperty("qual_style")
+    private Long qualStyle;
+    @JsonProperty("qual_length_minutes")
+    private Long qualLengthMinutes;
+    @JsonProperty("qual_laps")
+    private Long qualLaps;
+    @JsonProperty("qual_num_to_main")
+    private Long qualNumToMain;
+    @JsonProperty("qual_scoring")
+    private Long qualScoring;
+    @JsonProperty("qual_caution_type")
+    private Long qualCautionType;
+    @JsonProperty("qual_open_delay_seconds")
+    private Long qualOpenDelaySeconds;
+    @JsonProperty("qual_scores_champ_points")
+    private Boolean qualScoresChampPoints;
+    @JsonProperty("heat_length_minutes")
+    private Long heatLengthMinutes;
+    @JsonProperty("heat_laps")
+    private Long heatLaps;
+    @JsonProperty("heat_max_field_size")
+    private Long heatMaxFieldSize;
+    @JsonProperty("heat_num_position_to_invert")
+    private Long heatNumPositionToInvert;
+    @JsonProperty("heat_caution_type")
+    private Long heatCautionType;
+    @JsonProperty("heat_num_from_each_to_main")
+    private Long heatNumFromEachToMain;
+    @JsonProperty("heat_scores_champ_points")
+    private Boolean heatScoresChampPoints;
+    @JsonProperty("consolation_num_to_consolation")
+    private Long consolationNumToConsolation;
+    @JsonProperty("consolation_num_to_main")
+    private Long consolationNumToMain;
+    @JsonProperty("consolation_first_max_field_size")
+    private Long consolationFirstMaxFieldSize;
+    @JsonProperty("consolation_first_session_length_minutes")
+    private Long consolationFirstSessionLengthMinutes;
+    @JsonProperty("consolation_first_session_laps")
+    private Long consolationFirstSessionLaps;
+    @JsonProperty("consolation_delta_max_field_size")
+    private Long consolationDeltaMaxFieldSize;
+    @JsonProperty("consolation_delta_session_length_minutes")
+    private Long consolationDeltaSessionLengthMinutes;
+    @JsonProperty("consolation_delta_session_laps")
+    private Long consolationDeltaSessionLaps;
+    @JsonProperty("consolation_num_position_to_invert")
+    private Long consolationNumPositionToInvert;
+    @JsonProperty("consolation_scores_champ_points")
+    private Boolean consolationScoresChampPoints;
+    @JsonProperty("consolation_run_always")
+    private Boolean consolationRunAlways;
+    @JsonProperty("pre_main_practice_length_minutes")
+    private Long preMainPracticeLengthMinutes;
+    @JsonProperty("main_length_minutes")
+    private Long mainLengthMinutes;
+    @JsonProperty("main_laps")
+    private Long mainLaps;
+    @JsonProperty("main_max_field_size")
+    private Long mainMaxFieldSize;
+    @JsonProperty("main_num_position_to_invert")
+    private Long mainNumPositionToInvert;
+    @JsonProperty("heat_session_minutes_estimate")
+    private Long heatSessionMinutesEstimate;
 }

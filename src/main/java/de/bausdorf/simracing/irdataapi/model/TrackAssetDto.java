@@ -22,24 +22,39 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class TrackAssetDto {
+    @JsonProperty("coordinates")
     private String coordinates;
-    private String detail_copy;
-    private String detail_techspecs_copy;
-    private String detail_video;
+    @JsonProperty("detail_copy")
+    private String detailCopy;
+    @JsonProperty("detail_techspecs_copy")
+    private String detailTechspecsCopy;
+    @JsonProperty("detail_video")
+    private String detailVideo;
+    @JsonProperty("folder")
     private String folder;
-    private String gallery_images;
-    private String gallery_prefix;
-    private String large_image;
+    @JsonProperty("gallery_images")
+    private String galleryImages;
+    @JsonProperty("gallery_prefix")
+    private String galleryPrefix;
+    @JsonProperty("large_image")
+    private String largeImage;
+    @JsonProperty("logo")
     private String logo;
+    @JsonProperty("north")
     private String north;
-    private Long num_svg_images;
-    private String small_image;
-    private Long track_id;
-    private String track_map;
+    @JsonProperty("num_svg_images")
+    private Long numSvgImages;
+    @JsonProperty("small_image")
+    private String smallImage;
+    @JsonProperty("track_id")
+    private Long trackId;
+    @JsonProperty("track_map")
+    private String trackMap;
 }

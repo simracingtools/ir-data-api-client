@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,6 +31,8 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class TrackStateDto {
-    private Boolean leave_marbles;
-    private Long practice_rubber;
+    @JsonProperty("leave_marbles")
+    private Boolean leaveMarbles;
+    @JsonProperty("practice_rubber")
+    private Long practiceRubber;
 }

@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,31 +31,58 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class RecentRaceDto {
-    private Long season_id;
-    private Long series_id;
-    private String series_name;
-    private Long car_id;
-    private Long car_class_id;
+    @JsonProperty("season_id")
+    private Long seasonId;
+    @JsonProperty("series_id")
+    private Long seriesId;
+    @JsonProperty("series_name")
+    private String seriesName;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("car_class_id")
+    private Long carClassId;
+    @JsonProperty("livery")
     private LiveryDto livery;
-    private Long license_level;
-    private String session_start_time;
-    private Long winner_group_id;
-    private String winner_name;
-    private HelmetDto winner_helmet;
-    private Long winner_license_level;
-    private Long start_position;
-    private Long finish_position;
-    private Long qualifying_time;
+    @JsonProperty("license_level")
+    private Long licenseLevel;
+    @JsonProperty("session_start_time")
+    private String sessionStartTime;
+    @JsonProperty("winner_group_id")
+    private Long winnerGroupId;
+    @JsonProperty("winner_name")
+    private String winnerName;
+    @JsonProperty("winner_helmet")
+    private HelmetDto winnerHelmet;
+    @JsonProperty("winner_license_level")
+    private Long winnerLicenseLevel;
+    @JsonProperty("start_position")
+    private Long startPosition;
+    @JsonProperty("finish_position")
+    private Long finishPosition;
+    @JsonProperty("qualifying_time")
+    private Long qualifyingTime;
+    @JsonProperty("laps")
     private Long laps;
-    private Long laps_led;
+    @JsonProperty("laps_led")
+    private Long lapsLed;
+    @JsonProperty("incidents")
     private Long incidents;
-    private Long club_points;
+    @JsonProperty("club_points")
+    private Long clubPoints;
+    @JsonProperty("points")
     private Long points;
-    private Long strength_of_field;
-    private Long subsession_id;
-    private Long old_sub_level;
-    private Long new_sub_level;
-    private Long oldi_rating;
-    private Long newi_rating;
+    @JsonProperty("strength_of_field")
+    private Long strengthOfField;
+    @JsonProperty("subsession_id")
+    private Long subsessionId;
+    @JsonProperty("old_sub_level")
+    private Long oldSubLevel;
+    @JsonProperty("new_sub_level")
+    private Long newSubLevel;
+    @JsonProperty("oldi_rating")
+    private Long oldiRating;
+    @JsonProperty("newi_rating")
+    private Long newiRating;
+    @JsonProperty("track")
     private TrackRefDto track;
 }

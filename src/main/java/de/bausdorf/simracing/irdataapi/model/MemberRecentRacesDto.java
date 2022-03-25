@@ -22,12 +22,15 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
 public class MemberRecentRacesDto {
-    private Long cust_id;
+    @JsonProperty("cust_id")
+    private Long custId;
+    @JsonProperty("races")
     private RecentRaceDto[] races;
 }

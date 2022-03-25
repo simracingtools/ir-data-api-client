@@ -22,28 +22,52 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
+
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
 @ToString
 public class WeatherDto {
+    @JsonProperty("type")
     private Long type;
-    private Long temp_units;
-    private Long temp_value;
-    private Long rel_humidity;
+    @JsonProperty("temp_units")
+    private Long tempUnits;
+    @JsonProperty("temp_value")
+    private Long tempValue;
+    @JsonProperty("rel_humidity")
+    private Long relHumidity;
+    @JsonProperty("fog")
     private Long fog;
-    private Long wind_dir;
-    private Long wind_units;
-    private Long wind_value;
+    @JsonProperty("wind_dir")
+    private Long windDir;
+    @JsonProperty("wind_units")
+    private Long windUnits;
+    @JsonProperty("wind_value")
+    private Long windValue;
+    @JsonProperty("skies")
     private Long skies;
-    private Long weather_var_initial;
-    private Long weather_var_ongoing;
-    private Long time_of_day;
-    private String simulated_start_time;
-    private Long[] simulated_time_offsets;
-    private Long simulated_time_multiplier;
-    private String simulated_start_utc_time;
+    @JsonProperty("weather_var_initial")
+    private Long weatherVarInitial;
+    @JsonProperty("weather_var_ongoing")
+    private Long weatherVarOngoing;
+    @JsonProperty("time_of_day")
+    private Long timeOfDay;
+    @JsonProperty("simulated_start_time")
+    @JsonFormat(pattern = DataApiConstants.LOCAL_DATETIME_FORMAT)
+    private LocalDateTime simulatedStartTime;
+    @JsonProperty("simulated_time_offsets")
+    private Long[] simulatedTimeOffsets;
+    @JsonProperty("simulated_time_multiplier")
+    private Long simulatedTimeMultiplier;
+    @JsonProperty("simulated_start_utc_time")
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime simulatedStartUtcTime;
 }

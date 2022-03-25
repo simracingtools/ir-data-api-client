@@ -22,6 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -30,9 +31,14 @@ import lombok.ToString;
 @NoArgsConstructor
 @ToString
 public class LiveryDto {
-    private Long car_id;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("pattern")
     private Long pattern;
+    @JsonProperty("color1")
     private String color1;
+    @JsonProperty("color2")
     private String color2;
+    @JsonProperty("color3")
     private String color3;
 }
