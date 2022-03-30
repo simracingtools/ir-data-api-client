@@ -249,7 +249,7 @@ class IrDataClientTest {
     @Test
     void testGetLeagueSubsessionResult() {
         authenticate();
-        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975665L);
+        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(43352007L);
         assertNotNull(subsessionResultDto);
         assertTrue(subsessionResultDto.getSessionResults().length > 0);
 
@@ -314,6 +314,31 @@ class IrDataClientTest {
         assertFalse(chartEntries.isEmpty());
 
         chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
+    void testGetTeamLeagueLapData() {
+        authenticate();
+        LapDataDto lapDataDto = dataClient.getLapData(43352007L, 0L, -92660L, true);
+        assertNotNull(lapDataDto);
+        assertTrue(lapDataDto.getSuccess());
+
+        log.info("lap chart session info: {}", lapDataDto.getSessionInfo());
+
+        List<LapChartEntryDto> chartEntries = dataClient.getLapEntries(lapDataDto.getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
+    void testGetSeasonResults() {
+        authenticate();
+        SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L, DataApiConstants.EVENT_TYPE_RACE, 11L);
+        assertNotNull(seasonResults);
+        assertTrue(seasonResults.getSuccess());
+
+        log.info("{} races in week 11", seasonResults.getResultsList().length);
     }
 
     @Test

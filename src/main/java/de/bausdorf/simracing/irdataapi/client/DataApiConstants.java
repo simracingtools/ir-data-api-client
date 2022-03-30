@@ -43,11 +43,18 @@ public class DataApiConstants {
     public static final String GET_SUBSESSIONRESULT_URL = "https://members-ng.iracing.com/data/results/get";
     public static final String GET_LAPCHART_DATA_URL = "https://members-ng.iracing.com/data/results/lap_chart_data";
     public static final String GET_LAP_DATA_URL = "https://members-ng.iracing.com/data/results/lap_data";
+    public static final String GET_SEASON_RESULTS_URL = "https://members-ng.iracing.com/data/results/season_results";
 
     // Date and time format constants for json deserialization
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static final String LOCAL_DATE_FORMAT = "yyyy-MM-dd";
     public static final String LOCAL_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
+
+    // constants for event_type
+    public static final Long EVENT_TYPE_PRACTICE = 2L;
+    public static final Long EVENT_TYPE_QUALIFY = 3L;
+    public static final Long EVENT_TYPE_TT = 4L;
+    public static final Long EVENT_TYPE_RACE = 5L;
 
     private DataApiConstants() {
         super();

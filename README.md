@@ -50,6 +50,14 @@ https://members-ng.iracing.com/data/track/assets
 
 https://members-ng.iracing.com/data/series/seasons
 
+https://members-ng.iracing.com/data/results/get
+
+https://members-ng.iracing.com/data/results/lap_chart_data
+
+https://members-ng.iracing.com/data/results/lap_data
+
+https://members-ng.iracing.com/data/results/season_results
+
 ## Hints
 
 Although all current occurring fields are mapped there is no guarantee

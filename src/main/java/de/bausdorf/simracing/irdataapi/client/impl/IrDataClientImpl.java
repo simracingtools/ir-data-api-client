@@ -321,6 +321,11 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public LapDataDto getLapData(Long subsessionId, Long simsessionNumber) {
+        return getLapData(subsessionId, simsessionNumber, null, false);
+    }
+
+    @Override
     public LapDataDto getLapData(Long subsessionId, Long simsessionNumber, Long driverOrTeamId, boolean isTeamId) {
         try{
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LAP_DATA_URL)
@@ -357,6 +362,38 @@ public class IrDataClientImpl implements IrDataClient {
             }
         });
         return lapChartEntries;
+    }
+
+    @Override
+    public SeasonResultsDto getSeasonResults(Long seasonId) {
+        return getSeasonResults(seasonId, null, null);
+    }
+
+    @Override
+    public SeasonResultsDto getSeasonResults(Long seasonId, Long eventType) {
+        return getSeasonResults(seasonId, eventType, null);
+    }
+
+    @Override
+    public SeasonResultsDto getSeasonResults(Long seasonId, Long eventType, Long raceWeekNum) {
+        try{
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_SEASON_RESULTS_URL)
+                    .append("?season_id=").append(seasonId);
+            if(eventType != null) {
+                uri.append("&event_type=").append(eventType);
+            }
+            if(raceWeekNum !=  null) {
+                uri.append("&race_week_num=").append(raceWeekNum);
+            }
+
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonResultsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SEASON_RESULTS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
     }
 
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {

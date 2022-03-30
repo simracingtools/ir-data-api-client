@@ -69,7 +69,15 @@ public interface IrDataClient {
 
     LapChartDto getLapChartData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
 
-    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, Long driverOrTeamId, boolean isTeamId);
+    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
+
+    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, @NonNull Long driverOrTeamId, boolean isTeamId);
 
     List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    SeasonResultsDto getSeasonResults(@NonNull Long seasonId);
+
+    SeasonResultsDto getSeasonResults(@NonNull Long seasonId, @NonNull Long eventType);
+
+    SeasonResultsDto getSeasonResults(@NonNull Long seasonId, Long eventType, Long raceWeekNum);
 }
