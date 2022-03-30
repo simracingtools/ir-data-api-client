@@ -69,5 +69,7 @@ public interface IrDataClient {
 
     LapChartDto getLapChartData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
 
-    List<LapChartEntryDto> getLapchartEntries(@NonNull ChunkInfoDto chunkInfo);
+    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, Long driverOrTeamId, boolean isTeamId);
+
+    List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo);
 }

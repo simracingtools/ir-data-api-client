@@ -265,7 +265,7 @@ class IrDataClientTest {
 
         log.info("lap chart session info: {}", lapChartDto.getSessionInfo());
 
-        List<LapChartEntryDto> chartEntries = dataClient.getLapchartEntries(lapChartDto.getChunkInfo());
+        List<LapChartEntryDto> chartEntries = dataClient.getLapEntries(lapChartDto.getChunkInfo());
         assertFalse(chartEntries.isEmpty());
 
         chartEntries.forEach(entry -> log.info(entry.toString()));
@@ -280,7 +280,37 @@ class IrDataClientTest {
 
         log.info("lap chart session info: {}", lapChartDto.getSessionInfo());
 
-        List<LapChartEntryDto> chartEntries = dataClient.getLapchartEntries(lapChartDto.getChunkInfo());
+        List<LapChartEntryDto> chartEntries = dataClient.getLapEntries(lapChartDto.getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
+    void testGetOfficialLapData() {
+        authenticate();
+        LapDataDto lapDataDto = dataClient.getLapData(44975865L, 0L, null, false);
+        assertNotNull(lapDataDto);
+        assertTrue(lapDataDto.getSuccess());
+
+        log.info("lap chart session info: {}", lapDataDto.getSessionInfo());
+
+        List<LapChartEntryDto> chartEntries = dataClient.getLapEntries(lapDataDto.getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
+    void testGetLeagueLapData() {
+        authenticate();
+        LapDataDto lapDataDto = dataClient.getLapData(44975665L, 0L, 234139L, false);
+        assertNotNull(lapDataDto);
+        assertTrue(lapDataDto.getSuccess());
+
+        log.info("lap chart session info: {}", lapDataDto.getSessionInfo());
+
+        List<LapChartEntryDto> chartEntries = dataClient.getLapEntries(lapDataDto.getChunkInfo());
         assertFalse(chartEntries.isEmpty());
 
         chartEntries.forEach(entry -> log.info(entry.toString()));

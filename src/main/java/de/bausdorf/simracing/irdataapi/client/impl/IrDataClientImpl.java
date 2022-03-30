@@ -49,6 +49,7 @@ import java.util.*;
 public class IrDataClientImpl implements IrDataClient {
 
     public static final String RETURNED_NULL_BODY = " returned null body";
+    public static final String SUBSESSION_ID_URL_PARAM = "?subsession_id=";
     private final RestTemplate restTemplate;
     private final IRacingObjectMapper mapper;
 
@@ -294,7 +295,7 @@ public class IrDataClientImpl implements IrDataClient {
     public SubsessionResultDto getSubsessionResult(Long subsessionId) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(
-                    DataApiConstants.GET_SUBSESSIONRESULT_URL + "?subsession_id=" + subsessionId.toString());
+                    DataApiConstants.GET_SUBSESSIONRESULT_URL + SUBSESSION_ID_URL_PARAM + subsessionId.toString());
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<SubsessionResultDto>() {});
             }
@@ -308,7 +309,7 @@ public class IrDataClientImpl implements IrDataClient {
     public LapChartDto getLapChartData(Long subsessionId, Long simsessionNumber) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAPCHART_DATA_URL
-                    + "?subsession_id=" + subsessionId.toString()
+                    + SUBSESSION_ID_URL_PARAM + subsessionId.toString()
                     + "&simsession_number=" + simsessionNumber.toString());
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {});
@@ -320,7 +321,31 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public List<LapChartEntryDto> getLapchartEntries(@NonNull ChunkInfoDto chunkInfo) {
+    public LapDataDto getLapData(Long subsessionId, Long simsessionNumber, Long driverOrTeamId, boolean isTeamId) {
+        try{
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LAP_DATA_URL)
+                    .append(SUBSESSION_ID_URL_PARAM).append(subsessionId)
+                    .append("&simsession_number=").append(simsessionNumber);
+            if(driverOrTeamId != null) {
+                if(isTeamId) {
+                    uri.append("&team_id=").append(driverOrTeamId);
+                } else {
+                    uri.append("&cust_id=").append(driverOrTeamId);
+                }
+            }
+
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LapDataDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LAP_DATA_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo) {
         List<LapChartEntryDto> lapChartEntries = new ArrayList<>();
         Arrays.stream(chunkInfo.getChunkFileNames()).forEach(chunk -> {
             try {
