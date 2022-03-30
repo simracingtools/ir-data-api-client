@@ -257,6 +257,36 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetOfficialLapChartData() {
+        authenticate();
+        LapChartDto lapChartDto = dataClient.getLapChartData(44975865L, 0L);
+        assertNotNull(lapChartDto);
+        assertTrue(lapChartDto.getSuccess());
+
+        log.info("lap chart session info: {}", lapChartDto.getSessionInfo());
+
+        List<LapChartEntryDto> chartEntries = dataClient.getLapchartEntries(lapChartDto.getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
+    void testGetLeagueLapChartData() {
+        authenticate();
+        LapChartDto lapChartDto = dataClient.getLapChartData(44975665L, 0L);
+        assertNotNull(lapChartDto);
+        assertTrue(lapChartDto.getSuccess());
+
+        log.info("lap chart session info: {}", lapChartDto.getSessionInfo());
+
+        List<LapChartEntryDto> chartEntries = dataClient.getLapchartEntries(lapChartDto.getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
     void testInvalidAuthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")

@@ -41,6 +41,7 @@ public class DataApiConstants {
     public static final String GET_LICENSES_URL = "https://members-ng.iracing.com/data/lookup/licenses";
     public static final String GET_SEASONS_URL = "https://members-ng.iracing.com/data/series/seasons";
     public static final String GET_SUBSESSIONRESULT_URL = "https://members-ng.iracing.com/data/results/get";
+    public static final String GET_LAPCHART_DATA_URL = "https://members-ng.iracing.com/data/results/lap_chart_data";
 
     // Date and time format constants for json deserialization
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";

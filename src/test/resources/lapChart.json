@@ -1,0 +1,40 @@
+{
+  "success": true,
+  "session_info": {
+    "subsession_id": 44975865,
+    "session_id": 173218568,
+    "simsession_number": 0,
+    "simsession_type": 6,
+    "num_laps_for_qual_average": 1,
+    "num_laps_for_solo_average": 1,
+    "event_type": 5,
+    "event_type_name": "Race",
+    "private_session_id": -1,
+    "season_name": "Advanced Mazda MX-5 Cup Apex Sim Racing Series - 2022 Season 2",
+    "season_short_name": "2022 Season 2",
+    "series_name": "Advanced Mazda MX-5 Cup Apex Sim Racing Series",
+    "series_short_name": "Advanced Mazda MX-5 Cup Apex Sim Racing Series",
+    "start_time": "2022-03-20T00:15:00Z",
+    "track": {
+      "track_id": 249,
+      "track_name": "Nürburgring Nordschleife",
+      "config_name": "Industriefahrten"
+    }
+  },
+  "best_lap_num": 2,
+  "best_lap_time": 4879311,
+  "best_nlaps_num": -1,
+  "best_nlaps_time": -1,
+  "best_qual_lap_num": -1,
+  "best_qual_lap_time": -1,
+  "best_qual_lap_at": null,
+  "chunk_info": {
+    "chunk_size": 500,
+    "num_chunks": 1,
+    "rows": 95,
+    "base_download_url": "https://dqfp1ltauszrc.cloudfront.net/public/lapdata/subsession/44975865/0/chart/",
+    "chunk_file_names": [
+      "c70b89b6828993c0a1239555951fe202fe8488149bc609e7704b71285a564124.json"
+    ]
+  }
+}

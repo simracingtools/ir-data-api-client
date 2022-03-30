@@ -43,9 +43,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @Slf4j
 public class IrDataClientImpl implements IrDataClient {
@@ -304,6 +302,36 @@ public class IrDataClientImpl implements IrDataClient {
         } catch (IOException e) {
             throw new DataApiException(e);
         }
+    }
+
+    @Override
+    public LapChartDto getLapChartData(Long subsessionId, Long simsessionNumber) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAPCHART_DATA_URL
+                    + "?subsession_id=" + subsessionId.toString()
+                    + "&simsession_number=" + simsessionNumber.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LAPCHART_DATA_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public List<LapChartEntryDto> getLapchartEntries(@NonNull ChunkInfoDto chunkInfo) {
+        List<LapChartEntryDto> lapChartEntries = new ArrayList<>();
+        Arrays.stream(chunkInfo.getChunkFileNames()).forEach(chunk -> {
+            try {
+                LapChartEntryDto[] chunkEntries = getStructuredData(
+                        chunkInfo.getBaseDownloadUrl() + chunk, new TypeReference<LapChartEntryDto[]>() {});
+                lapChartEntries.addAll(List.of(chunkEntries));
+            } catch (IOException e) {
+                throw new DataApiException(e);
+            }
+        });
+        return lapChartEntries;
     }
 
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
