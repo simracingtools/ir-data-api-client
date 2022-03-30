@@ -27,8 +27,8 @@ import de.bausdorf.simracing.irdataapi.model.CarInfoDto;
 import de.bausdorf.simracing.irdataapi.model.TrackInfoDto;
 import de.bausdorf.simracing.irdataapi.tools.StockDataCache;
 import de.bausdorf.simracing.irdataapi.tools.StockDataTools;
-import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -72,5 +72,14 @@ class StockDataToolsTest {
             log.info("Class {}: {}", e.getKey().getCarClassId(), e.getKey().getName());
             e.getValue().forEach(c -> log.info("    Car {}: {}", c.getCarId(), c.getCarName()));
         });
+    }
+
+    @Test
+    void testCarsInClasses() {
+        List<Long> classIds = Lists.list(3190L, 2523L);
+        List<CarInfoDto> cars = StockDataTools.carsInClasses(classIds, dataCache.getCarClasses(), dataCache.getCars());
+        assertFalse(cars.isEmpty());
+
+        cars.forEach(car -> log.info("{}: {}", car.getCarId(), car.getCarName()));
     }
 }

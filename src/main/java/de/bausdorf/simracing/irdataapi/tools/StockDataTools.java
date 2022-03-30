@@ -61,6 +61,18 @@ public class StockDataTools {
         return carClassMap;
     }
 
+    public static List<CarInfoDto> carsInClasses(List<Long> carClassIds, CarClassDto[] carClasses, CarInfoDto[] cars) {
+        List<CarInfoDto> carsInClasses = new ArrayList<>();
+        Arrays.stream(carClasses)
+                .filter(carClass -> carClassIds.contains(carClass.getCarClassId()))
+                .forEach(carClass -> Arrays.stream(cars)
+                        .filter(car -> Arrays.stream(carClass.getCarsInClass())
+                                        .anyMatch(carInClass -> carInClass.getCarId().equals(car.getCarId()))
+                        )
+                        .forEach(carsInClasses::add));
+        return carsInClasses;
+    }
+
     private StockDataTools() {
         super();
     }
