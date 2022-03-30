@@ -13,6 +13,8 @@ import java.time.ZonedDateTime;
 public class MemberSessionResultDto {
     @JsonProperty("cust_id")
     private Long custId;
+    @JsonProperty("team_id")
+    private Long teamId;
     @JsonProperty("display_name")
     private String displayName;
     @JsonProperty("finish_position")
@@ -126,4 +128,6 @@ public class MemberSessionResultDto {
     private SuitDto suit;
     @JsonProperty("helmet")
     private HelmetDto helmet;
+    @JsonProperty("driver_results")
+    private MemberSessionResultDto[] driverResults;
 }
