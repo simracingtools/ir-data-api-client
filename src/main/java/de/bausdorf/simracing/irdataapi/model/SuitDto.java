@@ -2,7 +2,7 @@ package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
- * de.bausdorf.simracing:ir-data-api-client
+ * iRDataAPIClient
  * %%
  * Copyright (C) 2022 bausdorf engineering
  * %%
@@ -25,28 +25,16 @@ package de.bausdorf.simracing.irdataapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
-public class TrackStateDto {
-    @JsonProperty("leave_marbles")
-    private Boolean leaveMarbles;
-    @JsonProperty("practice_rubber")
-    private Long practiceRubber;
-    @JsonProperty("qualify_rubber")
-    private Long qualifyRubber;
-    @JsonProperty("warmup_rubber")
-    private Long warmupRubber;
-    @JsonProperty("race_rubber")
-    private Long raceRubber;
-    @JsonProperty("practice_grip_compound")
-    private Long practiceGridCompound;
-    @JsonProperty("qualify_grip_compound")
-    private Long qualifyGridCompound;
-    @JsonProperty("warmup_grip_compound")
-    private Long warmupGridCompound;
-    @JsonProperty("race_grip_compound")
-    private Long raceGridCompound;
+public class SuitDto {
+    @JsonProperty("pattern")
+    private String pattern;
+    @JsonProperty("color1")
+    private String color1;
+    @JsonProperty("color2")
+    private String color2;
+    @JsonProperty("color3")
+    private String color3;
 }

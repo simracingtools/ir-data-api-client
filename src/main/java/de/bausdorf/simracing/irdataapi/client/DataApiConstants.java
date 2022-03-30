@@ -40,6 +40,7 @@ public class DataApiConstants {
     public static final String GET_DIVISIONS_URL = "https://members-ng.iracing.com/data/constants/divisions";
     public static final String GET_LICENSES_URL = "https://members-ng.iracing.com/data/lookup/licenses";
     public static final String GET_SEASONS_URL = "https://members-ng.iracing.com/data/series/seasons";
+    public static final String GET_SUBSESSIONRESULT_URL = "https://members-ng.iracing.com/data/results/get";
 
     // Date and time format constants for json deserialization
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";

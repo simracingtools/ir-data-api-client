@@ -64,4 +64,6 @@ public interface IrDataClient {
     TrackInfoDto[] getTrackInfos();
 
     LicenseGroupDto[] getLicenseGroups();
+
+    SubsessionResultDto getSubsessionResult(@NonNull Long subsessionId);
 }

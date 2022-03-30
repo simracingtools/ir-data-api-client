@@ -70,4 +70,6 @@ public class WeatherDto {
     @JsonProperty("simulated_start_utc_time")
     @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime simulatedStartUtcTime;
+    @JsonProperty("simulated_start_utc_offset")
+    private Long simulatedStartUtxOffset;
 }

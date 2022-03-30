@@ -237,6 +237,26 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetOfficialSubsessionResult() {
+        authenticate();
+        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975865L);
+        assertNotNull(subsessionResultDto);
+        assertTrue(subsessionResultDto.getSessionResults().length > 0);
+
+        log.info("got {} series infos", subsessionResultDto.getSeriesName());
+    }
+
+    @Test
+    void testGetLeagueSubsessionResult() {
+        authenticate();
+        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975665L);
+        assertNotNull(subsessionResultDto);
+        assertTrue(subsessionResultDto.getSessionResults().length > 0);
+
+        log.info("got {} series infos", subsessionResultDto.getSeriesName());
+    }
+
+    @Test
     void testInvalidAuthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")

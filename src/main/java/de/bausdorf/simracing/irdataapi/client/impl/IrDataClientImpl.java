@@ -292,6 +292,20 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public SubsessionResultDto getSubsessionResult(Long subsessionId) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(
+                    DataApiConstants.GET_SUBSESSIONRESULT_URL + "?subsession_id=" + subsessionId.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SubsessionResultDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SUBSESSIONRESULT_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
         String response = restTemplate.getForEntity(URI.create(uri), String.class).getBody();
         if(response != null && response.contains("Unauthorized")) {

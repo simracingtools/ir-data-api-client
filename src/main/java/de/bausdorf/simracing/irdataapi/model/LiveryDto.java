@@ -41,4 +41,24 @@ public class LiveryDto {
     private String color2;
     @JsonProperty("color3")
     private String color3;
+    @JsonProperty("number_font")
+    private Long numberFont;
+    @JsonProperty("number_color1")
+    private String numberColor1;
+    @JsonProperty("number_color2")
+    private String numberColor2;
+    @JsonProperty("number_color3")
+    private String numberColor3;
+    @JsonProperty("number_slant")
+    private Long numberSlant;
+    @JsonProperty("sponsor1")
+    private Long sponsor1;
+    @JsonProperty("sponsor2")
+    private Long sponsor2;
+    @JsonProperty("car_number")
+    private String carNumber;
+    @JsonProperty("wheel_color")
+    private String wheelColor;
+    @JsonProperty("rim_type")
+    private Long rimType;
 }

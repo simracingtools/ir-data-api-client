@@ -35,6 +35,8 @@ public class CarInClassDto {
     private String carDirpath;
     @JsonProperty("car_id")
     private Long carId;
+    @JsonProperty("package_id")
+    private Long packageId;
     @JsonProperty("retired")
     private Boolean retired;
 }
