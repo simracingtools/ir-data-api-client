@@ -50,13 +50,13 @@ https://members-ng.iracing.com/data/track/assets
 
 https://members-ng.iracing.com/data/series/seasons
 
-https://members-ng.iracing.com/data/results/get
+https://members-ng.iracing.com/data/results/get - works for single and team events on official and league sessions
 
-https://members-ng.iracing.com/data/results/lap_chart_data
+https://members-ng.iracing.com/data/results/lap_chart_data - does not work for league seasons
 
-https://members-ng.iracing.com/data/results/lap_data
+https://members-ng.iracing.com/data/results/lap_data - does not work for league seasons
 
-https://members-ng.iracing.com/data/results/season_results
+https://members-ng.iracing.com/data/results/season_results - does not work for league seasons
 
 ## Hints
 
