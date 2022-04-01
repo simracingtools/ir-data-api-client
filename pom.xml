@@ -211,6 +211,7 @@
                     <useReleaseProfile>false</useReleaseProfile>
                     <releaseProfiles>release</releaseProfiles>
                     <goals>deploy</goals>
+                    <tagNameFormat>v@{version}</tagNameFormat>
                 </configuration>
             </plugin>
             <plugin>
