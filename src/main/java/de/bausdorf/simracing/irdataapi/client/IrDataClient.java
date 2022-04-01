@@ -39,6 +39,8 @@ public interface IrDataClient {
 
     MembersInfoDto getMembersInfo(@NonNull List<Long> custIds);
 
+    MemberSummaryDto getMemberSummary();
+
     MemberSummaryDto getMemberSummary(@NonNull Long custId);
 
     MemberYearlyDto getMemberStatsYearly(@NonNull Long custId);

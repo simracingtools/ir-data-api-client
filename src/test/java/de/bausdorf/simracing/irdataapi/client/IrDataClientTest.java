@@ -30,6 +30,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.HttpClientErrorException;
 
@@ -353,6 +354,19 @@ class IrDataClientTest {
         } catch(AuthorizationException e) {
             log.info(e.getMessage());
         }
+    }
+
+    @Test
+    void testReauthentication() {
+        try {
+            dataClient.getMemberSummary();
+            fail("gateDataMember() should throw exception when not authorized");
+        } catch (HttpClientErrorException e) {
+            assertSame(HttpStatus.UNAUTHORIZED, e.getStatusCode());
+            authenticate();
+        }
+        MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary();
+        log.info(memberSummaryDto.toString());
     }
 
     private void authenticate() {

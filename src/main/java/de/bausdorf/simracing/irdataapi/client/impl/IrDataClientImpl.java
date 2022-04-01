@@ -51,6 +51,7 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String RETURNED_NULL_BODY = " returned null body";
     public static final String SUBSESSION_ID_URL_PARAM = "?subsession_id=";
     private final RestTemplate restTemplate;
+    private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
 
     private AuthResponseDto authResponse;
@@ -59,7 +60,8 @@ public class IrDataClientImpl implements IrDataClient {
 
     public IrDataClientImpl() {
         restTemplate = new RestTemplate();
-        restTemplate.getInterceptors().add(new StatefulRestTemplateInterceptor());
+        restTemplateInterceptor = new StatefulRestTemplateInterceptor();
+        restTemplate.getInterceptors().add(restTemplateInterceptor);
         mapper = new IRacingObjectMapper();
         authResponse = null;
     }
@@ -76,6 +78,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto) {
+        restTemplateInterceptor.flushCookies();
         ResponseEntity<String> response = restTemplate.postForEntity(DataApiConstants.AUTH_URL, requestDto, String.class);
         try {
             String responseBody = response.getBody();
@@ -123,9 +126,16 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public MemberSummaryDto getMemberSummary(@NonNull Long custId) {
+    public MemberSummaryDto getMemberSummary() {
+        return getMemberSummary(null);
+    }
+
+    @Override
+    public MemberSummaryDto getMemberSummary(Long custId) {
         try {
-            LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_SUMMARY_URL, custId));
+            LinkResponseDto linkResponse = getLinkResponse(custId != null
+                    ? uriWithCustIdParameter(DataApiConstants.GET_MEMBER_SUMMARY_URL, custId)
+                    : DataApiConstants.GET_MEMBER_SUMMARY_URL);
 
             if (linkResponse!= null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>(){});
@@ -449,6 +459,10 @@ public class IrDataClientImpl implements IrDataClient {
             HttpHeaders responseHeaders = response.getHeaders();
             responseHeaders.forEach((k, v) -> log.debug("{}={}", k, v));
             return response;
+        }
+
+        public void flushCookies() {
+            cookie = null;
         }
     }
 }
