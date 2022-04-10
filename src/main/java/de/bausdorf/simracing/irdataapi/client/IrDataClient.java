@@ -75,7 +75,11 @@ public interface IrDataClient {
 
     LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, @NonNull Long driverOrTeamId, boolean isTeamId);
 
+    EventLogDto getEventLog(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
+
     List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    List<EventLogEntry> getEventLogEntries(@NonNull ChunkInfoDto chunkInfo);
 
     SeasonResultsDto getSeasonResults(@NonNull Long seasonId);
 

@@ -30,15 +30,29 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class ChunkInfoDto {
-    @JsonProperty("chunk_size")
-    private Long chunkSize;
-    @JsonProperty("num_chunks")
-    private Long numChunks;
-    @JsonProperty("rows")
-    private Long rows;
-    @JsonProperty("base_download_url")
-    private String baseDownloadUrl;
-    @JsonProperty("chunk_file_names")
-    private String[] chunkFileNames;
+public class EventLogEntry {
+    @JsonProperty("subsession_id")
+    private Long subsessionId;
+    @JsonProperty("simsession_number")
+    private Long simsessionNumber;
+    @JsonProperty("session_time")
+    private Long sessionTime;
+    @JsonProperty("event_seq")
+    private Long eventSeq;
+    @JsonProperty("event_code")
+    private Long eventCode;
+    @JsonProperty("group_id")
+    private Long groupId;
+    @JsonProperty("cust_id")
+    private Long custId;
+    @JsonProperty("lap_number")
+    private Long lapNumber;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("message")
+    private String message;
+    @JsonProperty("display_name")
+    private String displayName;
+    @JsonProperty("team_name")
+    private String teamName;
 }

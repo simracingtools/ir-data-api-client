@@ -50,6 +50,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     public static final String RETURNED_NULL_BODY = " returned null body";
     public static final String SUBSESSION_ID_URL_PARAM = "?subsession_id=";
+    public static final String SIMSESSION_NUMBER_URL_PARAM = "&simsession_number=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -320,7 +321,7 @@ public class IrDataClientImpl implements IrDataClient {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAPCHART_DATA_URL
                     + SUBSESSION_ID_URL_PARAM + subsessionId.toString()
-                    + "&simsession_number=" + simsessionNumber.toString());
+                    + SIMSESSION_NUMBER_URL_PARAM + simsessionNumber.toString());
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {});
             }
@@ -340,7 +341,7 @@ public class IrDataClientImpl implements IrDataClient {
         try{
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LAP_DATA_URL)
                     .append(SUBSESSION_ID_URL_PARAM).append(subsessionId)
-                    .append("&simsession_number=").append(simsessionNumber);
+                    .append(SIMSESSION_NUMBER_URL_PARAM).append(simsessionNumber);
             if(driverOrTeamId != null) {
                 if(isTeamId) {
                     uri.append("&team_id=").append(driverOrTeamId);
@@ -360,18 +361,30 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo) {
-        List<LapChartEntryDto> lapChartEntries = new ArrayList<>();
-        Arrays.stream(chunkInfo.getChunkFileNames()).forEach(chunk -> {
-            try {
-                LapChartEntryDto[] chunkEntries = getStructuredData(
-                        chunkInfo.getBaseDownloadUrl() + chunk, new TypeReference<LapChartEntryDto[]>() {});
-                lapChartEntries.addAll(List.of(chunkEntries));
-            } catch (IOException e) {
-                throw new DataApiException(e);
+    public EventLogDto getEventLog(Long subsessionId, Long simsessionNumber) {
+        try{
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_EVENT_LOG_URL)
+                    .append(SUBSESSION_ID_URL_PARAM).append(subsessionId)
+                    .append(SIMSESSION_NUMBER_URL_PARAM).append(simsessionNumber);
+
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<EventLogDto>() {});
             }
-        });
-        return lapChartEntries;
+            throw new DataApiException(DataApiConstants.GET_LAP_DATA_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<LapChartEntryDto[]>() {});
+    }
+
+    @Override
+    public List<EventLogEntry> getEventLogEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<EventLogEntry[]>() {});
     }
 
     @Override
@@ -430,6 +443,19 @@ public class IrDataClientImpl implements IrDataClient {
         } else {
             throw new DataApiException("Null body from AWS, status code " + infoResponse.getStatusCode());
         }
+    }
+
+    private <T> List<T> getChunkedEntries(ChunkInfoDto chunkInfo, TypeReference<T[]> targetType) {
+        List<T> resultList = new ArrayList<>();
+        Arrays.stream(chunkInfo.getChunkFileNames()).forEach(chunk -> {
+            try {
+                T[] chunkEntries = getStructuredData(chunkInfo.getBaseDownloadUrl() + chunk, targetType);
+                resultList.addAll(List.of(chunkEntries));
+            } catch (IOException e) {
+                throw new DataApiException(e);
+            }
+        });
+        return resultList;
     }
 
     private String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {

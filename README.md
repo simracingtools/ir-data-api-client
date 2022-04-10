@@ -58,6 +58,8 @@ https://members-ng.iracing.com/data/results/lap_data - does work for league seas
 
 https://members-ng.iracing.com/data/results/season_results - does not work for league seasons
 
+https://members-ng.iracing.com/data/results/event_log
+
 ## Hints
 
 Although all current occurring fields are mapped there is no guarantee

@@ -333,6 +333,23 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetEventLog() {
+        authenticate();
+        EventLogDto eventLogDto = dataClient.getEventLog(43352007L, 0L);
+        assertNotNull(eventLogDto);
+        assertTrue(eventLogDto.getSuccess());
+
+        log.info("event log info: {}", eventLogDto.getSessionInfo());
+        log.info("chunk info: {}", eventLogDto.getChunkInfo());
+
+        List<EventLogEntry> eventLogEntries = dataClient.getEventLogEntries(eventLogDto.getChunkInfo());
+        assertFalse(eventLogEntries.isEmpty());
+
+        log.info("got {} event log entries", eventLogEntries.size());
+        eventLogEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
     void testGetSeasonResults() {
         authenticate();
         SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L, DataApiConstants.EVENT_TYPE_RACE, 11L);

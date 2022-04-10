@@ -43,6 +43,8 @@ public class SessionInfoDto {
     private Long simsessionNumber;
     @JsonProperty("simsession_type")
     private Long simsessionType;
+    @JsonProperty("simsession_name")
+    private String simsessionName;
     @JsonProperty("num_laps_for_qual_average")
     private Long numLapsForQualAverage;
     @JsonProperty("num_laps_for_solo_average")
