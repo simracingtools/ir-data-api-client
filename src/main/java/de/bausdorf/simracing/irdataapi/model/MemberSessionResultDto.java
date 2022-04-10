@@ -86,6 +86,8 @@ public class MemberSessionResultDto {
     private Long qualLapTime;
     @JsonProperty("starting_position")
     private Long startingPosition;
+    @JsonProperty("starting_position_in_class")
+    private Long startingPositionInClass;
     @JsonProperty("car_class_id")
     private Long carClassId;
     @JsonProperty("club_id")
