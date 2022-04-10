@@ -22,13 +22,31 @@ package de.bausdorf.simracing.irdataapi.tools;
  * #L%
  */
 
+import java.util.List;
+
 public class Constants {
 
-    // Track type names
+    // Track/car type names
     public static final String OVAL = "oval";
     public static final String ROAD = "road";
+    public static final String DIRT = "dirt";
     public static final String DIRT_OVAL = "dirt_oval";
     public static final String DIRT_ROAD = "dirt_road";
+
+    public static final String CAT_ROAD = ROAD;
+    public static final String CAT_OVAL = OVAL;
+
+    public static final String GT1 = "gt1";
+    public static final String GT3 = "gt3";
+    public static final String GT4 = "gt4";
+    public static final String GTD = "gtd";
+    public static final String GTE = "gte";
+    public static final String GTLM = "gtlm";
+    public static final String IMSA = "imsa";
+    public static final String LMP1 = "lmp1";
+    public static final String LMP2 = "lmp2";
+    public static final String TCR = "tcr";
+    public static final List<String> CAR_SUBTYPES = List.of(GT1, GTE, GT3, GT4, GTD, GTLM, IMSA, LMP1, LMP2, TCR);
 
     private Constants() {
         super();

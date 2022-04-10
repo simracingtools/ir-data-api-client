@@ -25,18 +25,19 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.model.CarClassKey;
 import de.bausdorf.simracing.irdataapi.model.CarInfoDto;
 import de.bausdorf.simracing.irdataapi.model.TrackInfoDto;
-import de.bausdorf.simracing.irdataapi.tools.StockDataCache;
-import de.bausdorf.simracing.irdataapi.tools.StockDataTools;
+import de.bausdorf.simracing.irdataapi.tools.*;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.logging.Log;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @Slf4j
 class StockDataToolsTest {
@@ -81,5 +82,78 @@ class StockDataToolsTest {
         assertFalse(cars.isEmpty());
 
         cars.forEach(car -> log.info("{}: {}", car.getCarId(), car.getCarName()));
+    }
+
+    @Test
+    void testFetchCarTypes() {
+        NavigableSet<String> carTypes = StockDataTools.fetchAvailableCarTypes(dataCache.getCars(), MainCarTypeEnum.ROAD);
+        assertFalse(carTypes.isEmpty());
+
+        carTypes.stream().sorted().forEach(log::info);
+    }
+
+    @Test
+    void testCarsByCategory() {
+        List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByCategory(dataCache.getCars(), CarCategoryEnum.ROAD, false);
+        assertFalse(carInfosWithLegacy.isEmpty());
+
+        log.info("Category {}:", CarCategoryEnum.ROAD.name());
+        carInfosWithLegacy.forEach(car -> log.info(car.getCarName()));
+    }
+
+    @Test
+    void testCarsByType() {
+        List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByType(dataCache.getCars(), "road", true);
+        assertFalse(carInfosWithLegacy.isEmpty());
+
+        log.info("\nAll cars");
+        carInfosWithLegacy.forEach(car -> log.info(car.getCarName()));
+
+        List<CarInfoDto> carInfosWithOutLegacy = StockDataTools.carsByType(dataCache.getCars(), "road", false);
+        assertFalse(carInfosWithOutLegacy.isEmpty());
+        assertTrue(carInfosWithOutLegacy.size() < carInfosWithLegacy.size());
+
+        log.info("\nNon-legacy cars");
+        carInfosWithOutLegacy.forEach(car -> log.info(car.getCarName()));
+
+        Constants.CAR_SUBTYPES.stream()
+                .forEach(subtype -> {
+                    log.info("\n{}\n", subtype);
+                    StockDataTools.carsByType(dataCache.getCars(), subtype, false).stream()
+                            .forEach(car -> log.info(car.getCarName()));
+                });
+    }
+
+    @Test
+    void testCarsByTypes() {
+        List<String> carTypes = List.of(Constants.GT3, Constants.GT4, Constants.TCR, "supercup");
+        List<CarInfoDto> carInfos = StockDataTools.carsByType(dataCache.getCars(), carTypes, true);
+        assertFalse(carInfos.isEmpty());
+
+        carInfos.forEach(car -> log.info(car.getCarName()));
+    }
+
+    @Test
+    void testTracksByType() {
+        List<TrackInfoDto> infosWithLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackTypeEnum.ROAD, true);
+        assertFalse(infosWithLegacy.isEmpty());
+
+        log.info("All tracks");
+        infosWithLegacy.forEach(track -> log.info("{} - {}",track.getTrackName(), track.getConfigName()));
+
+        List<TrackInfoDto> infosWithOutLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackTypeEnum.ROAD, false);
+        assertFalse(infosWithOutLegacy.isEmpty());
+        assertTrue(infosWithOutLegacy.size() < infosWithLegacy.size());
+
+        log.info("\nNon-legacy tracks");
+        infosWithOutLegacy.forEach(track -> log.info("{} - {}",track.getTrackName(), track.getConfigName()));
+    }
+
+    @Test
+    void testCarCategories() {
+        NavigableSet<String> categories = new TreeSet<>();
+        Arrays.stream(dataCache.getCars()).forEach(car -> categories.addAll(Arrays.stream(car.getCategories()).collect(Collectors.toList())));
+        assertFalse(categories.isEmpty());
+        categories.stream().sorted().forEach(log::info);
     }
 }

@@ -34,6 +34,8 @@ import java.util.stream.Collectors;
 @Slf4j
 public class StockDataTools {
 
+    public static final String LEGACY = "[Legacy]";
+
     public static Map<Long, List<TrackInfoDto>> trackConfigurationMap(TrackInfoDto[] trackInfoDtos) {
         Map<Long, List<TrackInfoDto>> trackConfigMap = new TreeMap<>();
 
@@ -71,6 +73,42 @@ public class StockDataTools {
                         )
                         .forEach(carsInClasses::add));
         return carsInClasses;
+    }
+
+    public static NavigableSet<String> fetchAvailableCarTypes(CarInfoDto[] cars, MainCarTypeEnum mainType) {
+        NavigableSet<String> carTypes = new TreeSet<>();
+        Arrays.stream(cars)
+                .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> type.getCarType().equalsIgnoreCase(mainType.toString())))
+                .forEach(car -> Arrays.stream(car.getCarTypes()).forEach(type -> carTypes.add(type.getCarType())));
+        return carTypes;
+    }
+
+    public static List<CarInfoDto> carsByType(CarInfoDto[] cars, String carType, boolean includeLegacy) {
+        return Arrays.stream(cars)
+                .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> type.getCarType().equalsIgnoreCase(carType)))
+                .filter(car -> (includeLegacy || !car.getCarName().contains(LEGACY)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<CarInfoDto> carsByCategory(CarInfoDto[] cars, CarCategoryEnum carType, boolean includeLegacy) {
+        return Arrays.stream(cars)
+                .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> type.getCarType().equalsIgnoreCase(carType.toString())))
+                .filter(car -> (includeLegacy || !car.getCarName().contains(LEGACY)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<CarInfoDto> carsByType(CarInfoDto[] cars, List<String> carTypes, boolean includeLegacy) {
+        return Arrays.stream(cars)
+                .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> carTypes.contains(type.getCarType())))
+                .filter(car -> (includeLegacy || !car.getCarName().contains(LEGACY)))
+                .collect(Collectors.toList());
+    }
+
+    public static List<TrackInfoDto> tracksByType(TrackInfoDto[] tracks, TrackTypeEnum trackType, boolean includeLegacy) {
+        return Arrays.stream(tracks)
+                .filter(track -> Arrays.stream(track.getTrackTypes()).anyMatch(type -> type.getTrackType().equalsIgnoreCase(trackType.toString())))
+                .filter(track -> (includeLegacy || !track.getTrackName().contains(LEGACY)))
+                .collect(Collectors.toList());
     }
 
     private StockDataTools() {
