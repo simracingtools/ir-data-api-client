@@ -189,6 +189,7 @@
                 <version>3.8.0</version>
                 <configuration>
                     <release>${java.version}</release>
+                    <encoding>UTF-8</encoding>
                     <annotationProcessorPaths>
                         <path>
                             <groupId>org.springframework.boot</groupId>
