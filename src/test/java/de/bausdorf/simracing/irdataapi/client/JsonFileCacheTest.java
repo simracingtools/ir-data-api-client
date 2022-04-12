@@ -44,6 +44,7 @@ class JsonFileCacheTest {
         assertTrue(cacheFromFile.cacheExists());
         assertNotEquals(0L, cacheFromFile.cacheLastModified());
         assertNotNull(cacheFromFile.getCachedData());
+        assertInstanceOf(LeagueInfoDto.class, cacheFromFile.getCachedData());
     }
 
     @Test

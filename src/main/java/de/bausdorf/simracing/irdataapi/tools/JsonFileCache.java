@@ -1,9 +1,8 @@
 package de.bausdorf.simracing.irdataapi.tools;
 
-import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JavaType;
 import de.bausdorf.simracing.irdataapi.client.impl.IRacingObjectMapper;
-import lombok.Getter;
-import lombok.NonNull;
+import lombok.*;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.File;
@@ -13,6 +12,9 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.Collection;
+import java.util.LinkedHashMap;
+import java.util.Optional;
 
 @Slf4j
 public class JsonFileCache<T> {
@@ -29,8 +31,8 @@ public class JsonFileCache<T> {
         this.cacheDir = Paths.get(cacheDir);
         this.cacheName = cacheName;
         try {
-            cachedData = readFromFile(getFilePath(), new TypeReference<T>() {});
-        } catch (IOException e) {
+            cachedData = readFromFile(getFilePath());
+        } catch (IOException | ClassNotFoundException e) {
             log.warn("could not fetch data from cache directory {}: {}", cacheDir, e.getMessage());
         }
     }
@@ -50,20 +52,55 @@ public class JsonFileCache<T> {
     public void setCachedData(T data) {
         cachedData = data;
         try {
-            mapper.writeValue(new File(getFilePath()), data);
+            WriteCacheWrapper<T> writeCacheWrapper = new WriteCacheWrapper<>();
+            writeCacheWrapper.setData(data);
+            if(data instanceof Collection<?>) {
+                writeCacheWrapper.setCollectionTypeName(data.getClass().getName());
+                Optional<?> firstElement = ((Collection<?>)data).stream().findFirst();
+                firstElement.ifPresent(o -> writeCacheWrapper.setElementTypeName(o.getClass().getName()));
+            } else {
+                writeCacheWrapper.setElementTypeName(data.getClass().getName());
+            }
+            mapper.writeValue(new File(getFilePath()), writeCacheWrapper);
         } catch (IOException e) {
             log.error("Unable to write cache file {}: {}", getFilePath(), e.getMessage());
         }
     }
 
-    private T readFromFile(String fileName, TypeReference<T> targetType) throws IOException {
+    private T readFromFile(String fileName) throws IOException, ClassNotFoundException {
         try(InputStream fis = new FileInputStream(fileName)) {
-            return mapper.readValue(fis, targetType);
+            ReadCacheWrapper<T> cacheWrapper = mapper.readValue(fis, ReadCacheWrapper.class);
+            Class<?> elementClass = Class.forName(cacheWrapper.getElementTypeName());
+            if(cacheWrapper.getCollectionTypeName() == null) {
+                return (T)mapper.convertValue(cacheWrapper.getData(), elementClass);
+            } else {
+                Class<? extends Collection> collectionClass =
+                        (Class<? extends Collection>) Class.forName(cacheWrapper.getCollectionTypeName());
+                JavaType targetType = mapper.getTypeFactory().constructCollectionType(
+                        collectionClass, elementClass);
+                return mapper.convertValue(cacheWrapper.getData(), targetType);
+            }
         }
     }
 
     private String getFilePath() {
         return cacheDir.toFile().getAbsolutePath() + File.separator
                 + cacheName + ".json";
+    }
+
+    @Data
+    @NoArgsConstructor
+    static class WriteCacheWrapper<T> {
+        private String elementTypeName;
+        private String collectionTypeName;
+        private T data;
+    }
+
+    @Data
+    @NoArgsConstructor
+    static class ReadCacheWrapper<T> {
+        private String elementTypeName;
+        private String collectionTypeName;
+        private T data;
     }
 }
