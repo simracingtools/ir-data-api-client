@@ -24,6 +24,7 @@ package de.bausdorf.simracing.irdataapi.client;
 
 import de.bausdorf.simracing.irdataapi.model.*;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 
 import java.util.List;
 import java.util.Map;
@@ -73,7 +74,7 @@ public interface IrDataClient {
 
     LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
 
-    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, @NonNull Long driverOrTeamId, boolean isTeamId);
+    LapDataDto getLapData(@NonNull Long subsessionId, @NonNull Long simsessionNumber, @Nullable Long driverOrTeamId, boolean isTeamId);
 
     EventLogDto getEventLog(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
 
