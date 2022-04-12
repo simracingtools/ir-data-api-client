@@ -2,6 +2,34 @@
 
 Changelog of ir-data-api-client.
 
+## v0.10.1 (2022-04-12)
+
+
+
+
+
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v0.10.1**
+
+
+[370b0](https://github.com/simracingtools/ir-data-api-client/commit/370b0d9ce292aa0) Robert Bausdorf *2022-04-12 21:47:18*
+
+**Generic caching (#1)**
+
+* feat: Provide ability to cache API results in json file 
+* fix: Reading from file used wrong types due to Java type erasure 
+
+[a4787](https://github.com/simracingtools/ir-data-api-client/commit/a4787f2b5f537bd) Robert Bausdorf *2022-04-12 21:40:54*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[1bdf8](https://github.com/simracingtools/ir-data-api-client/commit/1bdf883c4238a81) Robert Bausdorf *2022-04-10 13:31:47*
+
+
 ## v0.10.0 (2022-04-10)
 
 
