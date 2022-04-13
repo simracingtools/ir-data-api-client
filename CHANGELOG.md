@@ -2,6 +2,48 @@
 
 Changelog of ir-data-api-client.
 
+## v1.0.0 (2022-04-13)
+
+
+
+### Features
+
+-  all endpoints supported ([030cf](https://github.com/simracingtools/ir-data-api-client/commit/030cf47ee4d6f8b) Robert Bausdorf)  
+-  member/info endpoint added ([27c1e](https://github.com/simracingtools/ir-data-api-client/commit/27c1e06307040e9) Robert Bausdorf)  
+-  lookup/get endpoint added ([79b1c](https://github.com/simracingtools/ir-data-api-client/commit/79b1c2f8458c356) robert)  
+-  Provide ability to cache API results in json file ([b7679](https://github.com/simracingtools/ir-data-api-client/commit/b7679621bbb31ac) robert)  
+
+
+### Bug Fixes
+
+-  Code cleanup ([a5fd4](https://github.com/simracingtools/ir-data-api-client/commit/a5fd4a8a1d842e8) Robert Bausdorf)  
+-  Wrong checking for chunk rows ([c1cd0](https://github.com/simracingtools/ir-data-api-client/commit/c1cd0e695f2f776) Robert Bausdorf)  
+-  Reading from file used wrong types due to Java type erasure ([3440f](https://github.com/simracingtools/ir-data-api-client/commit/3440fc72852dfa1) robert)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v1.0.0**
+
+
+[b0c9a](https://github.com/simracingtools/ir-data-api-client/commit/b0c9a188e327138) Robert Bausdorf *2022-04-13 16:48:04*
+
+**Merge branch 'master' into develop**
+
+
+[df979](https://github.com/simracingtools/ir-data-api-client/commit/df979a843ef13dc) robert *2022-04-12 21:50:27*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[f9deb](https://github.com/simracingtools/ir-data-api-client/commit/f9deb43a815ed2f) Robert Bausdorf *2022-04-12 21:47:22*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[1bdf8](https://github.com/simracingtools/ir-data-api-client/commit/1bdf883c4238a81) Robert Bausdorf *2022-04-10 13:31:47*
+
+
 ## v0.10.1 (2022-04-12)
 
 
@@ -23,11 +65,6 @@ Changelog of ir-data-api-client.
 * fix: Reading from file used wrong types due to Java type erasure 
 
 [a4787](https://github.com/simracingtools/ir-data-api-client/commit/a4787f2b5f537bd) Robert Bausdorf *2022-04-12 21:40:54*
-
-**[maven-release-plugin] prepare for next development iteration**
-
-
-[1bdf8](https://github.com/simracingtools/ir-data-api-client/commit/1bdf883c4238a81) Robert Bausdorf *2022-04-10 13:31:47*
 
 
 ## v0.10.0 (2022-04-10)
