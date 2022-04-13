@@ -217,7 +217,7 @@ public class IrDataClientImpl implements IrDataClient {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_DRIVER_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
-                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
             }
@@ -238,7 +238,7 @@ public class IrDataClientImpl implements IrDataClient {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SUPERSESSION_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
-                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
             }
@@ -259,7 +259,7 @@ public class IrDataClientImpl implements IrDataClient {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TT_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
-                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
             }
@@ -312,7 +312,7 @@ public class IrDataClientImpl implements IrDataClient {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TEAM_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
-                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
             }
