@@ -125,6 +125,20 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public UserInfoDto getUserInfo() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_USERINFO_URL);
+
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<UserInfoDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_USERINFO_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public MemberSummaryDto getMemberSummary() {
         return getMemberSummary(null);
     }

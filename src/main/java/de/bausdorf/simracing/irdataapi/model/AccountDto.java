@@ -2,7 +2,7 @@ package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
- * iRDataAPIClient
+ * de.bausdorf.simracing:ir-data-api-client
  * %%
  * Copyright (C) 2022 bausdorf engineering
  * %%
@@ -28,15 +28,11 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class SuitDto {
-    @JsonProperty("pattern")
-    private String pattern;
-    @JsonProperty("color1")
-    private String color1;
-    @JsonProperty("color2")
-    private String color2;
-    @JsonProperty("color3")
-    private String color3;
-    @JsonProperty("body_type")
-    private Long bodyType;
+public class AccountDto {
+    @JsonProperty("ir_dollars")
+    private Double irDollars;
+    @JsonProperty("ir_credits")
+    private Double irCredits;
+    @JsonProperty("status")
+    private String status;
 }

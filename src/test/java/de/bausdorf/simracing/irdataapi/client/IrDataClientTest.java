@@ -74,6 +74,14 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetUserInfo() {
+        authenticate();
+        UserInfoDto userInfo = dataClient.getUserInfo();
+        assertNotNull(userInfo);
+        log.info(userInfo.toString());
+    }
+
+    @Test
     void testGetMemberYearlyStats() {
         authenticate();
         MemberYearlyDto yearlyDto = dataClient.getMemberStatsYearly(CUST_ID);

@@ -33,6 +33,7 @@ public class DataApiConstants {
     // Endpoint urls
 
     public static final String GET_MEMBERS_URL =                "https://members-ng.iracing.com/data/member/get";
+    public static final String GET_USERINFO_URL =               "https://members-ng.iracing.com/data/member/info";
     public static final String GET_MEMBER_SUMMARY_URL =         "https://members-ng.iracing.com/data/stats/member_summary";
     public static final String GET_MEMBER_YEARLY_URL =          "https://members-ng.iracing.com/data/stats/member_yearly";
     public static final String GET_MEMBER_RECENT_RACES_URL =    "https://members-ng.iracing.com/data/stats/member_recent_races";
@@ -54,7 +55,7 @@ public class DataApiConstants {
     public static final String GET_EVENT_LOG_URL =              "https://members-ng.iracing.com/data/results/event_log";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
-            GET_MEMBERS_URL,
+            GET_MEMBERS_URL, GET_USERINFO_URL,
             GET_MEMBER_SUMMARY_URL, GET_MEMBER_YEARLY_URL, GET_MEMBER_CAREER_URL, GET_MEMBER_RECENT_RACES_URL,
             GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
             GET_LEAGUE_URL,
@@ -67,6 +68,7 @@ public class DataApiConstants {
 
     // Date and time format constants for json deserialization
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
+    public static final String UTC_PRECISE_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.n'Z'";
     public static final String LOCAL_DATE_FORMAT = "yyyy-MM-dd";
     public static final String LOCAL_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
