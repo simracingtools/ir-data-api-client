@@ -124,7 +124,7 @@ class IrDataClientTest {
 
         List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} driver standings", driverStandings.size());
     }
 
@@ -136,7 +136,7 @@ class IrDataClientTest {
 
         List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} driver standings", driverStandings.size());
     }
 
@@ -148,7 +148,7 @@ class IrDataClientTest {
 
         List<TeamStandingDto> driverStandings = dataClient.getTeamStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} team standings", driverStandings.size());
     }
 
@@ -160,7 +160,7 @@ class IrDataClientTest {
 
         List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} driver standings", driverStandings.size());
     }
 
@@ -172,7 +172,7 @@ class IrDataClientTest {
 
         List<DriverTtStandingDto> driverStandings = dataClient.getTimeTrialStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} driver standings", driverStandings.size());
     }
 
@@ -184,7 +184,7 @@ class IrDataClientTest {
 
         List<DriverQualifyStandingDto> driverStandings = dataClient.getQualifyStandingEntries(driverStandingInfo.getChunkInfo());
         assertNotNull(driverStandings);
-        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
         log.info("fetched {} driver standings", driverStandings.size());
     }
 
