@@ -23,10 +23,8 @@ package de.bausdorf.simracing.irdataapi.client.impl;
  */
 
 import com.fasterxml.jackson.core.type.TypeReference;
-import de.bausdorf.simracing.irdataapi.client.AuthorizationException;
-import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
-import de.bausdorf.simracing.irdataapi.client.DataApiException;
-import de.bausdorf.simracing.irdataapi.client.IrDataClient;
+import com.fasterxml.jackson.databind.JsonNode;
+import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -303,14 +301,36 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public LookupDto[] getLookup(List<LookupTypes> lookupTypes) {
+        try {
+            StringBuilder url = new StringBuilder(DataApiConstants.GET_LOOKUP_URL);
+            for (int i = 0; i < lookupTypes.size(); i++) {
+                if (i == 0) {
+                    url.append('?');
+                } else {
+                    url.append('&');
+                }
+                url.append(lookupTypes.get(i).toUrlParameters());
+            }
+            LinkResponseDto linkResponse = getLinkResponse(url.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LookupDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LOOKUP_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public SubsessionResultDto getSubsessionResult(Long subsessionId) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(
-                    DataApiConstants.GET_SUBSESSIONRESULT_URL + SUBSESSION_ID_URL_PARAM + subsessionId.toString());
+                    DataApiConstants.GET_SUBSESSION_RESULT_URL + SUBSESSION_ID_URL_PARAM + subsessionId.toString());
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<SubsessionResultDto>() {});
             }
-            throw new DataApiException(DataApiConstants.GET_SUBSESSIONRESULT_URL + RETURNED_NULL_BODY);
+            throw new DataApiException(DataApiConstants.GET_SUBSESSION_RESULT_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -319,13 +339,13 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public LapChartDto getLapChartData(Long subsessionId, Long simsessionNumber) {
         try{
-            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAPCHART_DATA_URL
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAP_CHART_DATA_URL
                     + SUBSESSION_ID_URL_PARAM + subsessionId.toString()
                     + SIMSESSION_NUMBER_URL_PARAM + simsessionNumber.toString());
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {});
             }
-            throw new DataApiException(DataApiConstants.GET_LAPCHART_DATA_URL + RETURNED_NULL_BODY);
+            throw new DataApiException(DataApiConstants.GET_LAP_CHART_DATA_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -363,11 +383,11 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public EventLogDto getEventLog(Long subsessionId, Long simsessionNumber) {
         try{
-            StringBuilder uri = new StringBuilder(DataApiConstants.GET_EVENT_LOG_URL)
-                    .append(SUBSESSION_ID_URL_PARAM).append(subsessionId)
-                    .append(SIMSESSION_NUMBER_URL_PARAM).append(simsessionNumber);
+            String uri = DataApiConstants.GET_EVENT_LOG_URL +
+                    SUBSESSION_ID_URL_PARAM + subsessionId +
+                    SIMSESSION_NUMBER_URL_PARAM + simsessionNumber;
 
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uri);
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<EventLogDto>() {});
             }
@@ -419,6 +439,14 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    public JsonNode getApiDocs() {
+        try {
+            return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
         String response = restTemplate.getForEntity(URI.create(uri), String.class).getBody();
         if(response != null && response.contains("Unauthorized")) {
@@ -459,9 +487,7 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     private String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
-        var stringBuilder = new StringBuilder(baseUri);
-        stringBuilder.append("?cust_id=").append(custId);
-        return stringBuilder.toString();
+        return baseUri + "?cust_id=" + custId;
     }
 
     public static class StatefulRestTemplateInterceptor implements ClientHttpRequestInterceptor {

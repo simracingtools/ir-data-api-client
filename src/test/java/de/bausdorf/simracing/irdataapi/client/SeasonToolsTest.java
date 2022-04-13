@@ -25,7 +25,7 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.client.impl.IRacingObjectMapper;
 import de.bausdorf.simracing.irdataapi.model.SeasonDto;
 import de.bausdorf.simracing.irdataapi.tools.SeasonTools;
-import de.bausdorf.simracing.irdataapi.tools.TrackTypeEnum;
+import de.bausdorf.simracing.irdataapi.tools.TrackType;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeAll;
@@ -58,7 +58,7 @@ class SeasonToolsTest {
 
     @Test
     void listRoadSeries() {
-        List<SeasonDto> roadSeries = SeasonTools.filterByTrackType(seasonDtos, TrackTypeEnum.ROAD);
+        List<SeasonDto> roadSeries = SeasonTools.filterByTrackType(seasonDtos, TrackType.ROAD);
         Assertions.assertNotNull(roadSeries);
         Assertions.assertFalse(roadSeries.isEmpty());
 

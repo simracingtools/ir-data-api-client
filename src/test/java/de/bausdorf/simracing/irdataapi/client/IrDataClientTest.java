@@ -180,6 +180,15 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetLookup() {
+        authenticate();
+        LookupDto[] lookup = dataClient.getLookup(Arrays.asList(LookupTypes.values()));
+        assertNotNull(lookup);
+        assertTrue(lookup.length > 0);
+        Arrays.asList(lookup).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetLeagueInfo() {
         authenticate();
         LeagueInfoDto leagueInfoDto = dataClient.getLeagueInfo(3693);

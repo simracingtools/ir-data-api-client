@@ -22,29 +22,48 @@ package de.bausdorf.simracing.irdataapi.client;
  * #L%
  */
 
+import java.util.List;
+
 public class DataApiConstants {
 
-    // Endpoint urls
+    // Infrastructure urls
     public static final String AUTH_URL = "https://members-ng.iracing.com/auth";
-    public static final String GET_MEMBERS_URL = "https://members-ng.iracing.com/data/member/get";
-    public static final String GET_MEMBER_SUMMARY_URL = "https://members-ng.iracing.com/data/stats/member_summary";
-    public static final String GET_MEMBER_YEARLY_URL = "https://members-ng.iracing.com/data/stats/member_yearly";
-    public static final String GET_MEMBER_RECENT_RACES_URL = "https://members-ng.iracing.com/data/stats/member_recent_races";
-    public static final String GET_MEMBER_CAREER_URL = "https://members-ng.iracing.com/data/stats/member_career";
-    public static final String GET_CARS_URL = "https://members-ng.iracing.com/data/car/get";
-    public static final String GET_CAR_ASSETS_URL = "https://members-ng.iracing.com/data/car/assets";
-    public static final String GET_CAR_CLASSES_URL = "https://members-ng.iracing.com/data/carclass/get";
-    public static final String GET_LEAGUE_URL = "https://members-ng.iracing.com/data/league/get";
-    public static final String GET_TRACKS_URL = "https://members-ng.iracing.com/data/track/get";
-    public static final String GET_TRACK_ASSETS_URL = "https://members-ng.iracing.com/data/track/assets";
-    public static final String GET_DIVISIONS_URL = "https://members-ng.iracing.com/data/constants/divisions";
-    public static final String GET_LICENSES_URL = "https://members-ng.iracing.com/data/lookup/licenses";
-    public static final String GET_SEASONS_URL = "https://members-ng.iracing.com/data/series/seasons";
-    public static final String GET_SUBSESSIONRESULT_URL = "https://members-ng.iracing.com/data/results/get";
-    public static final String GET_LAPCHART_DATA_URL = "https://members-ng.iracing.com/data/results/lap_chart_data";
-    public static final String GET_LAP_DATA_URL = "https://members-ng.iracing.com/data/results/lap_data";
-    public static final String GET_SEASON_RESULTS_URL = "https://members-ng.iracing.com/data/results/season_results";
-    public static final String GET_EVENT_LOG_URL = "https://members-ng.iracing.com/data/results/event_log";
+    public static final String GET_DOCS_URL = "https://members-ng.iracing.com/data/doc";
+
+    // Endpoint urls
+
+    public static final String GET_MEMBERS_URL =                "https://members-ng.iracing.com/data/member/get";
+    public static final String GET_MEMBER_SUMMARY_URL =         "https://members-ng.iracing.com/data/stats/member_summary";
+    public static final String GET_MEMBER_YEARLY_URL =          "https://members-ng.iracing.com/data/stats/member_yearly";
+    public static final String GET_MEMBER_RECENT_RACES_URL =    "https://members-ng.iracing.com/data/stats/member_recent_races";
+    public static final String GET_MEMBER_CAREER_URL =          "https://members-ng.iracing.com/data/stats/member_career";
+    public static final String GET_CARS_URL =                   "https://members-ng.iracing.com/data/car/get";
+    public static final String GET_CAR_ASSETS_URL =             "https://members-ng.iracing.com/data/car/assets";
+    public static final String GET_CAR_CLASSES_URL =            "https://members-ng.iracing.com/data/carclass/get";
+    public static final String GET_LEAGUE_URL =                 "https://members-ng.iracing.com/data/league/get";
+    public static final String GET_TRACKS_URL =                 "https://members-ng.iracing.com/data/track/get";
+    public static final String GET_TRACK_ASSETS_URL =           "https://members-ng.iracing.com/data/track/assets";
+    public static final String GET_DIVISIONS_URL =              "https://members-ng.iracing.com/data/constants/divisions";
+    public static final String GET_LICENSES_URL =               "https://members-ng.iracing.com/data/lookup/licenses";
+    public static final String GET_LOOKUP_URL =                 "https://members-ng.iracing.com/data/lookup/get";
+    public static final String GET_SEASONS_URL =                "https://members-ng.iracing.com/data/series/seasons";
+    public static final String GET_SUBSESSION_RESULT_URL =      "https://members-ng.iracing.com/data/results/get";
+    public static final String GET_LAP_CHART_DATA_URL =         "https://members-ng.iracing.com/data/results/lap_chart_data";
+    public static final String GET_LAP_DATA_URL =               "https://members-ng.iracing.com/data/results/lap_data";
+    public static final String GET_SEASON_RESULTS_URL =         "https://members-ng.iracing.com/data/results/season_results";
+    public static final String GET_EVENT_LOG_URL =              "https://members-ng.iracing.com/data/results/event_log";
+
+    public static final List<String> SUPPORTED_ENDPOINTS = List.of(
+            GET_MEMBERS_URL,
+            GET_MEMBER_SUMMARY_URL, GET_MEMBER_YEARLY_URL, GET_MEMBER_CAREER_URL, GET_MEMBER_RECENT_RACES_URL,
+            GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
+            GET_LEAGUE_URL,
+            GET_TRACKS_URL, GET_TRACK_ASSETS_URL,
+            GET_DIVISIONS_URL,
+            GET_LOOKUP_URL, GET_LICENSES_URL,
+            GET_SEASONS_URL,
+            GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL
+    );
 
     // Date and time format constants for json deserialization
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";

@@ -68,6 +68,8 @@ public interface IrDataClient {
 
     LicenseGroupDto[] getLicenseGroups();
 
+    LookupDto[] getLookup(List<LookupTypes> lookupTypes);
+
     SubsessionResultDto getSubsessionResult(@NonNull Long subsessionId);
 
     LapChartDto getLapChartData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);

@@ -36,7 +36,7 @@ public class SeasonTools {
         super();
     }
 
-    public static List<SeasonDto> filterByTrackType(@NonNull SeasonDto[] seasonDtos, @NonNull TrackTypeEnum trackType) {
+    public static List<SeasonDto> filterByTrackType(@NonNull SeasonDto[] seasonDtos, @NonNull TrackType trackType) {
         return Arrays.stream(seasonDtos)
                 .filter(dto -> Arrays.stream(dto.getTrackTypes())
                             .anyMatch(tt -> tt.getTrackType().equalsIgnoreCase(trackType.toString()))

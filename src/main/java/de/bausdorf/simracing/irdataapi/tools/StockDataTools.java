@@ -75,7 +75,7 @@ public class StockDataTools {
         return carsInClasses;
     }
 
-    public static NavigableSet<String> fetchAvailableCarTypes(CarInfoDto[] cars, MainCarTypeEnum mainType) {
+    public static NavigableSet<String> fetchAvailableCarTypes(CarInfoDto[] cars, MainCarType mainType) {
         NavigableSet<String> carTypes = new TreeSet<>();
         Arrays.stream(cars)
                 .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> type.getCarType().equalsIgnoreCase(mainType.toString())))
@@ -90,7 +90,7 @@ public class StockDataTools {
                 .collect(Collectors.toList());
     }
 
-    public static List<CarInfoDto> carsByCategory(CarInfoDto[] cars, CarCategoryEnum carType, boolean includeLegacy) {
+    public static List<CarInfoDto> carsByCategory(CarInfoDto[] cars, CarCategoryType carType, boolean includeLegacy) {
         return Arrays.stream(cars)
                 .filter(car -> Arrays.stream(car.getCarTypes()).anyMatch(type -> type.getCarType().equalsIgnoreCase(carType.toString())))
                 .filter(car -> (includeLegacy || !car.getCarName().contains(LEGACY)))
@@ -104,7 +104,7 @@ public class StockDataTools {
                 .collect(Collectors.toList());
     }
 
-    public static List<TrackInfoDto> tracksByType(TrackInfoDto[] tracks, TrackTypeEnum trackType, boolean includeLegacy) {
+    public static List<TrackInfoDto> tracksByType(TrackInfoDto[] tracks, TrackType trackType, boolean includeLegacy) {
         return Arrays.stream(tracks)
                 .filter(track -> Arrays.stream(track.getTrackTypes()).anyMatch(type -> type.getTrackType().equalsIgnoreCase(trackType.toString())))
                 .filter(track -> (includeLegacy || !track.getTrackName().contains(LEGACY)))

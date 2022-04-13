@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.tools;
+package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
@@ -22,29 +22,21 @@ package de.bausdorf.simracing.irdataapi.tools;
  * #L%
  */
 
-import org.springframework.lang.NonNull;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-public enum CarCategoryEnum {
-    OVAL(Constants.OVAL),
-    ROAD(Constants.ROAD);
-
-    private final String name;
-
-    CarCategoryEnum(String trackTypeName) {
-        this.name = trackTypeName;
-    }
-
-    public static CarCategoryEnum forName(@NonNull String trackTypeName) {
-        if(trackTypeName.equalsIgnoreCase(Constants.ROAD))
-            return ROAD;
-        else if(trackTypeName.equalsIgnoreCase(Constants.OVAL))
-            return OVAL;
-        else
-            throw new IllegalArgumentException("\"" + trackTypeName + "\" is an unknown track category name");
-    }
-
-    @Override
-    public String toString() {
-        return this.name;
-    }
+@Data
+@NoArgsConstructor
+@ToString
+public class LookupValueDto {
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("value")
+    private String value;
+    @JsonProperty("description")
+    private String description;
+    @JsonProperty("seq")
+    private Long seq;
 }

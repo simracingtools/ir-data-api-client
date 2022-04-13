@@ -27,7 +27,6 @@ import de.bausdorf.simracing.irdataapi.model.CarInfoDto;
 import de.bausdorf.simracing.irdataapi.model.TrackInfoDto;
 import de.bausdorf.simracing.irdataapi.tools.*;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.logging.Log;
 import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -58,9 +57,9 @@ class StockDataToolsTest {
         Map<Long, List<TrackInfoDto>> trackMap = StockDataTools.trackConfigurationMap(dataCache.getTracks());
         assertFalse(trackMap.isEmpty());
 
-        trackMap.entrySet().forEach(e -> {
-            log.info("SKU: {}", e.getKey());
-            e.getValue().forEach(t -> log.info("{}: {} - {}", t.getTrackId(), t.getTrackName(), t.getConfigName()));
+        trackMap.forEach((key, value) -> {
+            log.info("SKU: {}", key);
+            value.forEach(t -> log.info("{}: {} - {}", t.getTrackId(), t.getTrackName(), t.getConfigName()));
         });
     }
 
@@ -69,9 +68,9 @@ class StockDataToolsTest {
         Map<CarClassKey, List<CarInfoDto>> carClassMap = StockDataTools.carClassMap(dataCache.getCarClasses(), dataCache.getCars());
         assertFalse(carClassMap.isEmpty());
 
-        carClassMap.entrySet().forEach(e -> {
-            log.info("Class {}: {}", e.getKey().getCarClassId(), e.getKey().getName());
-            e.getValue().forEach(c -> log.info("    Car {}: {}", c.getCarId(), c.getCarName()));
+        carClassMap.forEach((key, value) -> {
+            log.info("Class {}: {}", key.getCarClassId(), key.getName());
+            value.forEach(c -> log.info("    Car {}: {}", c.getCarId(), c.getCarName()));
         });
     }
 
@@ -86,7 +85,7 @@ class StockDataToolsTest {
 
     @Test
     void testFetchCarTypes() {
-        NavigableSet<String> carTypes = StockDataTools.fetchAvailableCarTypes(dataCache.getCars(), MainCarTypeEnum.ROAD);
+        NavigableSet<String> carTypes = StockDataTools.fetchAvailableCarTypes(dataCache.getCars(), MainCarType.ROAD);
         assertFalse(carTypes.isEmpty());
 
         carTypes.stream().sorted().forEach(log::info);
@@ -94,10 +93,10 @@ class StockDataToolsTest {
 
     @Test
     void testCarsByCategory() {
-        List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByCategory(dataCache.getCars(), CarCategoryEnum.ROAD, false);
+        List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByCategory(dataCache.getCars(), CarCategoryType.ROAD, false);
         assertFalse(carInfosWithLegacy.isEmpty());
 
-        log.info("Category {}:", CarCategoryEnum.ROAD.name());
+        log.info("Category {}:", CarCategoryType.ROAD.name());
         carInfosWithLegacy.forEach(car -> log.info(car.getCarName()));
     }
 
@@ -116,10 +115,10 @@ class StockDataToolsTest {
         log.info("\nNon-legacy cars");
         carInfosWithOutLegacy.forEach(car -> log.info(car.getCarName()));
 
-        Constants.CAR_SUBTYPES.stream()
+        Constants.CAR_SUBTYPES
                 .forEach(subtype -> {
                     log.info("\n{}\n", subtype);
-                    StockDataTools.carsByType(dataCache.getCars(), subtype, false).stream()
+                    StockDataTools.carsByType(dataCache.getCars(), subtype, false)
                             .forEach(car -> log.info(car.getCarName()));
                 });
     }
@@ -135,13 +134,13 @@ class StockDataToolsTest {
 
     @Test
     void testTracksByType() {
-        List<TrackInfoDto> infosWithLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackTypeEnum.ROAD, true);
+        List<TrackInfoDto> infosWithLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackType.ROAD, true);
         assertFalse(infosWithLegacy.isEmpty());
 
         log.info("All tracks");
         infosWithLegacy.forEach(track -> log.info("{} - {}",track.getTrackName(), track.getConfigName()));
 
-        List<TrackInfoDto> infosWithOutLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackTypeEnum.ROAD, false);
+        List<TrackInfoDto> infosWithOutLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackType.ROAD, false);
         assertFalse(infosWithOutLegacy.isEmpty());
         assertTrue(infosWithOutLegacy.size() < infosWithLegacy.size());
 

@@ -2,7 +2,7 @@ package de.bausdorf.simracing.irdataapi.client;
 
 /*-
  * #%L
- * de.bausdorf.simracing:ir-data-api-client
+ * iRDataAPIClient
  * %%
  * Copyright (C) 2022 bausdorf engineering
  * %%
@@ -22,66 +22,58 @@ package de.bausdorf.simracing.irdataapi.client;
  * #L%
  */
 
+import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
-import de.bausdorf.simracing.irdataapi.model.AuthResponseDto;
-import de.bausdorf.simracing.irdataapi.model.LeagueInfoDto;
-import de.bausdorf.simracing.irdataapi.model.LeagueMemberDto;
-import de.bausdorf.simracing.irdataapi.model.LoginRequestDto;
-import de.bausdorf.simracing.irdataapi.tools.JsonFileCache;
+import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.internal.bytebuddy.dynamic.DynamicType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
+import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = {IrDataClientTest.class})
+
+@SpringBootTest(classes = {IrDataClientCompletenessTest.class})
 @EnableConfigurationProperties(value = ConfigProperties.class)
 @TestPropertySource("classpath:application-test.properties")
 @Slf4j
-class JsonFileCacheTest {
+class IrDataClientCompletenessTest {
 
-    public static final long FBP_LEAGUE_ID = 3693L;
-
+    public static final long CUST_ID = 229120L;
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClientImpl();
+    IrDataClientImpl dataClient = new IrDataClientImpl();
+
 
     @Test
-    void initializeSingleObjectCache() {
-        JsonFileCache<LeagueInfoDto> leagueCache = new JsonFileCache<>(".cache", "fbp_league");
+    void testAllEndpointsSupported() {
         authenticate();
-        leagueCache.setCachedData(dataClient.getLeagueInfo(FBP_LEAGUE_ID));
-        assertNotEquals(0L, leagueCache.cacheLastModified());
-        assertTrue(leagueCache.cacheExists());
+        JsonNode rootNode = dataClient.getApiDocs();
+        List<JsonNode> linkNodes = rootNode.findValues("link");
 
-        JsonFileCache<LeagueInfoDto> cacheFromFile = new JsonFileCache<>(".cache", "fbp_league");
-        assertTrue(cacheFromFile.cacheExists());
-        assertNotEquals(0L, cacheFromFile.cacheLastModified());
-        assertNotNull(cacheFromFile.getCachedData());
-        assertInstanceOf(LeagueInfoDto.class, cacheFromFile.getCachedData());
-    }
+        DataApiConstants.SUPPORTED_ENDPOINTS
+                .forEach(url -> {
+                    Optional<JsonNode> matchingNode = Optional.empty();
+                    for(JsonNode node : linkNodes) {
+                        if (node.asText().equalsIgnoreCase(url)) {
+                            matchingNode = Optional.of(node);
+                            break;
+                        }
+                    }
+                    matchingNode.ifPresent(linkNodes::remove);
+                });
 
-    @Test
-    void initializeListObjectCache() {
-        JsonFileCache<List<LeagueMemberDto>> leagueCache = new JsonFileCache<>(".cache", "fbp_league_roster");
-        authenticate();
-        leagueCache.setCachedData(Arrays.asList(dataClient.getLeagueInfo(FBP_LEAGUE_ID).getRoster()));
-        assertNotEquals(0L, leagueCache.cacheLastModified());
-        assertTrue(leagueCache.cacheExists());
-
-        JsonFileCache<List<LeagueMemberDto>> cacheFromFile = new JsonFileCache<>(".cache", "fbp_league_roster");
-        assertTrue(cacheFromFile.cacheExists());
-        assertNotEquals(0L, cacheFromFile.cacheLastModified());
-        List<LeagueMemberDto> roster = cacheFromFile.getCachedData();
-        assertNotEquals(0L, roster.size());
+        linkNodes.forEach(node -> log.warn(node.asText()));
+        assertTrue(linkNodes.isEmpty(), () -> "Number of unsupported endpoints: " + linkNodes.size());
     }
 
     private void authenticate() {

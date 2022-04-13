@@ -24,18 +24,18 @@ package de.bausdorf.simracing.irdataapi.tools;
 
 import org.springframework.lang.NonNull;
 
-public enum MainCarTypeEnum {
+public enum MainCarType {
     OVAL(Constants.OVAL),
     ROAD(Constants.ROAD),
     DIRT(Constants.DIRT);
 
     private final String name;
 
-    MainCarTypeEnum(String trackTypeName) {
+    MainCarType(String trackTypeName) {
         this.name = trackTypeName;
     }
 
-    public static MainCarTypeEnum forName(@NonNull String trackTypeName) {
+    public static MainCarType forName(@NonNull String trackTypeName) {
         if(trackTypeName.equalsIgnoreCase(Constants.ROAD))
             return ROAD;
         else if(trackTypeName.equalsIgnoreCase(Constants.OVAL))
