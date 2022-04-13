@@ -150,7 +150,7 @@ public class SubsessionResultDto {
     @JsonProperty("car_classes")
     private CarClassDto[] carClasses;
     @JsonProperty("allowed_licenses")
-    private LicenseInfoDto[] allowedLicenses;
+    private LicenseAllowedDto[] allowedLicenses;
     @JsonProperty("results_restricted")
     private Boolean resultsRestricted;
     @JsonProperty("associated_subsession_ids")

@@ -109,6 +109,86 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberDivision() {
+        authenticate();
+        MemberDivisonDto memberDivisionDto = dataClient.getMemberDivision(3225L, 5L);
+        assertNotNull(memberDivisionDto);
+        log.info(memberDivisionDto.toString());
+    }
+
+    @Test
+    void testGetDriverSeasonStandings() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonDriverStandings(3225L, 1860L, 7L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetSupersessionSeasonStandings() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonSupersessionStandings(3464L, 1278L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetTeamSeasonStandings() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonTeamStandings(3225L, 1860L);
+        assertNotNull(driverStandingInfo);
+
+        List<TeamStandingDto> driverStandings = dataClient.getTeamStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} team standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetTimeTrialSeasonStandings() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonTimeTrialStandings(3632L, 74L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetTimeTrialResults() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonTimeTrialResults(3632L, 74L, 0L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverTtStandingDto> driverStandings = dataClient.getTimeTrialStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetQualifyResults() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonQualifyResults(3632L, 74L, 0L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverQualifyStandingDto> driverStandings = dataClient.getQualifyStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertNotEquals(driverStandingInfo.getChunkInfo().getChunkSize(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
     void testGetMembersInfoWithInvalidId() {
         authenticate();
         List<Long> ids = new ArrayList<>();
@@ -252,6 +332,17 @@ class IrDataClientTest {
         assertTrue(seasonDtos.length > 0);
 
         log.info("got {} season infos", seasonDtos.length);
+    }
+
+    @Test
+    void testGetSeriesStats() {
+        authenticate();
+        SeriesInfoDto[] seriesStats = dataClient.getSeriesStats();
+        assertNotNull(seriesStats);
+        assertTrue(seriesStats.length > 0);
+
+        Arrays.stream(seriesStats).forEach(stats -> log.info("{}", stats.getSeriesName()));
+        log.info("got {} series stats", seriesStats.length);
     }
 
     @Test

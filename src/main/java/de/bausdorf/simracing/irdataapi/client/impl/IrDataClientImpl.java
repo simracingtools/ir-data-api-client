@@ -49,6 +49,10 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String RETURNED_NULL_BODY = " returned null body";
     public static final String SUBSESSION_ID_URL_PARAM = "?subsession_id=";
     public static final String SIMSESSION_NUMBER_URL_PARAM = "&simsession_number=";
+    public static final String SEASON_ID_URL_PARAM = "?season_id=";
+    public static final String EVENT_TYPE_URL_PARAM = "&event_type=";
+    public static final String RACE_WEEK_NUM_URL_PARAM = "&race_week_num=";
+    public static final String CAR_CLASS_ID_URL_PARAM = "&car_class_id=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -188,6 +192,137 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public MemberDivisonDto getMemberDivision(Long seasonId, Long eventType) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_MEMBER_DIVISION_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + EVENT_TYPE_URL_PARAM + eventType.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberDivisonDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_DIVISION_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonDriverStandings(Long seasonId, Long carClassId) {
+        return getSeasonDriverStandings(seasonId, carClassId, null);
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonDriverStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_DRIVER_STANDINGS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_DRIVER_STANDINGS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonSupersessionStandings(Long seasonId, Long carClassId) {
+        return getSeasonSupersessionStandings(seasonId, carClassId, null);
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonSupersessionStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SUPERSESSION_STANDINGS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SUPERSESSION_STANDINGS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonTeamStandings(Long seasonId, Long carClassId) {
+        return getSeasonTeamStandings(seasonId, carClassId, null);
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonTimeTrialStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TT_STANDINGS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TT_STANDINGS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonTimeTrialResults(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TT_RESULTS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TT_RESULTS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonQualifyResults(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_QUALIFY_RESULTS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_QUALIFY_RESULTS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonTimeTrialStandings(Long seasonId, Long carClassId) {
+        return getSeasonTimeTrialStandings(seasonId, carClassId, null);
+    }
+
+    @Override
+    public DriverStandingsDto getSeasonTeamStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TEAM_STANDINGS_URL
+                    + SEASON_ID_URL_PARAM + seasonId.toString()
+                    + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
+                    + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString() : ""));
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TEAM_STANDINGS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId) {
         try {
             LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_RECENT_RACES_URL, custId));
@@ -283,6 +418,19 @@ public class IrDataClientImpl implements IrDataClient {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonDto[]>() {});
             }
             throw new DataApiException(DataApiConstants.GET_SEASONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public SeriesInfoDto[] getSeriesStats() {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_STATS_URL);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesInfoDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SERIES_STATS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -422,6 +570,26 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public List<DriverStandingDto> getDriverStandingEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverStandingDto[]>() {});
+    }
+
+    @Override
+    public List<TeamStandingDto> getTeamStandingEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<TeamStandingDto[]>() {});
+    }
+
+    @Override
+    public List<DriverTtStandingDto> getTimeTrialStandingEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverTtStandingDto[]>() {});
+    }
+
+    @Override
+    public List<DriverQualifyStandingDto> getQualifyStandingEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverQualifyStandingDto[]>() {});
+    }
+
+    @Override
     public SeasonResultsDto getSeasonResults(Long seasonId) {
         return getSeasonResults(seasonId, null, null);
     }
@@ -435,12 +603,12 @@ public class IrDataClientImpl implements IrDataClient {
     public SeasonResultsDto getSeasonResults(Long seasonId, Long eventType, Long raceWeekNum) {
         try{
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_SEASON_RESULTS_URL)
-                    .append("?season_id=").append(seasonId);
+                    .append(SEASON_ID_URL_PARAM).append(seasonId);
             if(eventType != null) {
-                uri.append("&event_type=").append(eventType);
+                uri.append(EVENT_TYPE_URL_PARAM).append(eventType);
             }
             if(raceWeekNum !=  null) {
-                uri.append("&race_week_num=").append(raceWeekNum);
+                uri.append(RACE_WEEK_NUM_URL_PARAM).append(raceWeekNum);
             }
 
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());

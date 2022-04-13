@@ -49,6 +49,27 @@ public interface IrDataClient {
     MemberYearlyDto getMemberStatsYearly(@NonNull Long custId);
 
     MemberCareerDto getMemberCareer(@NonNull Long custId);
+    MemberDivisonDto getMemberDivision(@NonNull Long seasonId, @NonNull Long eventType);
+
+    DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId);
+
+    DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+
+    DriverStandingsDto getSeasonSupersessionStandings(@NonNull Long seasonId, @NonNull Long carClassId);
+
+    DriverStandingsDto getSeasonSupersessionStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+
+    DriverStandingsDto getSeasonTeamStandings(@NonNull Long seasonId, @NonNull Long carClassId);
+
+    DriverStandingsDto getSeasonTimeTrialStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+
+    DriverStandingsDto getSeasonTimeTrialStandings(@NonNull Long seasonId, @NonNull Long carClassId);
+
+    DriverStandingsDto getSeasonTeamStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+
+    DriverStandingsDto getSeasonTimeTrialResults(@NonNull Long seasonId, @NonNull Long carClassId, @NonNull Long raceWeekNum);
+
+    DriverStandingsDto getSeasonQualifyResults(@NonNull Long seasonId, @NonNull Long carClassId, @NonNull Long raceWeekNum);
 
     MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId);
 
@@ -65,7 +86,7 @@ public interface IrDataClient {
     LeagueInfoDto getLeagueInfo(long leagueId);
 
     SeasonDto[] getSeasonInfo(Boolean includeSeries);
-
+    SeriesInfoDto[] getSeriesStats();
     TrackInfoDto[] getTrackInfos();
 
     LicenseGroupDto[] getLicenseGroups();
@@ -85,6 +106,14 @@ public interface IrDataClient {
     List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo);
 
     List<EventLogEntry> getEventLogEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    List<DriverStandingDto> getDriverStandingEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    List<TeamStandingDto> getTeamStandingEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    List<DriverTtStandingDto> getTimeTrialStandingEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    List<DriverQualifyStandingDto> getQualifyStandingEntries(@NonNull ChunkInfoDto chunkInfo);
 
     SeasonResultsDto getSeasonResults(@NonNull Long seasonId);
 

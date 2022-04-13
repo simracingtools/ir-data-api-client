@@ -20,45 +20,15 @@ For usage hints see
 class IrDataClientTest
 `
 
-## Currently implemented endpoints:
+## Known endpoint restrictions
 
-https://members-ng.iracing.com/auth
+https://members-ng.iracing.com/data/results/lap_chart_data - does not work for league sessions
 
-https://members-ng.iracing.com/data/member/get
+https://members-ng.iracing.com/data/results/lap_data - does work for league sessions
 
-https://members-ng.iracing.com/data/car/get
+https://members-ng.iracing.com/data/results/season_results - does not work for league sessions
 
-https://members-ng.iracing.com/data/car/assets
 
-https://members-ng.iracing.com/data/league/get
-
-https://members-ng.iracing.com/data/track/get
-
-https://members-ng.iracing.com/data/carclass/get
-
-https://members-ng.iracing.com/data/constants/divisions
-
-https://members-ng.iracing.com/data/lookup/licenses
-
-https://members-ng.iracing.com/data/stats/member_summary
-
-https://members-ng.iracing.com/data/stats/member_yearly
-
-https://members-ng.iracing.com/data/stats/member_career
-
-https://members-ng.iracing.com/data/track/assets
-
-https://members-ng.iracing.com/data/series/seasons
-
-https://members-ng.iracing.com/data/results/get - works for single and team events on official and league sessions
-
-https://members-ng.iracing.com/data/results/lap_chart_data - does not work for league seasons
-
-https://members-ng.iracing.com/data/results/lap_data - does work for league seasons
-
-https://members-ng.iracing.com/data/results/season_results - does not work for league seasons
-
-https://members-ng.iracing.com/data/results/event_log
 
 ## Hints
 
