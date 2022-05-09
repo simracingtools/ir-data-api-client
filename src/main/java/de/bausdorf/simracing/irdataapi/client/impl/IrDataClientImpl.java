@@ -26,6 +26,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
+import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
+import de.bausdorf.simracing.irdataapi.model.web.TeamMemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -616,6 +618,26 @@ public class IrDataClientImpl implements IrDataClient {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonResultsDto>() {});
             }
             throw new DataApiException(DataApiConstants.GET_SEASON_RESULTS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public TeamMemberDto[] getTeamMembers(Long teamId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_TEAM_MEMBERS_URL)
+                    .append("?teamid=").append(Math.abs(teamId) * -1L);
+            return getStructuredData(uri.toString(), new TypeReference<TeamMemberDto[]>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public LeagueSessionsDto getLeagueSessions() {
+        try {
+            return getStructuredData(DataApiConstants.GET_LEAGUE_SESSIONS_URL, new TypeReference<LeagueSessionsDto>() {});
         } catch (IOException e) {
             throw new DataApiException(e);
         }

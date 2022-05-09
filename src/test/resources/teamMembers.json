@@ -1,0 +1,422 @@
+[
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652115400666,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Torsten+Gross",
+    "helmet": {
+      "c3": "da05fc",
+      "ll": 19,
+      "hp": 6,
+      "ht": 0,
+      "c1": "0002e3",
+      "ft": 0,
+      "c2": "fffd26"
+    },
+    "teamID": -129513,
+    "custID": 32148,
+    "online": true,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1641593273000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Markus+B+Bausdorf",
+    "helmet": {
+      "c3": "000000",
+      "ll": 20,
+      "hp": 33,
+      "ht": 0,
+      "c1": "000000",
+      "ft": 0,
+      "c2": "000000"
+    },
+    "teamID": -129513,
+    "custID": 97120,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652058293000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Michael+Polasek",
+    "helmet": {
+      "c3": "544f4f",
+      "ll": 16,
+      "hp": 32,
+      "ht": 0,
+      "c1": "000000",
+      "ft": 0,
+      "c2": "00c9ff"
+    },
+    "teamID": -129513,
+    "custID": 155121,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651425338000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "J%C3%BCrgen+Pangerl",
+    "helmet": {
+      "c3": "787978",
+      "ll": 20,
+      "hp": 6,
+      "ht": 0,
+      "c1": "73ff0f",
+      "ft": 4,
+      "c2": "212121"
+    },
+    "teamID": -129513,
+    "custID": 175753,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651508359000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Jannik+Simon",
+    "helmet": {
+      "c3": "000000",
+      "ll": 20,
+      "hp": 28,
+      "ht": 0,
+      "c1": "F50000",
+      "ft": 0,
+      "c2": "fcfcfc"
+    },
+    "teamID": -129513,
+    "custID": 222670,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652115510584,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Robert+Bausdorf",
+    "helmet": {
+      "c3": "fee301",
+      "ll": 20,
+      "hp": 15,
+      "ht": 0,
+      "c1": "000000",
+      "ft": 6,
+      "c2": "ff0505"
+    },
+    "teamID": -129513,
+    "custID": 229120,
+    "online": true,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651600671000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "David+Weiler",
+    "helmet": {
+      "c3": "19F00A",
+      "ll": 20,
+      "hp": 62,
+      "ht": 0,
+      "c1": "3C2A2A",
+      "ft": 0,
+      "c2": "E9F14B"
+    },
+    "teamID": -129513,
+    "custID": 315956,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1587918121000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Chris+Stelzmueller",
+    "helmet": {
+      "c3": "111111",
+      "ll": 10,
+      "hp": 1,
+      "ht": 0,
+      "c1": "ffffff",
+      "ft": 0,
+      "c2": "ffffff"
+    },
+    "teamID": -129513,
+    "custID": 349617,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651939085000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Florian+Stattmann",
+    "helmet": {
+      "c3": "ffea00",
+      "ll": 20,
+      "hp": 30,
+      "ht": 0,
+      "c1": "12142d",
+      "ft": 8,
+      "c2": "ff0026"
+    },
+    "teamID": -129513,
+    "custID": 358652,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652039163000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Daniel+Toennissen",
+    "helmet": {
+      "c3": "111111",
+      "ll": 20,
+      "hp": 67,
+      "ht": 0,
+      "c1": "000000",
+      "ft": 0,
+      "c2": "10cf15"
+    },
+    "teamID": -129513,
+    "custID": 361716,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652108964000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Sascha+Ziegler",
+    "helmet": {
+      "c3": "000000",
+      "ll": 19,
+      "hp": 68,
+      "ht": 0,
+      "c1": "ffffff",
+      "ft": 4,
+      "c2": "b60000"
+    },
+    "teamID": -129513,
+    "custID": 362764,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651673652000,
+    "isDefault": false,
+    "isOwner": true,
+    "displayName": "Evan+Dietzold",
+    "helmet": {
+      "c3": "06003d",
+      "ll": 20,
+      "hp": 56,
+      "ht": 0,
+      "c1": "26d0f7",
+      "ft": 4,
+      "c2": "2443ff"
+    },
+    "teamID": -129513,
+    "custID": 364226,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652013097000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Thorben+Weiler",
+    "helmet": {
+      "c3": "111111",
+      "ll": 20,
+      "hp": 56,
+      "ht": 0,
+      "c1": "7EE156",
+      "ft": 0,
+      "c2": "EFF165"
+    },
+    "teamID": -129513,
+    "custID": 366848,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652094706000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Martin+Stattmann",
+    "helmet": {
+      "c3": "D6E713",
+      "ll": 13,
+      "hp": 35,
+      "ht": 0,
+      "c1": "000000",
+      "ft": 0,
+      "c2": "7DEC09"
+    },
+    "teamID": -129513,
+    "custID": 370158,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1652028782000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Lukas+Eitelberg",
+    "helmet": {
+      "c3": "d92143",
+      "ll": 20,
+      "hp": 67,
+      "ht": 0,
+      "c1": "30302f",
+      "ft": 0,
+      "c2": "ececec"
+    },
+    "teamID": -129513,
+    "custID": 372473,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1647196874000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Jan+Gehrsitz",
+    "helmet": {
+      "c3": "D92143",
+      "ll": 14,
+      "hp": 61,
+      "ht": 0,
+      "c1": "30302F",
+      "ft": 0,
+      "c2": "ECECEC"
+    },
+    "teamID": -129513,
+    "custID": 375832,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "Information+is+private",
+    "lastLoginTime": 0,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Bj%C3%B6rn+Hellwich",
+    "helmet": {
+      "c3": "ff0000",
+      "ll": 20,
+      "hp": 35,
+      "ht": 0,
+      "c1": "2de308",
+      "ft": 4,
+      "c2": "fafafa"
+    },
+    "teamID": -129513,
+    "custID": 386968,
+    "online": false,
+    "isAdmin": true
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1651828212000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "M.+Lebelt",
+    "helmet": {
+      "c3": "08ff00",
+      "ll": 17,
+      "hp": 34,
+      "ht": 0,
+      "c1": "67ff00",
+      "ft": 0,
+      "c2": "111111"
+    },
+    "teamID": -129513,
+    "custID": 416270,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "Information+is+private",
+    "lastLoginTime": 0,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Christian+Kr%C3%B6ger",
+    "helmet": {
+      "c3": "000000",
+      "ll": 20,
+      "hp": 62,
+      "ht": 0,
+      "c1": "255316",
+      "ft": 4,
+      "c2": "fff682"
+    },
+    "teamID": -129513,
+    "custID": 470635,
+    "online": false,
+    "isAdmin": false
+  },
+  {
+    "teamName": "FBP+Racing+%23BLUE",
+    "lastLoginText": "",
+    "lastLoginTime": 1633294536000,
+    "isDefault": false,
+    "isOwner": false,
+    "displayName": "Chris+Nottenk%C3%A4mper",
+    "helmet": {
+      "c3": "fc0706",
+      "ll": 14,
+      "hp": 1,
+      "ht": 0,
+      "c1": "ffffff",
+      "ft": 0,
+      "c2": "111111"
+    },
+    "teamID": -129513,
+    "custID": 578936,
+    "online": false,
+    "isAdmin": false
+  }
+]

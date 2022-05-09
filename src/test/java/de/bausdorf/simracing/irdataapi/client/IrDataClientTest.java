@@ -25,6 +25,8 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
+import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
+import de.bausdorf.simracing.irdataapi.model.web.TeamMemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -465,6 +467,23 @@ class IrDataClientTest {
         assertTrue(seasonResults.getSuccess());
 
         log.info("{} races in week 11", seasonResults.getResultsList().length);
+    }
+
+    @Test
+    void testGetTeamMembers() {
+        authenticate();
+        TeamMemberDto[] teamMembers = dataClient.getTeamMembers(129513L);
+        assertNotNull(teamMembers);
+
+        Arrays.stream(teamMembers).forEach(member -> log.info("{}", member));
+    }
+
+    @Test
+    void testGetLeagueSessions() {
+        authenticate();
+        LeagueSessionsDto sessionsDto = dataClient.getLeagueSessions();
+        assertNotNull(sessionsDto);
+        assertEquals((long) sessionsDto.getRowCount(), sessionsDto.getRows().length);
     }
 
     @Test
