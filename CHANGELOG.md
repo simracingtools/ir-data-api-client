@@ -2,6 +2,33 @@
 
 Changelog of ir-data-api-client.
 
+## v1.1.0 (2022-05-09)
+
+
+
+### Features
+
+-  Endpoints for team members and league sessions added (using old website) ([69dce](https://github.com/simracingtools/ir-data-api-client/commit/69dcefbe6f7e2cd) robert)  
+
+
+### Bug Fixes
+
+-  TrackMap was missing tracks with same sku ([df741](https://github.com/simracingtools/ir-data-api-client/commit/df7411712e42f83) robert)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v1.1.0**
+
+
+[0d508](https://github.com/simracingtools/ir-data-api-client/commit/0d50889eed29afc) Robert Bausdorf *2022-05-09 20:41:01*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[11de1](https://github.com/simracingtools/ir-data-api-client/commit/11de1714ff44bfe) Robert Bausdorf *2022-04-13 16:48:08*
+
+
 ## v1.0.0 (2022-04-13)
 
 
