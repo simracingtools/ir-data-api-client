@@ -36,17 +36,17 @@ public class StockDataTools {
 
     public static final String LEGACY = "[Legacy]";
 
-    public static Map<Long, List<TrackInfoDto>> trackConfigurationMap(TrackInfoDto[] trackInfoDtos) {
-        Map<Long, List<TrackInfoDto>> trackConfigMap = new TreeMap<>();
+    public static Map<String, List<TrackInfoDto>> trackConfigurationMap(TrackInfoDto[] trackInfoDtos) {
+        Map<String, List<TrackInfoDto>> trackConfigMap = new TreeMap<>();
+        Arrays.stream(trackInfoDtos)
+                .filter(track -> Arrays.stream(track.getTrackTypes()).anyMatch(type -> "road".equalsIgnoreCase(type.getTrackType())))
+                .sorted(Comparator.comparing(TrackInfoDto::getTrackName))
+                .forEach(trackConfig -> {
+                    trackConfigMap.computeIfAbsent(trackConfig.getTrackName(),
+                            k -> trackConfigMap.put(k, new ArrayList<>()));
 
-        Arrays.stream(trackInfoDtos).forEach(dto -> {
-            List<TrackInfoDto> trackList = trackConfigMap.get(dto.getSku());
-            if(trackList == null) {
-                trackList = new ArrayList<>();
-                trackConfigMap.put(dto.getSku(), trackList);
-            }
-            trackList.add(dto);
-        });
+                    trackConfigMap.get(trackConfig.getTrackName()).add(trackConfig);
+                });
         return trackConfigMap;
     }
 

@@ -54,7 +54,7 @@ class StockDataToolsTest {
 
     @Test
     void testGetTrackConfigMap() {
-        Map<Long, List<TrackInfoDto>> trackMap = StockDataTools.trackConfigurationMap(dataCache.getTracks());
+        Map<String, List<TrackInfoDto>> trackMap = StockDataTools.trackConfigurationMap(dataCache.getTracks());
         assertFalse(trackMap.isEmpty());
 
         trackMap.forEach((key, value) -> {
