@@ -28,7 +28,13 @@ https://members-ng.iracing.com/data/results/lap_data - does work for league sess
 
 https://members-ng.iracing.com/data/results/season_results - does not work for league sessions
 
+The endpoints 
 
+https://members.iracing.com/membersite/member/GetTeamMembers and
+
+https://members.iracing.com/membersite/member/GetLeagueSessions
+
+utilize the original member site and supply data that is not available on the current offical DataApi.  
 
 ## Hints
 
