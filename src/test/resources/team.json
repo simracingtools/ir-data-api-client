@@ -1,0 +1,327 @@
+{
+  "team_id": -129513,
+  "owner_id": 364226,
+  "team_name": "FBP Racing #BLUE",
+  "created": "2019-06-08T17:52:09Z",
+  "hidden": false,
+  "about": "Enter a team description",
+  "url": "",
+  "roster_count": 20,
+  "recruiting": false,
+  "private_wall": true,
+  "is_default": false,
+  "is_owner": false,
+  "is_admin": true,
+  "suit": {
+    "pattern": 1,
+    "color1": "D4C9C9",
+    "color2": "050505",
+    "color3": "FF050B"
+  },
+  "owner": {
+    "cust_id": 364226,
+    "display_name": "Evan Dietzold",
+    "helmet": {
+      "pattern": 56,
+      "color1": "26d0f7",
+      "color2": "2443ff",
+      "color3": "06003d",
+      "face_type": 4,
+      "helmet_type": 0
+    },
+    "owner": true,
+    "admin": true
+  },
+  "tags": {
+    "categorized": [],
+    "not_categorized": []
+  },
+  "team_applications": [],
+  "pending_requests": [],
+  "is_member": true,
+  "is_applicant": false,
+  "is_invite": false,
+  "is_ignored": false,
+  "roster": [
+    {
+      "cust_id": 364226,
+      "display_name": "Evan Dietzold",
+      "helmet": {
+        "pattern": 56,
+        "color1": "26d0f7",
+        "color2": "2443ff",
+        "color3": "06003d",
+        "face_type": 4,
+        "helmet_type": 0
+      },
+      "owner": true,
+      "admin": true
+    },
+    {
+      "cust_id": 386968,
+      "display_name": "Björn Hellwich",
+      "helmet": {
+        "pattern": 35,
+        "color1": "2de308",
+        "color2": "fafafa",
+        "color3": "ff0000",
+        "face_type": 4,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 315956,
+      "display_name": "David Weiler",
+      "helmet": {
+        "pattern": 62,
+        "color1": "3C2A2A",
+        "color2": "E9F14B",
+        "color3": "19F00A",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 358652,
+      "display_name": "Florian Stattmann",
+      "helmet": {
+        "pattern": 30,
+        "color1": "12142d",
+        "color2": "ff0026",
+        "color3": "ffea00",
+        "face_type": 8,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 375832,
+      "display_name": "Jan Gehrsitz",
+      "helmet": {
+        "pattern": 61,
+        "color1": "30302F",
+        "color2": "ECECEC",
+        "color3": "D92143",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 175753,
+      "display_name": "Jürgen Pangerl",
+      "helmet": {
+        "pattern": 6,
+        "color1": "73ff0f",
+        "color2": "212121",
+        "color3": "787978",
+        "face_type": 4,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 372473,
+      "display_name": "Lukas Eitelberg",
+      "helmet": {
+        "pattern": 67,
+        "color1": "30302f",
+        "color2": "ececec",
+        "color3": "d92143",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 97120,
+      "display_name": "Markus B Bausdorf",
+      "helmet": {
+        "pattern": 33,
+        "color1": "000000",
+        "color2": "000000",
+        "color3": "000000",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 155121,
+      "display_name": "Michael Polasek",
+      "helmet": {
+        "pattern": 32,
+        "color1": "000000",
+        "color2": "00c9ff",
+        "color3": "544f4f",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 229120,
+      "display_name": "Robert Bausdorf",
+      "helmet": {
+        "pattern": 15,
+        "color1": "000000",
+        "color2": "ff0505",
+        "color3": "fee301",
+        "face_type": 6,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 362764,
+      "display_name": "Sascha Ziegler",
+      "helmet": {
+        "pattern": 68,
+        "color1": "ffffff",
+        "color2": "b60000",
+        "color3": "000000",
+        "face_type": 4,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 366848,
+      "display_name": "Thorben Weiler",
+      "helmet": {
+        "pattern": 56,
+        "color1": "7EE156",
+        "color2": "EFF165",
+        "color3": "111111",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 32148,
+      "display_name": "Torsten Gross",
+      "helmet": {
+        "pattern": 6,
+        "color1": "0002e3",
+        "color2": "fffd26",
+        "color3": "da05fc",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": true
+    },
+    {
+      "cust_id": 578936,
+      "display_name": "Chris Nottenkämper",
+      "helmet": {
+        "pattern": 1,
+        "color1": "ffffff",
+        "color2": "111111",
+        "color3": "fc0706",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 349617,
+      "display_name": "Chris Stelzmueller",
+      "helmet": {
+        "pattern": 1,
+        "color1": "ffffff",
+        "color2": "ffffff",
+        "color3": "111111",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 470635,
+      "display_name": "Christian Kröger",
+      "helmet": {
+        "pattern": 62,
+        "color1": "255316",
+        "color2": "fff682",
+        "color3": "000000",
+        "face_type": 4,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 361716,
+      "display_name": "Daniel Toennissen",
+      "helmet": {
+        "pattern": 67,
+        "color1": "000000",
+        "color2": "10cf15",
+        "color3": "111111",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 222670,
+      "display_name": "Jannik Simon",
+      "helmet": {
+        "pattern": 28,
+        "color1": "F50000",
+        "color2": "fcfcfc",
+        "color3": "000000",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 416270,
+      "display_name": "M. Lebelt",
+      "helmet": {
+        "pattern": 34,
+        "color1": "67ff00",
+        "color2": "111111",
+        "color3": "08ff00",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    },
+    {
+      "cust_id": 370158,
+      "display_name": "Martin Stattmann",
+      "helmet": {
+        "pattern": 35,
+        "color1": "000000",
+        "color2": "7DEC09",
+        "color3": "D6E713",
+        "face_type": 0,
+        "helmet_type": 0
+      },
+      "owner": false,
+      "admin": false
+    }
+  ]
+}

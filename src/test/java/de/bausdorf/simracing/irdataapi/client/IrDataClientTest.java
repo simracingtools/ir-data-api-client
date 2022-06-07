@@ -472,10 +472,10 @@ class IrDataClientTest {
     @Test
     void testGetTeamMembers() {
         authenticate();
-        TeamMemberDto[] teamMembers = dataClient.getTeamMembers(129513L);
-        assertNotNull(teamMembers);
+        TeamInfoDto teamInfo = dataClient.getTeamMembers(129513L);
+        assertNotNull(teamInfo);
 
-        Arrays.stream(teamMembers).forEach(member -> log.info("{}", member));
+        Arrays.stream(teamInfo.getRoster()).forEach(member -> log.info("{}", member));
     }
 
     @Test
@@ -519,9 +519,9 @@ class IrDataClientTest {
                     .email(config.getUser())
                     .password(config.getPassword())
                     .build();
-            AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             dataClient.setLogResponseJson(config.getLogResponseJson());
             dataClient.setHashPassword(config.getHashPassword());
+            AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             log.info(authResponseDto.toString());
         }
     }

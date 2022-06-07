@@ -638,11 +638,15 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public TeamMemberDto[] getTeamMembers(Long teamId) {
+    public TeamInfoDto getTeamMembers(Long teamId) {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_TEAM_MEMBERS_URL)
-                    .append("?teamid=").append(Math.abs(teamId) * -1L);
-            return getStructuredData(uri.toString(), new TypeReference<TeamMemberDto[]>() {});
+                    .append("?team_id=").append(teamId);
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<TeamInfoDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_TEAM_MEMBERS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }

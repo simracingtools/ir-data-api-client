@@ -61,7 +61,7 @@ public class DataApiConstants {
     public static final String GET_LAP_DATA_URL =               "https://members-ng.iracing.com/data/results/lap_data";
     public static final String GET_SEASON_RESULTS_URL =         "https://members-ng.iracing.com/data/results/season_results";
     public static final String GET_EVENT_LOG_URL =              "https://members-ng.iracing.com/data/results/event_log";
-    public static final String GET_TEAM_MEMBERS_URL =           "https://members.iracing.com/membersite/member/GetTeamMembers";
+    public static final String GET_TEAM_MEMBERS_URL =           "https://members-ng.iracing.com/data/team/get";
     public static final String GET_LEAGUE_SESSIONS_URL =        "https://members.iracing.com/membersite/member/GetLeagueSessions";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
