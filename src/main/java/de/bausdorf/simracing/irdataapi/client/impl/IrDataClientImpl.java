@@ -28,6 +28,7 @@ import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
 import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
 import de.bausdorf.simracing.irdataapi.model.web.TeamMemberDto;
+import de.bausdorf.simracing.irdataapi.tools.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -61,6 +62,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     private AuthResponseDto authResponse;
     private boolean logResponseJson;
+    private boolean hashPassword;
     private final Logger jsonLogger = LoggerFactory.getLogger("JsonResponse");
 
     public IrDataClientImpl() {
@@ -82,9 +84,21 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public void setHashPassword(boolean hashPassword) {
+        this.hashPassword = hashPassword;
+    }
+
+    @Override
+    public boolean isHashPassword() {
+        return hashPassword;
+    }
+
+    @Override
     public AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto) {
         restTemplateInterceptor.flushCookies();
-        ResponseEntity<String> response = restTemplate.postForEntity(DataApiConstants.AUTH_URL, requestDto, String.class);
+        ResponseEntity<String> response = restTemplate.postForEntity(DataApiConstants.AUTH_URL,
+                hashPassword ? LoginHelper.hashPassword(requestDto) : requestDto,
+                String.class);
         try {
             String responseBody = response.getBody();
             if (responseBody != null) {

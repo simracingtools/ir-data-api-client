@@ -36,6 +36,10 @@ public interface IrDataClient {
 
     boolean isLogResponseJson();
 
+    void setHashPassword(@NonNull boolean hashPassword);
+
+    boolean isHashPassword();
+
     AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto);
 
     boolean isAuthenticated();

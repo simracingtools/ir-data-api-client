@@ -521,6 +521,7 @@ class IrDataClientTest {
                     .build();
             AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             dataClient.setLogResponseJson(config.getLogResponseJson());
+            dataClient.setHashPassword(config.getHashPassword());
             log.info(authResponseDto.toString());
         }
     }
