@@ -74,4 +74,6 @@ public class ScheduleDto {
     private WeatherDto weather;
     @JsonProperty("car_restrictions")
     private CarRestrictionDto[] carRestrictions;
+    @JsonProperty("start_zone")
+    private Boolean startZone;
 }

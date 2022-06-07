@@ -72,4 +72,12 @@ public class WeatherDto {
     private ZonedDateTime simulatedStartUtcTime;
     @JsonProperty("simulated_start_utc_offset")
     private Long simulatedStartUtxOffset;
+    @JsonProperty("version")
+    private Long version;
+    @JsonProperty("allow_fog")
+    private Boolean allowFog;
+    @JsonProperty("track_water")
+    private Long trackWater;
+    @JsonProperty("precip_option")
+    private Long precipOption;
 }

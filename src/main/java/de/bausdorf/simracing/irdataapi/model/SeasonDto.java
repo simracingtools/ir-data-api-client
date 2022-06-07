@@ -146,4 +146,6 @@ public class SeasonDto {
     private Long unsportConductRuleMode;
     @JsonProperty("heat_ses_info")
     private HeatSessionInfoDto heatSesInfo;
+    @JsonProperty("start_zone")
+    private Boolean startZone;
 }

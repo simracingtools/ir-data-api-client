@@ -362,4 +362,14 @@ public class LeagueSessionDto {
     private String hsMainMaxFieldSize;
     @JsonProperty("hs_consolfirstmaxfieldsize")
     private String hsConsolFirstMaxFieldSize;
+    @JsonProperty("weather2_allow_fog")
+    private Long w2allowFog;
+    @JsonProperty("start_zone")
+    private Long startZone;
+    @JsonProperty("weather2_static_track_water")
+    private Long w2TrackWater;
+    @JsonProperty("weather2_version")
+    private Long w2Version;
+    @JsonProperty("weather2_precip_option")
+    private Long w2PrecipOption;
 }

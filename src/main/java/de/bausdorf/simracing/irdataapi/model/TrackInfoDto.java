@@ -133,4 +133,6 @@ public class TrackInfoDto {
     private String trackName;
     @JsonProperty("track_types")
     private TrackTypeDto[] trackTypes;
+    @JsonProperty("has_start_zone")
+    private Boolean hasStartZone;
 }

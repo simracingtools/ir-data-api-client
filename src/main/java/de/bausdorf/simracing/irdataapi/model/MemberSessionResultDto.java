@@ -90,6 +90,10 @@ public class MemberSessionResultDto {
     private Long startingPositionInClass;
     @JsonProperty("car_class_id")
     private Long carClassId;
+    @JsonProperty("car_class_name")
+    private String carClassName;
+    @JsonProperty("car_class_short_name")
+    private String carClassShortName;
     @JsonProperty("club_id")
     private Long clubId;
     @JsonProperty("club_name")
@@ -138,6 +142,8 @@ public class MemberSessionResultDto {
     private Long leagueAggPoints;
     @JsonProperty("car_id")
     private Long carId;
+    @JsonProperty("car_name")
+    private String carName;
     @JsonProperty("aggregate_champ_points")
     private Long aggregateChampPoints;
     @JsonProperty("watched")

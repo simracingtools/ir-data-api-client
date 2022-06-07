@@ -61,6 +61,22 @@ public class LeagueInfoDto {
     private ImageDto image;
     @JsonProperty("tags")
     private TagsDto tags;
+    @JsonProperty("is_owner")
+    private Boolean isOwner;
+    @JsonProperty("is_admin")
+    private Boolean isAdmin;
+    @JsonProperty("league_applications")
+    private Object[] leagueApplications;
+    @JsonProperty("pending_requests")
+    private Object[] pendingRequests;
+    @JsonProperty("is_member")
+    private Boolean isMember;
+    @JsonProperty("is_applicant")
+    private Boolean isApplicant;
+    @JsonProperty("is_invite")
+    private Boolean isInvite;
+    @JsonProperty("is_ignored")
+    private Boolean isIgnored;
     @JsonProperty("roster")
     private LeagueMemberDto[] roster;
 }
