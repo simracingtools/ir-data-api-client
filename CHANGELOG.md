@@ -2,6 +2,37 @@
 
 Changelog of ir-data-api-client.
 
+## v2.0.0 (2022-06-07)
+
+### Breaking changes
+
+-  getTeamMembers changed to use data API ([579cd](https://github.com/simracingtools/ir-data-api-client/commit/579cdf6106a6033) Robert Bausdorf)  
+
+
+### Features
+
+-  getTeamMembers changed to use data API ([579cd](https://github.com/simracingtools/ir-data-api-client/commit/579cdf6106a6033) Robert Bausdorf)  
+-  Hash password according to 2022 season 3 release ([34641](https://github.com/simracingtools/ir-data-api-client/commit/3464112a3906741) Robert Bausdorf)  
+
+
+### Bug Fixes
+
+-  2022 Season 3 changes ([a9499](https://github.com/simracingtools/ir-data-api-client/commit/a9499f85d592128) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.0.0**
+
+
+[30360](https://github.com/simracingtools/ir-data-api-client/commit/30360a5049e9461) Robert Bausdorf *2022-06-07 21:41:59*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[1eab2](https://github.com/simracingtools/ir-data-api-client/commit/1eab268a921fbbe) Robert Bausdorf *2022-05-09 20:41:05*
+
+
 ## v1.1.0 (2022-05-09)
 
 
