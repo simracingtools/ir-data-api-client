@@ -2,6 +2,33 @@
 
 Changelog of ir-data-api-client.
 
+## v2.1.0 (2022-06-08)
+
+
+
+### Features
+
+-  Constant endpoints for categories and event types added ([a02be](https://github.com/simracingtools/ir-data-api-client/commit/a02bef63444c0e8) Robert Bausdorf)  
+
+
+### Bug Fixes
+
+-  Endpoint cust_league_sessions replces membersite endpoint ([ec38b](https://github.com/simracingtools/ir-data-api-client/commit/ec38b8600a4b272) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.1.0**
+
+
+[b2a12](https://github.com/simracingtools/ir-data-api-client/commit/b2a129afa8850a5) Robert Bausdorf *2022-06-08 22:50:56*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[75cfc](https://github.com/simracingtools/ir-data-api-client/commit/75cfc479c239c4f) Robert Bausdorf *2022-06-07 21:42:02*
+
+
 ## v2.0.0 (2022-06-07)
 
 ### Breaking changes
@@ -479,5 +506,10 @@ Changelog of ir-data-api-client.
 
 
 [013f9](https://github.com/simracingtools/ir-data-api-client/commit/013f9588619881f) Robert Bausdorf *2022-03-14 12:20:32*
+
+**Initial commit**
+
+
+[c988e](https://github.com/simracingtools/ir-data-api-client/commit/c988ea1d331d723) Robert Bausdorf *2022-03-14 11:54:20*
 
 

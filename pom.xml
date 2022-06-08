@@ -141,7 +141,7 @@
             <plugin>
                 <groupId>se.bjurr.gitchangelog</groupId>
                 <artifactId>git-changelog-maven-plugin</artifactId>
-                <version>1.88</version>
+                <version>1.92</version>
                 <executions>
                     <execution>
                         <id>GenerateGitChangelog</id>
@@ -161,7 +161,7 @@
 
     {{#commits}}
       {{#ifCommitType . type='feat'}}
- - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://gitservice/commit/{{hashFull}}))
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}}
       {{/ifCommitType}}
     {{/commits}}
   {{/ifContainsType}}
@@ -171,19 +171,19 @@
 
     {{#commits}}
       {{#ifCommitType . type='fix'}}
- - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}} ([{{hash}}](https://gitservice/commit/{{hashFull}}))
+ - {{#eachCommitScope .}} **{{.}}** {{/eachCommitScope}} {{{commitDescription .}}}
       {{/ifCommitType}}
     {{/commits}}
   {{/ifContainsType}}
 
 {{/ifReleaseTag}}
-{{/tags}}]]>
+{{/tags}}
+                                ]]>
                             </templateContent>
                         </configuration>
                     </execution>
                 </executions>
             </plugin>
-
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
