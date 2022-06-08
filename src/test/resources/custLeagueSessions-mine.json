@@ -1,0 +1,379 @@
+{
+  "mine": true,
+  "subscribed": false,
+  "sequence": 1990,
+  "sessions": [
+    {
+      "num_drivers": 0,
+      "num_spotters": 0,
+      "num_spectators": 0,
+      "num_broadcasters": 0,
+      "available_reserved_broadcaster_slots": 0,
+      "num_spectator_slots": 0,
+      "available_spectator_slots": 0,
+      "can_broadcast": false,
+      "can_watch": false,
+      "can_spot": false,
+      "elig": {
+        "session_full": false,
+        "can_spot": false,
+        "can_watch": false,
+        "can_drive": false,
+        "has_sess_password": false,
+        "needs_purchase": false,
+        "own_car": true,
+        "own_track": true,
+        "purchase_skus": [
+          10516
+        ],
+        "registered": false
+      },
+      "driver_changes": true,
+      "restrict_viewing": false,
+      "max_users": 0,
+      "private_session_id": 2868552,
+      "password_protected": false,
+      "session_name": "Winter 24h of the Nürburgring",
+      "launch_at": "2022-11-16T18:00:00Z",
+      "full_course_cautions": false,
+      "num_fast_tows": 0,
+      "rolling_starts": true,
+      "restarts": 2,
+      "multiclass_type": 2,
+      "max_drivers": 60,
+      "hardcore_level": 0,
+      "practice_length": 5,
+      "lone_qualify": true,
+      "qualify_laps": 1,
+      "qualify_length": 30,
+      "warmup_length": 5,
+      "race_laps": 0,
+      "race_length": 80,
+      "time_limit": 120,
+      "restrict_results": false,
+      "incident_limit": 0,
+      "incident_warn_mode": 0,
+      "incident_warn_param1": 0,
+      "incident_warn_param2": 0,
+      "unsport_conduct_rule_mode": 0,
+      "lucky_dog": false,
+      "min_team_drivers": 1,
+      "max_team_drivers": 2,
+      "qualifier_must_start_race": false,
+      "driver_change_rule": 0,
+      "fixed_setup": false,
+      "entry_count": 0,
+      "league_id": 3693,
+      "league_name": "Winter 24h of the Nürburgring",
+      "league_season_id": 0,
+      "session_type": 6,
+      "race_length_type": 2,
+      "order_id": 25821216,
+      "min_license_level": 8,
+      "max_license_level": 28,
+      "status": 1,
+      "pace_car_id": null,
+      "pace_car_class_id": null,
+      "num_opt_laps": 0,
+      "damage_model": 0,
+      "do_not_paint_cars": false,
+      "green_white_checkered_limit": 0,
+      "do_not_count_caution_laps": false,
+      "consec_cautions_single_file": false,
+      "no_lapper_wave_arounds": false,
+      "short_parade_lap": false,
+      "start_on_qual_tire": false,
+      "telemetry_restriction": 0,
+      "telemetry_force_to_disk": 0,
+      "max_ai_drivers": 0,
+      "ai_avoid_players": false,
+      "must_use_diff_tire_types_in_race": false,
+      "start_zone": false,
+      "host": {
+        "cust_id": 229120,
+        "display_name": "Robert Bausdorf",
+        "helmet": {
+          "pattern": 15,
+          "color1": "000000",
+          "color2": "ff0505",
+          "color3": "fee301",
+          "face_type": 6,
+          "helmet_type": 0
+        }
+      },
+      "track": {
+        "track_id": 252,
+        "track_name": "Nürburgring Combined",
+        "config_name": "Gesamtstrecke 24h"
+      },
+      "weather": {
+        "version": 0,
+        "type": 1,
+        "temp_units": 0,
+        "temp_value": 78,
+        "rel_humidity": 55,
+        "fog": 0,
+        "wind_dir": 3,
+        "wind_units": 0,
+        "wind_value": 2,
+        "skies": 1,
+        "weather_var_initial": 0,
+        "weather_var_ongoing": 0,
+        "time_of_day": 4,
+        "simulated_start_time": "2022-11-01T17:00:00",
+        "simulated_time_offsets": [
+          0,
+          0,
+          0
+        ],
+        "simulated_time_multiplier": 1
+      },
+      "track_state": {
+        "leave_marbles": true,
+        "practice_rubber": 10,
+        "qualify_rubber": -1,
+        "warmup_rubber": -1,
+        "race_rubber": -1,
+        "practice_grip_compound": -1,
+        "qualify_grip_compound": -1,
+        "warmup_grip_compound": -1,
+        "race_grip_compound": -1
+      },
+      "farm": {
+        "farm_id": 11,
+        "display_name": "DE-Fra",
+        "image_path": "/member_images/flags/de.png",
+        "displayed": true
+      },
+      "admins": [
+        {
+          "cust_id": 229120,
+          "display_name": "Robert Bausdorf",
+          "helmet": {
+            "pattern": 15,
+            "color1": "000000",
+            "color2": "ff0505",
+            "color3": "fee301",
+            "face_type": 6,
+            "helmet_type": 0
+          }
+        }
+      ],
+      "allowed_clubs": [],
+      "allowed_teams": [],
+      "allowed_leagues": [
+        3693
+      ],
+      "cars": [
+        {
+          "car_id": 119,
+          "car_class_id": 2268,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 309
+        },
+        {
+          "car_id": 132,
+          "car_class_id": 2708,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 343
+        },
+        {
+          "car_id": 112,
+          "car_class_id": 3189,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 291
+        },
+        {
+          "car_id": 143,
+          "car_class_id": 3104,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 367
+        },
+        {
+          "car_id": 122,
+          "car_class_id": 2268,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 318
+        },
+        {
+          "car_id": 137,
+          "car_class_id": 2708,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 355
+        },
+        {
+          "car_id": 146,
+          "car_class_id": 3189,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 375
+        },
+        {
+          "car_id": 72,
+          "car_class_id": 2708,
+          "max_pct_fuel_fill": 100,
+          "weight_penalty_kg": 0,
+          "power_adjust_pct": 0,
+          "max_dry_tire_sets": 0,
+          "package_id": 199
+        }
+      ],
+      "car_types": [
+        {
+          "car_type": "gs"
+        },
+        {
+          "car_type": "gt3"
+        },
+        {
+          "car_type": "gt4"
+        },
+        {
+          "car_type": "gtd"
+        },
+        {
+          "car_type": "road"
+        },
+        {
+          "car_type": "sportscar"
+        },
+        {
+          "car_type": "tcr"
+        },
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {},
+        {}
+      ],
+      "track_types": [
+        {
+          "track_type": "road"
+        },
+        {},
+        {}
+      ],
+      "license_group_types": [
+        {
+          "license_group_type": 2
+        },
+        {
+          "license_group_type": 3
+        },
+        {
+          "license_group_type": 4
+        },
+        {
+          "license_group_type": 5
+        },
+        {
+          "license_group_type": 6
+        },
+        {
+          "license_group_type": 7
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        },
+        {
+          "license_group_type": 0
+        }
+      ],
+      "event_types": [
+        {
+          "event_type": 2
+        },
+        {
+          "event_type": 0
+        },
+        {
+          "event_type": 0
+        }
+      ],
+      "session_types": [
+        {
+          "session_type": 1
+        },
+        {
+          "session_type": 6
+        },
+        {
+          "session_type": 6
+        }
+      ],
+      "can_join": false,
+      "image": {
+        "small_logo": "https://members-leagueimages.iracing.com/3693/leaguelogo5.png",
+        "large_logo": "https://members-leagueimages.iracing.com/3693/3league960x240.png"
+      },
+      "owner": false,
+      "admin": true,
+      "is_heat_racing": false,
+      "team_entry_count": 0,
+      "populated": false,
+      "broadcaster": false,
+      "min_ir": -1,
+      "max_ir": -1
+    }
+  ],
+  "success": true
+}

@@ -82,6 +82,7 @@ class IrDataClientCompletenessTest {
                     .email(config.getUser())
                     .password(config.getPassword())
                     .build();
+            dataClient.setHashPassword(config.getHashPassword());
             AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             dataClient.setLogResponseJson(config.getLogResponseJson());
             log.info(authResponseDto.toString());

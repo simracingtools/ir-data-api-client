@@ -26,8 +26,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
-import de.bausdorf.simracing.irdataapi.model.web.TeamMemberDto;
 import de.bausdorf.simracing.irdataapi.tools.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -39,6 +37,7 @@ import org.springframework.http.client.ClientHttpRequestExecution;
 import org.springframework.http.client.ClientHttpRequestInterceptor;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
@@ -653,9 +652,23 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public LeagueSessionsDto getLeagueSessions() {
+    public CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine) {
+        return getLeagueSessions(mine, null);
+    }
+
+    @Override
+    public CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId) {
         try {
-            return getStructuredData(DataApiConstants.GET_LEAGUE_SESSIONS_URL, new TypeReference<LeagueSessionsDto>() {});
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SESSIONS_URL)
+                    .append("?mine=").append(mine);
+            if(packageId != null) {
+                uri.append("&package_id=").append(packageId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CustLeagueSessionsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }

@@ -25,8 +25,6 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
-import de.bausdorf.simracing.irdataapi.model.web.TeamMemberDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -480,11 +478,29 @@ class IrDataClientTest {
     }
 
     @Test
-    void testGetLeagueSessions() {
+    void testGetMyLeagueSessions() {
         authenticate();
-        LeagueSessionsDto sessionsDto = dataClient.getLeagueSessions();
+        CustLeagueSessionsDto sessionsDto = dataClient.getLeagueSessions(true);
         assertNotNull(sessionsDto);
-        assertEquals((long) sessionsDto.getRowCount(), sessionsDto.getRows().length);
+        assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
+    }
+
+    @Test
+    void testGetAllLeagueSessions() {
+        authenticate();
+        CustLeagueSessionsDto sessionsDto = dataClient.getLeagueSessions(false);
+        assertNotNull(sessionsDto);
+        assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
+        log.info("fetched {} league sessions", sessionsDto.getSessions().length);
+    }
+
+    @Test
+    void testGetSpecialLeagueSessions() {
+        authenticate();
+        CustLeagueSessionsDto sessionsDto = dataClient.getLeagueSessions(false, 186L);
+        assertNotNull(sessionsDto);
+        assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
+        log.info("fetched {} league sessions", sessionsDto.getSessions().length);
     }
 
     @Test

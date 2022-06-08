@@ -23,7 +23,6 @@ package de.bausdorf.simracing.irdataapi.client;
  */
 
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.web.LeagueSessionsDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -128,5 +127,6 @@ public interface IrDataClient {
 
     TeamInfoDto getTeamMembers(@NonNull Long teamId);
 
-    LeagueSessionsDto getLeagueSessions();
+    CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine);
+    CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId);
 }

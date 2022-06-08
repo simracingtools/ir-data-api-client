@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model.web;
+package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
@@ -22,17 +22,15 @@ package de.bausdorf.simracing.irdataapi.model.web;
  * #L%
  */
 
-import org.springframework.lang.Nullable;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
-import java.net.URLDecoder;
-import java.nio.charset.Charset;
-
-public abstract class WebDto {
-
-    protected String decode(@Nullable String s) {
-        if(s != null) {
-            return URLDecoder.decode(s, Charset.defaultCharset()).replace('+', ' ');
-        }
-        return null;
-    }
+@Data
+@NoArgsConstructor
+@ToString
+public class EventTypeDto {
+    @JsonProperty("event_type")
+    private Long eventType;
 }

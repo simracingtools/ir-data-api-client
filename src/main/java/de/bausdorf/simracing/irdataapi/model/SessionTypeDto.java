@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model.web;
+package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
@@ -25,23 +25,12 @@ package de.bausdorf.simracing.irdataapi.model.web;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-public class HelmetDto {
-    @JsonProperty("c3")
-    private String color3;
-    @JsonProperty("ll")
-    private Long ll;
-    @JsonProperty("hp")
-    private Long hp;
-    @JsonProperty("ht")
-    private Long ht;
-    @JsonProperty("c1")
-    private String color1;
-    @JsonProperty("ft")
-    private Long ft;
-    @JsonProperty("c2")
-    private String color2;
-
+@ToString
+public class SessionTypeDto {
+    @JsonProperty("session_type")
+    private Long sessionType;
 }

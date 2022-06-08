@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model.web;
+package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
@@ -23,16 +23,20 @@ package de.bausdorf.simracing.irdataapi.model.web;
  */
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Getter;
+import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.ToString;
 
-@Getter
-@Setter
+@Data
 @NoArgsConstructor
-public class LeagueSessionsDto {
-    @JsonProperty("rowcount")
-    private Long rowCount;
-    @JsonProperty("rows")
-    private LeagueSessionDto[] rows;
+@ToString
+public class FarmDto {
+    @JsonProperty("farm_id")
+    private Long farmId;
+    @JsonProperty("display_name")
+    private String displayName;
+    @JsonProperty("image_path")
+    private String imagePath;
+    @JsonProperty("displayed")
+    private Boolean displayed;
 }
