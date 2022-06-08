@@ -188,6 +188,12 @@ public class CustomSessionInfoDto {
     private Long telemetryForceToDisk;
     @JsonProperty("max_ai_drivers")
     private Long maxAiDrivers;
+    @JsonProperty("ai_min_skill")
+    private Long aiMinSkill;
+    @JsonProperty("ai_max_skill")
+    private Long aiMaxSkill;
+    @JsonProperty("ai_roster_name")
+    private String aiRosterName;
     @JsonProperty("alt_asset_id")
     private Long altAssetId;
     @JsonProperty("ai_avoid_players")

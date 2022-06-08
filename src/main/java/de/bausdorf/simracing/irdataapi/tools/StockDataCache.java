@@ -55,7 +55,7 @@ public class StockDataCache {
     private CarInfoDto[] cars;
     private CarClassDto[] carClasses;
     private Map<Long, CarAssetDto> carAssets;
-    private DivisionDto[] divisions;
+    private ConstantDto[] divisions;
     private LicenseGroupDto[] licenseGroups;
 
     @Setter
@@ -128,7 +128,7 @@ public class StockDataCache {
         cars = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CARS_JSON, new TypeReference<CarInfoDto[]>() {});
         carClasses = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_CLASSES_JSON, new TypeReference<CarClassDto[]>() {});
         carAssets = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_ASSETS_JSON, new TypeReference<Map<Long, CarAssetDto>>() {});
-        divisions = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + DIVISIONS_JSON, new TypeReference<DivisionDto[]>() {});
+        divisions = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + DIVISIONS_JSON, new TypeReference<ConstantDto[]>() {});
         licenseGroups = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + LICENSE_GROUPS_JSON, new TypeReference<LicenseGroupDto[]>() {});
     }
 

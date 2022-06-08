@@ -27,14 +27,28 @@ https://members-ng.iracing.com/data/results/lap_chart_data - does not work for l
 https://members-ng.iracing.com/data/results/lap_data - does work for league sessions
 
 https://members-ng.iracing.com/data/results/season_results - does not work for league sessions
+ 
+## Endpoints currently not supported
 
-The endpoints 
+https://members-ng.iracing.com/data/league/directory
 
-https://members.iracing.com/membersite/member/GetTeamMembers and
+https://members-ng.iracing.com/data/league/get_points_systems
 
-https://members.iracing.com/membersite/member/GetLeagueSessions
+https://members-ng.iracing.com/data/league/seasons
 
-utilize the original member site and supply data that is not available on the current offical DataApi.  
+https://members-ng.iracing.com/data/league/season_standings
+
+https://members-ng.iracing.com/data/league/season_sessions
+
+https://members-ng.iracing.com/data/member/chart_data
+
+https://members-ng.iracing.com/data/results/search_hosted
+
+https://members-ng.iracing.com/data/results/search_series
+
+https://members-ng.iracing.com/data/series/assets
+
+https://members-ng.iracing.com/data/series/get
 
 ## Hints
 

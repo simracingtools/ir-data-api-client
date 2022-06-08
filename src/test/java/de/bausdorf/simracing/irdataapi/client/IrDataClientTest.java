@@ -249,11 +249,31 @@ class IrDataClientTest {
     @Test
     void testGetDivisions() {
         authenticate();
-        DivisionDto[] divisionDtos = dataClient.getDivisions();
-        assertNotNull(divisionDtos);
-        assertTrue(divisionDtos.length > 0);
+        ConstantDto[] constantDtos = dataClient.getDivisions();
+        assertNotNull(constantDtos);
+        assertTrue(constantDtos.length > 0);
 
-        Arrays.asList(divisionDtos).forEach(s -> log.info(s.toString()));
+        Arrays.asList(constantDtos).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetEventTypes() {
+        authenticate();
+        ConstantDto[] constantDtos = dataClient.getEventTypes();
+        assertNotNull(constantDtos);
+        assertTrue(constantDtos.length > 0);
+
+        Arrays.asList(constantDtos).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetCategories() {
+        authenticate();
+        ConstantDto[] constantDtos = dataClient.getCategories();
+        assertNotNull(constantDtos);
+        assertTrue(constantDtos.length > 0);
+
+        Arrays.asList(constantDtos).forEach(s -> log.info(s.toString()));
     }
 
     @Test

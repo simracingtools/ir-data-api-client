@@ -53,4 +53,6 @@ public class UserLicenseDto {
       private String groupId;
       @JsonProperty("mpr_num_tts")
       private String mprNumTts;
+      @JsonProperty("pro_promotable")
+      private Boolean proPromotable;
 }

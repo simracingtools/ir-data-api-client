@@ -52,6 +52,8 @@ public class DataApiConstants {
     public static final String GET_TRACKS_URL =                 "https://members-ng.iracing.com/data/track/get";
     public static final String GET_TRACK_ASSETS_URL =           "https://members-ng.iracing.com/data/track/assets";
     public static final String GET_DIVISIONS_URL =              "https://members-ng.iracing.com/data/constants/divisions";
+    public static final String GET_CATEGORIES_URL =              "https://members-ng.iracing.com/data/constants/categories";
+    public static final String GET_EVENT_TYPES_URL =              "https://members-ng.iracing.com/data/constants/event_types";
     public static final String GET_LICENSES_URL =               "https://members-ng.iracing.com/data/lookup/licenses";
     public static final String GET_LOOKUP_URL =                 "https://members-ng.iracing.com/data/lookup/get";
     public static final String GET_SEASONS_URL =                "https://members-ng.iracing.com/data/series/seasons";
@@ -71,7 +73,7 @@ public class DataApiConstants {
             GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
             GET_LEAGUE_URL,
             GET_TRACKS_URL, GET_TRACK_ASSETS_URL,
-            GET_DIVISIONS_URL,
+            GET_DIVISIONS_URL, GET_EVENT_TYPES_URL, GET_CATEGORIES_URL,
             GET_LOOKUP_URL, GET_LICENSES_URL,
             GET_SEASONS_URL, GET_SERIES_STATS_URL,
             GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL,

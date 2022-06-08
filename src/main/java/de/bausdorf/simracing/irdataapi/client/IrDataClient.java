@@ -81,7 +81,11 @@ public interface IrDataClient {
 
     CarClassDto[] getCarClasses();
 
-    DivisionDto[] getDivisions();
+    ConstantDto[] getDivisions();
+
+    ConstantDto[] getCategories();
+
+    ConstantDto[] getEventTypes();
 
     Map<Long, CarAssetDto> getCarAssets();
 

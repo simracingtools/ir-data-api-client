@@ -30,7 +30,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class DivisionDto {
+public class ConstantDto {
     @JsonProperty("label")
     private String label;
     @JsonProperty("value")

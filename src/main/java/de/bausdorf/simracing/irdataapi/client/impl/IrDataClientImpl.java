@@ -60,8 +60,8 @@ public class IrDataClientImpl implements IrDataClient {
     private final IRacingObjectMapper mapper;
 
     private AuthResponseDto authResponse;
-    private boolean logResponseJson;
-    private boolean hashPassword;
+    private boolean logResponseJson = false;
+    private boolean hashPassword = true;
     private final Logger jsonLogger = LoggerFactory.getLogger("JsonResponse");
 
     public IrDataClientImpl() {
@@ -378,9 +378,27 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public DivisionDto[] getDivisions() {
+    public ConstantDto[] getDivisions() {
         try {
-            return getStructuredData(DataApiConstants.GET_DIVISIONS_URL, new TypeReference<DivisionDto[]>() {});
+            return getStructuredData(DataApiConstants.GET_DIVISIONS_URL, new TypeReference<ConstantDto[]>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public ConstantDto[] getCategories() {
+        try {
+            return getStructuredData(DataApiConstants.GET_CATEGORIES_URL, new TypeReference<ConstantDto[]>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public ConstantDto[] getEventTypes() {
+        try {
+            return getStructuredData(DataApiConstants.GET_EVENT_TYPES_URL, new TypeReference<ConstantDto[]>() {});
         } catch (IOException e) {
             throw new DataApiException(e);
         }
