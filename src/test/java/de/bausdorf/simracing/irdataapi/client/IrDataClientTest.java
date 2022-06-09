@@ -26,7 +26,6 @@ import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
 import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
-import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -312,6 +311,17 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetLeaguePointSystem() {
+        authenticate();
+        LeaguePointSystemsDto pointSystemDto = dataClient.getLeaguePointSystems(3693L, 66994L);
+        assertNotNull(pointSystemDto);
+        assertTrue(pointSystemDto.getPointSystems().length > 0);
+
+        Arrays.stream(pointSystemDto.getPointSystems())
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetLeagueInfoWithInvalidId() {
         authenticate();
         try {
@@ -380,8 +390,8 @@ class IrDataClientTest {
     @Test
     void testGetLeagueSubsessionResult() {
         authenticate();
-//        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(43352007L);
-        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975865L);
+        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(43352007L);
+//        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975865L);
         assertNotNull(subsessionResultDto);
         assertTrue(subsessionResultDto.getSessionResults().length > 0);
 
