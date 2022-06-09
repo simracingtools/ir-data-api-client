@@ -95,7 +95,11 @@ public interface IrDataClient {
     LeagueInfoDto getLeagueInfo(long leagueId);
 
     SeasonDto[] getSeasonInfo(Boolean includeSeries);
+
     SeriesInfoDto[] getSeriesStats();
+
+    SeriesDto[] getSeries();
+
     TrackInfoDto[] getTrackInfos();
 
     LicenseGroupDto[] getLicenseGroups();
