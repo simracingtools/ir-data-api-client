@@ -56,6 +56,7 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String EVENT_TYPE_URL_PARAM = "&event_type=";
     public static final String RACE_WEEK_NUM_URL_PARAM = "&race_week_num=";
     public static final String CAR_CLASS_ID_URL_PARAM = "&car_class_id=";
+    public static final String LEAGUE_ID_URL_PARAM = "?league_id=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -434,7 +435,7 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public LeagueInfoDto getLeagueInfo(long leagueId) {
         try{
-            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + "?league_id=" + leagueId);
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + LEAGUE_ID_URL_PARAM + leagueId);
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueInfoDto>() {});
             }
@@ -711,7 +712,7 @@ public class IrDataClientImpl implements IrDataClient {
     public LeaguePointSystemsDto getLeaguePointSystems(Long leagueId, Long seasonId) {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL)
-                    .append("?league_id=").append(leagueId);
+                    .append(LEAGUE_ID_URL_PARAM).append(leagueId);
             if(seasonId != null) {
                 uri.append("&season_id=").append(seasonId);
             }
@@ -728,6 +729,29 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public LeaguePointSystemsDto getLeaguePointSystems(Long leagueId) {
         return getLeaguePointSystems(leagueId, null);
+    }
+
+    @Override
+    public LeagueSeasonsDto getLeagueSeasons(Long leagueId, Boolean retired) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SEASONS_URL)
+                    .append(LEAGUE_ID_URL_PARAM).append(leagueId);
+            if(retired != null) {
+                uri.append("&retired=").append(retired);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_SEASONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public LeagueSeasonsDto getLeagueSeasons(Long leagueId) {
+        return getLeagueSeasons(leagueId, null);
     }
 
     public JsonNode getApiDocs() {
