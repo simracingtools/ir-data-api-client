@@ -92,6 +92,15 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberChartData() {
+        authenticate();
+        MemberChartDataDto chartData = dataClient.getMemberChartData(CUST_ID, CategoryType.ROAD, ChartType.I_RATING);
+        assertNotNull(chartData);
+        assertTrue(chartData.getData().length > 0);
+        Arrays.asList(chartData.getData()).forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetMemberRecentRaces() {
         authenticate();
         MemberRecentRacesDto recentRacesDto = dataClient.getMemberRecentRaces(CUST_ID);

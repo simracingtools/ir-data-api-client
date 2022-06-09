@@ -38,6 +38,7 @@ public class DataApiConstants {
     public static final String GET_MEMBER_YEARLY_URL =          "https://members-ng.iracing.com/data/stats/member_yearly";
     public static final String GET_MEMBER_RECENT_RACES_URL =    "https://members-ng.iracing.com/data/stats/member_recent_races";
     public static final String GET_MEMBER_CAREER_URL =          "https://members-ng.iracing.com/data/stats/member_career";
+    public static final String GET_MEMBER_CHART_URL =           "https://members-ng.iracing.com/data/member/chart_data";
     public static final String GET_MEMBER_DIVISION_URL =        "https://members-ng.iracing.com/data/stats/member_division";
     public static final String GET_DRIVER_STANDINGS_URL =       "https://members-ng.iracing.com/data/stats/season_driver_standings";
     public static final String GET_TEAM_STANDINGS_URL =         "https://members-ng.iracing.com/data/stats/season_team_standings";
@@ -74,7 +75,7 @@ public class DataApiConstants {
     public static final String GET_SERIES_ASSETS_URL =          "https://members-ng.iracing.com/data/series/assets";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
-            GET_MEMBERS_URL, GET_USERINFO_URL,
+            GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL,
             GET_MEMBER_SUMMARY_URL, GET_MEMBER_YEARLY_URL, GET_MEMBER_CAREER_URL, GET_MEMBER_RECENT_RACES_URL, GET_MEMBER_DIVISION_URL,
             GET_DRIVER_STANDINGS_URL, GET_TEAM_STANDINGS_URL, GET_TT_STANDINGS_URL, GET_TT_RESULTS_URL, GET_QUALIFY_RESULTS_URL, GET_SUPERSESSION_STANDINGS_URL,
             GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
