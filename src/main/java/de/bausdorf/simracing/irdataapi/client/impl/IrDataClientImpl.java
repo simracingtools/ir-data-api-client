@@ -473,6 +473,19 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public SeriesDto[] getSeries() {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_URL);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SERIES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public TrackInfoDto[] getTrackInfos() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);

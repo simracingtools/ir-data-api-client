@@ -28,15 +28,29 @@ import lombok.NoArgsConstructor;
 
 @Data
 @NoArgsConstructor
-public class LeagueSeasonSessionsDto {
-    @JsonProperty("success")
-    private Boolean success;
-    @JsonProperty("season_id")
-    private Long seasonId;
-    @JsonProperty("league_id")
-    private Long leagueId;
-    @JsonProperty("results_only")
-    private Boolean resultsOnly;
-    @JsonProperty("sessions")
-    private LeagueSessionInfoDto[] sessions;
+public class SeriesDto {
+    @JsonProperty("series_id")
+    private Long seriesId;
+    @JsonProperty("series_name")
+    private String seriesName;
+    @JsonProperty("series_short_name")
+    private String seriesShortName;
+    @JsonProperty("category_id")
+    private Long categoryId;
+    @JsonProperty("category")
+    private String category;
+    @JsonProperty("eligible")
+    private Boolean eligible;
+    @JsonProperty("max_starters")
+    private Long maxStarters;
+    @JsonProperty("min_starters")
+    private Long minStarters;
+    @JsonProperty("oval_caution_type")
+    private Long ovalCautionType;
+    @JsonProperty("road_caution_type")
+    private Long roadCautionType;
+    @JsonProperty("search_filters")
+    private String searchFilters;
+    @JsonProperty("allowed_licenses")
+    private LicenseAllowedDto[] allowedLicenses;
 }

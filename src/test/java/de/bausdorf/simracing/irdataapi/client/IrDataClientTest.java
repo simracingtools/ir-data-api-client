@@ -411,6 +411,17 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetSeries() {
+        authenticate();
+        SeriesDto[] series = dataClient.getSeries();
+        assertNotNull(series);
+        assertTrue(series.length > 0);
+
+        Arrays.stream(series).forEach(stats -> log.info("{}", stats.getSeriesName()));
+        log.info("got {} series stats", series.length);
+    }
+
+    @Test
     void testGetOfficialSubsessionResult() {
         authenticate();
         SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975865L);
