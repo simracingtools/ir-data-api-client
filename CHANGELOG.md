@@ -2,6 +2,37 @@
 
 Changelog of ir-data-api-client.
 
+## v2.2.0 (2022-06-09)
+
+
+
+### Features
+
+-  Endpoint for directory search added. ([fdb4b](https://github.com/simracingtools/ir-data-api-client/commit/fdb4b1d37738642) Robert Bausdorf)  
+-  Endpoint for league point systems added. ([f891e](https://github.com/simracingtools/ir-data-api-client/commit/f891e95257dc6ab) Robert Bausdorf)  
+-  Endpoint for league seasons added. ([cb784](https://github.com/simracingtools/ir-data-api-client/commit/cb78430cae9f3e8) Robert Bausdorf)  
+-  Endpoint for league season standings added. ([ba3e7](https://github.com/simracingtools/ir-data-api-client/commit/ba3e76ba6d047de) Robert Bausdorf)  
+-  Endpoint for getting series added. ([7d5b3](https://github.com/simracingtools/ir-data-api-client/commit/7d5b37fa4f57c66) Robert Bausdorf)  
+-  Endpoint for getting member chart data added. ([3734b](https://github.com/simracingtools/ir-data-api-client/commit/3734b9752f3818e) Robert Bausdorf)  
+-  Endpoint for getting series assets added. ([34860](https://github.com/simracingtools/ir-data-api-client/commit/34860d9848786ed) Robert Bausdorf)  
+-  Endpoint for league season sessions added. ([26c09](https://github.com/simracingtools/ir-data-api-client/commit/26c0916169e3338) Robert Bausdorf)  
+
+
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.2.0**
+
+
+[6c6d7](https://github.com/simracingtools/ir-data-api-client/commit/6c6d738ba229d55) Robert Bausdorf *2022-06-09 21:07:36*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[3df89](https://github.com/simracingtools/ir-data-api-client/commit/3df89df6a8c21f8) Robert Bausdorf *2022-06-09 09:48:39*
+
+
 ## v2.1.1 (2022-06-09)
 
 
