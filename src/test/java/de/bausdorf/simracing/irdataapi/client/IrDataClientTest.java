@@ -248,6 +248,16 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetSeriesAssets() {
+        authenticate();
+        Map<Long, SeriesAssetDto> seriesAssetDtoMap = dataClient.getSeriesAssets();
+        assertNotNull(seriesAssetDtoMap);
+        assertTrue(seriesAssetDtoMap.size() > 0);
+
+        log.info("got {} car asset infos", seriesAssetDtoMap.size());
+    }
+
+    @Test
     void testGetDivisions() {
         authenticate();
         ConstantDto[] constantDtos = dataClient.getDivisions();

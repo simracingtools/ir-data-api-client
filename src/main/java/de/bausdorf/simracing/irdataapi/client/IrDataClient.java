@@ -92,6 +92,8 @@ public interface IrDataClient {
 
     Map<Long, TrackAssetDto> getTrackAssets();
 
+    Map<Long, SeriesAssetDto> getSeriesAssets();
+
     LeagueInfoDto getLeagueInfo(long leagueId);
 
     SeasonDto[] getSeasonInfo(Boolean includeSeries);
