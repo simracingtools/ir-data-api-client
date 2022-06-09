@@ -30,7 +30,7 @@ import lombok.ToString;
 @Data
 @NoArgsConstructor
 @ToString
-public class EventLogEntry {
+public class EventLogEntryDto {
     @JsonProperty("subsession_id")
     private Long subsessionId;
     @JsonProperty("simsession_number")

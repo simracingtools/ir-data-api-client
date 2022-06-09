@@ -25,6 +25,8 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
+import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
+import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -471,7 +473,7 @@ class IrDataClientTest {
         log.info("event log info: {}", eventLogDto.getSessionInfo());
         log.info("chunk info: {}", eventLogDto.getChunkInfo());
 
-        List<EventLogEntry> eventLogEntries = dataClient.getEventLogEntries(eventLogDto.getChunkInfo());
+        List<EventLogEntryDto> eventLogEntries = dataClient.getEventLogEntries(eventLogDto.getChunkInfo());
         assertFalse(eventLogEntries.isEmpty());
 
         log.info("got {} event log entries", eventLogEntries.size());
@@ -521,6 +523,17 @@ class IrDataClientTest {
         assertNotNull(sessionsDto);
         assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
         log.info("fetched {} league sessions", sessionsDto.getSessions().length);
+    }
+
+    @Test
+    void testSearchLeagueDirectory() {
+        authenticate();
+        LeagueDirectoryDto directoryDto = dataClient.searchLeagueDirectory(LeagueSearchRequestDto.create()
+                .withUpperBound(20L)
+                .withLowerBound(1L));
+        assertNotNull(directoryDto);
+        assertEquals(20, directoryDto.getLeagueEntries().length);
+        log.info("fetched {} league entries", directoryDto.getLeagueEntries().length);
     }
 
     @Test
