@@ -210,6 +210,23 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public MemberChartDataDto getMemberChartData(Long custId, CategoryType category, ChartType chartType) {
+        try {
+            StringBuilder uri = new StringBuilder(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CHART_URL, custId));
+            uri.append("&category_id=").append(category.toCode());
+            uri.append("&chart_type=").append(chartType.toCode());
+
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse!= null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberChartDataDto>(){});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_CHART_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public MemberDivisonDto getMemberDivision(Long seasonId, Long eventType) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_MEMBER_DIVISION_URL

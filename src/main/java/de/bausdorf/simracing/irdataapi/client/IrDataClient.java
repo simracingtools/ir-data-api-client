@@ -54,7 +54,10 @@ public interface IrDataClient {
     MemberYearlyDto getMemberStatsYearly(@NonNull Long custId);
 
     MemberCareerDto getMemberCareer(@NonNull Long custId);
+
     MemberDivisonDto getMemberDivision(@NonNull Long seasonId, @NonNull Long eventType);
+
+    MemberChartDataDto getMemberChartData(@NonNull Long custId, @NonNull CategoryType category, @NonNull ChartType chartType);
 
     DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId);
 
