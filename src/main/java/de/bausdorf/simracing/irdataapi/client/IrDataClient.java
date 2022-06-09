@@ -146,4 +146,7 @@ public interface IrDataClient {
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Long carClassId, @Nullable Long carId);
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Long carClassId);
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId);
+
+    LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Boolean resultsOnly);
+    LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId);
 }
