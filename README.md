@@ -36,8 +36,6 @@ https://members-ng.iracing.com/data/results/search_hosted
 
 https://members-ng.iracing.com/data/results/search_series
 
-https://members-ng.iracing.com/data/series/assets
-
 ## Hints
 
 Although all current occurring fields are mapped there is no guarantee

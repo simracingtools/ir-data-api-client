@@ -434,6 +434,19 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public Map<Long, SeriesAssetDto> getSeriesAssets() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_ASSETS_URL);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, SeriesAssetDto>>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_SERIES_ASSETS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public LeagueInfoDto getLeagueInfo(long leagueId) {
         try{
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + LEAGUE_ID_URL_PARAM + leagueId);
