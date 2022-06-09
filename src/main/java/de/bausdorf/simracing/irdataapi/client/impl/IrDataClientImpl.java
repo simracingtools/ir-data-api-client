@@ -754,6 +754,38 @@ public class IrDataClientImpl implements IrDataClient {
         return getLeagueSeasons(leagueId, null);
     }
 
+    @Override
+    public SeasonStandingsDto getLeagueSeasonStandings(Long leagueId, Long seasonId, Long carClassId, Long carId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SEASON_STANDINGS_URL)
+                    .append(LEAGUE_ID_URL_PARAM).append(leagueId)
+                    .append("&season_id=").append(seasonId);
+            if(carClassId != null) {
+                uri.append(CAR_CLASS_ID_URL_PARAM).append(carClassId);
+            }
+            if(carId != null) {
+                uri.append("&car_id=").append(carId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonStandingsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_SEASON_STANDINGS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public SeasonStandingsDto getLeagueSeasonStandings(Long leagueId, Long seasonId, Long carClassId) {
+        return getLeagueSeasonStandings(leagueId, seasonId, carClassId, null);
+    }
+
+    @Override
+    public SeasonStandingsDto getLeagueSeasonStandings(Long leagueId, Long seasonId) {
+        return getLeagueSeasonStandings(leagueId, seasonId, null, null);
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {});

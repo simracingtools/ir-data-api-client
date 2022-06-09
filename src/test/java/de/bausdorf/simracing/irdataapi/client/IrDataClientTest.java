@@ -333,6 +333,17 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetLeagueSeasonStandings() {
+        authenticate();
+        SeasonStandingsDto seasonStandings = dataClient.getLeagueSeasonStandings(3693L, 66994L, 2708L);
+        assertNotNull(seasonStandings);
+        assertTrue(seasonStandings.getSuccess());
+
+        Arrays.stream(seasonStandings.getStandings().getDriverStandings())
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
     void testGetLeagueInfoWithInvalidId() {
         authenticate();
         try {

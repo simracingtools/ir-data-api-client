@@ -30,14 +30,6 @@ https://members-ng.iracing.com/data/results/season_results - does not work for l
  
 ## Endpoints currently not supported
 
-https://members-ng.iracing.com/data/league/directory
-
-https://members-ng.iracing.com/data/league/get_points_systems
-
-https://members-ng.iracing.com/data/league/seasons
-
-https://members-ng.iracing.com/data/league/season_standings
-
 https://members-ng.iracing.com/data/league/season_sessions
 
 https://members-ng.iracing.com/data/member/chart_data
