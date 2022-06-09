@@ -707,6 +707,29 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public LeaguePointSystemsDto getLeaguePointSystems(Long leagueId, Long seasonId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL)
+                    .append("?league_id=").append(leagueId);
+            if(seasonId != null) {
+                uri.append("&season_id=").append(seasonId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeaguePointSystemsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public LeaguePointSystemsDto getLeaguePointSystems(Long leagueId) {
+        return getLeaguePointSystems(leagueId, null);
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {});

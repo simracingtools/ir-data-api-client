@@ -136,4 +136,7 @@ public interface IrDataClient {
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId);
 
     LeagueDirectoryDto searchLeagueDirectory(@NonNull SearchRequestDto searchRequest);
+
+    LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, Long seasonId);
+    LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId);
 }
