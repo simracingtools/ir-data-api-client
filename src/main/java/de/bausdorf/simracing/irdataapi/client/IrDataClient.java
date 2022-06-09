@@ -139,4 +139,7 @@ public interface IrDataClient {
 
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, Long seasonId);
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId);
+
+    LeagueSeasonsDto getLeagueSeasons(@NonNull Long leagueId, @Nullable Boolean retired);
+    LeagueSeasonsDto getLeagueSeasons(@NonNull Long leagueId);
 }

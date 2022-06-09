@@ -1,0 +1,190 @@
+{
+  "subscribed": false,
+  "seasons": [
+    {
+      "league_id": 3693,
+      "season_id": 66994,
+      "points_system_id": 1,
+      "season_name": "Winter 24h of the Nürburgring 2021",
+      "active": true,
+      "hidden": false,
+      "num_drops": 0,
+      "no_drops_on_or_after_race_num": -1,
+      "points_cars": [
+        {
+          "car_id": 112,
+          "car_name": "Audi RS 3 LMS",
+          "team_car": false
+        },
+        {
+          "car_id": 132,
+          "car_name": "BMW M4 GT3",
+          "team_car": false
+        },
+        {
+          "car_id": 122,
+          "car_name": "BMW M4 GT4",
+          "team_car": false
+        },
+        {
+          "car_id": 133,
+          "car_name": "Lamborghini Huracán GT3 EVO",
+          "team_car": false
+        },
+        {
+          "car_id": 72,
+          "car_name": "Mercedes AMG GT3",
+          "team_car": false
+        },
+        {
+          "car_id": 119,
+          "car_name": "Porsche 718 Cayman GT4 Clubsport MR",
+          "team_car": false
+        },
+        {
+          "car_id": 143,
+          "car_name": "Porsche 911 GT3 Cup (992)",
+          "team_car": false
+        },
+        {
+          "car_id": 137,
+          "car_name": "Porsche 911 GT3 R",
+          "team_car": false
+        }
+      ],
+      "driver_points_car_classes": [
+        {
+          "car_class_id": 0,
+          "name": "All Car Classes",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            },
+            {
+              "car_id": 112,
+              "car_name": "Audi RS 3 LMS"
+            },
+            {
+              "car_id": 132,
+              "car_name": "BMW M4 GT3"
+            },
+            {
+              "car_id": 133,
+              "car_name": "Lamborghini Huracán GT3 EVO"
+            },
+            {
+              "car_id": 119,
+              "car_name": "Porsche 718 Cayman GT4 Clubsport MR"
+            },
+            {
+              "car_id": 72,
+              "car_name": "Mercedes AMG GT3"
+            },
+            {
+              "car_id": 137,
+              "car_name": "Porsche 911 GT3 R"
+            },
+            {
+              "car_id": 122,
+              "car_name": "BMW M4 GT4"
+            },
+            {
+              "car_id": 143,
+              "car_name": "Porsche 911 GT3 Cup (992)"
+            }
+          ]
+        },
+        {
+          "car_class_id": 1450,
+          "name": "Audi RS 3 LMS",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            },
+            {
+              "car_id": 112,
+              "car_name": "Audi RS 3 LMS"
+            }
+          ]
+        },
+        {
+          "car_class_id": 2708,
+          "name": "GT3 Class",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            },
+            {
+              "car_id": 132,
+              "car_name": "BMW M4 GT3"
+            },
+            {
+              "car_id": 133,
+              "car_name": "Lamborghini Huracán GT3 EVO"
+            },
+            {
+              "car_id": 72,
+              "car_name": "Mercedes AMG GT3"
+            },
+            {
+              "car_id": 137,
+              "car_name": "Porsche 911 GT3 R"
+            }
+          ]
+        },
+        {
+          "car_class_id": 2268,
+          "name": "GT4 Class",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            },
+            {
+              "car_id": 119,
+              "car_name": "Porsche 718 Cayman GT4 Clubsport MR"
+            },
+            {
+              "car_id": 122,
+              "car_name": "BMW M4 GT4"
+            }
+          ]
+        },
+        {
+          "car_class_id": 3104,
+          "name": "Porsche 992",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            },
+            {
+              "car_id": 143,
+              "car_name": "Porsche 911 GT3 Cup (992)"
+            }
+          ]
+        }
+      ],
+      "team_points_car_classes": [
+        {
+          "car_class_id": 0,
+          "name": "All Car Classes",
+          "cars_in_class": [
+            {
+              "car_id": 0,
+              "car_name": "All Cars"
+            }
+          ]
+        }
+      ],
+      "points_system_name": "None",
+      "points_system_desc": "No points will be awarded.  The league administrator will assign points at a later date."
+    }
+  ],
+  "success": true,
+  "retired": false,
+  "league_id": 3693
+}
