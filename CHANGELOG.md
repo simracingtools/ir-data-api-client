@@ -2,6 +2,30 @@
 
 Changelog of ir-data-api-client.
 
+## v2.1.1 (2022-06-09)
+
+
+
+
+
+### Bug Fixes
+
+-  New fields added (grid/heat_spec) ([b14d4](https://github.com/simracingtools/ir-data-api-client/commit/b14d4e5a31f4d4d) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.1.1**
+
+
+[0cd96](https://github.com/simracingtools/ir-data-api-client/commit/0cd96319e61834b) Robert Bausdorf *2022-06-09 09:48:35*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[8aef1](https://github.com/simracingtools/ir-data-api-client/commit/8aef1e7323c5fa4) Robert Bausdorf *2022-06-08 22:50:59*
+
+
 ## v2.1.0 (2022-06-08)
 
 
