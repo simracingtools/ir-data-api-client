@@ -57,6 +57,7 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String RACE_WEEK_NUM_URL_PARAM = "&race_week_num=";
     public static final String CAR_CLASS_ID_URL_PARAM = "&car_class_id=";
     public static final String LEAGUE_ID_URL_PARAM = "?league_id=";
+    public static final String SEASON_ID_URL_PARAM2 = "&season_id=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -679,7 +680,7 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId) {
         try {
-            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SESSIONS_URL)
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_CUST_LEAGUE_SESSIONS_URL)
                     .append("?mine=").append(mine);
             if(packageId != null) {
                 uri.append("&package_id=").append(packageId);
@@ -688,7 +689,7 @@ public class IrDataClientImpl implements IrDataClient {
             if(linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<CustLeagueSessionsDto>() {});
             }
-            throw new DataApiException(DataApiConstants.GET_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
+            throw new DataApiException(DataApiConstants.GET_CUST_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -714,7 +715,7 @@ public class IrDataClientImpl implements IrDataClient {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId);
             if(seasonId != null) {
-                uri.append("&season_id=").append(seasonId);
+                uri.append(SEASON_ID_URL_PARAM2).append(seasonId);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
             if(linkResponse != null) {
@@ -759,7 +760,7 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SEASON_STANDINGS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId)
-                    .append("&season_id=").append(seasonId);
+                    .append(SEASON_ID_URL_PARAM2).append(seasonId);
             if(carClassId != null) {
                 uri.append(CAR_CLASS_ID_URL_PARAM).append(carClassId);
             }
@@ -784,6 +785,30 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public SeasonStandingsDto getLeagueSeasonStandings(Long leagueId, Long seasonId) {
         return getLeagueSeasonStandings(leagueId, seasonId, null, null);
+    }
+
+    @Override
+    public LeagueSeasonSessionsDto getLeagueSeasonSessions(Long leagueId, Long seasonId, Boolean resultsOnly) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SESSIONS_URL)
+                    .append(LEAGUE_ID_URL_PARAM).append(leagueId)
+                    .append(SEASON_ID_URL_PARAM2).append(seasonId);
+            if(resultsOnly != null) {
+                uri.append("&results_only=").append(resultsOnly);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonSessionsDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public LeagueSeasonSessionsDto getLeagueSeasonSessions(Long leagueId, Long seasonId) {
+        return getLeagueSeasonSessions(leagueId, seasonId, null);
     }
 
     public JsonNode getApiDocs() {

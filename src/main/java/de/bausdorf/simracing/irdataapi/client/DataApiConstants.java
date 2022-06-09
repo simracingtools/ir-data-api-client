@@ -64,11 +64,12 @@ public class DataApiConstants {
     public static final String GET_SEASON_RESULTS_URL =         "https://members-ng.iracing.com/data/results/season_results";
     public static final String GET_EVENT_LOG_URL =              "https://members-ng.iracing.com/data/results/event_log";
     public static final String GET_TEAM_MEMBERS_URL =           "https://members-ng.iracing.com/data/team/get";
-    public static final String GET_LEAGUE_SESSIONS_URL =        "https://members-ng.iracing.com/data/league/cust_league_sessions";
+    public static final String GET_CUST_LEAGUE_SESSIONS_URL =   "https://members-ng.iracing.com/data/league/cust_league_sessions";
     public static final String SEARCH_LEAGUE_DIRECTORY_URL =    "https://members-ng.iracing.com/data/league/directory";
     public static final String GET_LEAGUE_POINT_SYSTEMS_URL =   "https://members-ng.iracing.com/data/league/get_points_systems";
     public static final String GET_LEAGUE_SEASONS_URL =         "https://members-ng.iracing.com/data/league/seasons";
     public static final String GET_LEAGUE_SEASON_STANDINGS_URL ="https://members-ng.iracing.com/data/league/season_standings";
+    public static final String GET_LEAGUE_SESSIONS_URL =        "https://members-ng.iracing.com/data/league/season_sessions";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
             GET_MEMBERS_URL, GET_USERINFO_URL,
@@ -82,7 +83,8 @@ public class DataApiConstants {
             GET_SEASONS_URL, GET_SERIES_STATS_URL,
             GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL,
             GET_TEAM_MEMBERS_URL,
-            GET_LEAGUE_SESSIONS_URL, SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL
+            GET_CUST_LEAGUE_SESSIONS_URL,
+            SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL, GET_LEAGUE_SESSIONS_URL
     );
 
     // Date and time format constants for json deserialization
