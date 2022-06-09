@@ -138,6 +138,8 @@ public class CustomSessionInfoDto {
     private Long driverChangeRule;
     @JsonProperty("fixed_setup")
     private Boolean fixedSetup;
+    @JsonProperty("server_number")
+    private Long serverNumber;
     @JsonProperty("entry_count")
     private Long entryCount;
     @JsonProperty("league_id")
@@ -224,6 +226,12 @@ public class CustomSessionInfoDto {
     private Long[] allowedLeagues;
     @JsonProperty("cars")
     private BalancedCarDto[] cars;
+    @JsonProperty("session_subsessions")
+    private Long[] sessionSubSessions;
+    @JsonProperty("grid")
+    private GridDto[] grid;
+    @JsonProperty("heat_spec")
+    private HeatSpecDto heatSpec;
     @JsonProperty("registered_teams")
     private Long[] registeredTeams;
     @JsonProperty("heat_ses_info")
