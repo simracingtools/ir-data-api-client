@@ -26,6 +26,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
+import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
 import de.bausdorf.simracing.irdataapi.tools.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -598,8 +599,8 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public List<EventLogEntry> getEventLogEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<EventLogEntry[]>() {});
+    public List<EventLogEntryDto> getEventLogEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<EventLogEntryDto[]>() {});
     }
 
     @Override
@@ -687,6 +688,20 @@ public class IrDataClientImpl implements IrDataClient {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<CustLeagueSessionsDto>() {});
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public LeagueDirectoryDto searchLeagueDirectory(SearchRequestDto searchRequest) {
+        try {
+            String uri = DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + searchRequest.toQueryString();
+            LinkResponseDto linkResponse = getLinkResponse(uri);
+            if(linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueDirectoryDto>() {});
+            }
+            throw new DataApiException(DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }

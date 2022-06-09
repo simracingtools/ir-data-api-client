@@ -65,6 +65,7 @@ public class DataApiConstants {
     public static final String GET_EVENT_LOG_URL =              "https://members-ng.iracing.com/data/results/event_log";
     public static final String GET_TEAM_MEMBERS_URL =           "https://members-ng.iracing.com/data/team/get";
     public static final String GET_LEAGUE_SESSIONS_URL =        "https://members-ng.iracing.com/data/league/cust_league_sessions";
+    public static final String SEARCH_LEAGUE_DIRECTORY_URL =    "https://members-ng.iracing.com/data/league/directory";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
             GET_MEMBERS_URL, GET_USERINFO_URL,
@@ -77,7 +78,7 @@ public class DataApiConstants {
             GET_LOOKUP_URL, GET_LICENSES_URL,
             GET_SEASONS_URL, GET_SERIES_STATS_URL,
             GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL,
-            GET_TEAM_MEMBERS_URL, GET_LEAGUE_SESSIONS_URL
+            GET_TEAM_MEMBERS_URL, GET_LEAGUE_SESSIONS_URL, SEARCH_LEAGUE_DIRECTORY_URL
     );
 
     // Date and time format constants for json deserialization

@@ -23,6 +23,7 @@ package de.bausdorf.simracing.irdataapi.client;
  */
 
 import de.bausdorf.simracing.irdataapi.model.*;
+import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -113,7 +114,7 @@ public interface IrDataClient {
 
     List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo);
 
-    List<EventLogEntry> getEventLogEntries(@NonNull ChunkInfoDto chunkInfo);
+    List<EventLogEntryDto> getEventLogEntries(@NonNull ChunkInfoDto chunkInfo);
 
     List<DriverStandingDto> getDriverStandingEntries(@NonNull ChunkInfoDto chunkInfo);
 
@@ -133,4 +134,6 @@ public interface IrDataClient {
 
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine);
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId);
+
+    LeagueDirectoryDto searchLeagueDirectory(@NonNull SearchRequestDto searchRequest);
 }
