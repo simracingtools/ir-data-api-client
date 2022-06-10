@@ -25,20 +25,22 @@ package de.bausdorf.simracing.irdataapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-public class MemberChartDataDto {
-  @JsonProperty("success")
-  private Boolean success;
-  @JsonProperty("cust_id")
-  private Long custId;
-  @JsonProperty("blackout")
-  private Boolean blackout;
-  @JsonProperty("category_id")
-  private Long categoryId;
-  @JsonProperty("chart_type")
-  private Long chartType;
-  @JsonProperty("data")
-  private DataEntryDto[] data;
+@ToString
+public class CarResultRefDto {
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("car_name")
+    private String carName;
+    @JsonProperty("car_class_id")
+    private Long carClassId;
+    @JsonProperty("car_class_name")
+    private String carClassName;
+    @JsonProperty("car_class_short_name")
+    private String carClassShortName;
+    @JsonProperty("car_name_abbreviated")
+    private String carNameAbbreviated;
 }

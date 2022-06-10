@@ -25,7 +25,10 @@ package de.bausdorf.simracing.irdataapi.client;
 import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
+import de.bausdorf.simracing.irdataapi.model.search.HostedResultSearchRequest;
+import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequest;
+import de.bausdorf.simracing.irdataapi.model.search.ResultSearchRequest;
+import de.bausdorf.simracing.irdataapi.model.search.SeriesResultSearchRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
@@ -38,6 +41,7 @@ import org.springframework.web.client.HttpClientErrorException;
 
 import java.net.Authenticator;
 import java.net.PasswordAuthentication;
+import java.time.ZonedDateTime;
 import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -601,12 +605,52 @@ class IrDataClientTest {
     @Test
     void testSearchLeagueDirectory() {
         authenticate();
-        LeagueDirectoryDto directoryDto = dataClient.searchLeagueDirectory(LeagueSearchRequestDto.create()
+        LeagueDirectoryDto directoryDto = dataClient.searchLeagueDirectory(LeagueSearchRequest.create()
                 .withUpperBound(20L)
                 .withLowerBound(1L));
         assertNotNull(directoryDto);
         assertEquals(20, directoryDto.getLeagueEntries().length);
         log.info("fetched {} league entries", directoryDto.getLeagueEntries().length);
+    }
+
+    @Test
+    void testSearchHostedSessionResults() {
+        authenticate();
+        ResultSearchRequest searchRequest = HostedResultSearchRequest.create()
+                .withSessionName("racing")
+                .withStartRangeBegin(ZonedDateTime.now().minusDays(1));
+
+        SearchResultDto resultDto = dataClient.searchHostedSeries(searchRequest);
+        assertNotNull(resultDto);
+        assertEquals(true, resultDto.getData().getSuccess());
+
+        List<HostedSessionSearchResultDto> results = dataClient.getHostedResultEntries(resultDto.getData().getChunkInfo());
+        log.info("fetched {} session results", results.size());
+        results.stream()
+                .sorted(Comparator.comparing(HostedSessionSearchResultDto::getStartTime))
+                .forEach(result -> log.info(result.toString()));
+        assertEquals(resultDto.getData().getChunkInfo().getRows(), results.size());
+    }
+
+    @Test
+    void testSearchIRacingSessionResults() {
+        authenticate();
+        ResultSearchRequest searchRequest = SeriesResultSearchRequest.create()
+                .withOfficialOnly(true)
+                .withEventTypes(List.of(EventType.RACE))
+                .withCategories(List.of(CategoryType.ROAD))
+                .withStartRangeBegin(ZonedDateTime.now().minusDays(30));
+
+        SearchResultDto resultDto = dataClient.searchIRacingSeries(searchRequest);
+        assertNotNull(resultDto);
+        assertEquals(true, resultDto.getData().getSuccess());
+
+//        List<HostedSessionSearchResultDto> results = dataClient.getHostedResultEntries(resultDto.getData().getChunkInfo());
+//        log.info("fetched {} session results", results.size());
+//        results.stream()
+//                .sorted(Comparator.comparing(HostedSessionSearchResultDto::getStartTime))
+//                .forEach(result -> log.info(result.toString()));
+//        assertEquals(resultDto.getData().getChunkInfo().getRows(), results.size());
     }
 
     @Test

@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model;
+package de.bausdorf.simracing.irdataapi.model.search;
 
 /*-
  * #%L
@@ -22,23 +22,22 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 
-@Data
-@NoArgsConstructor
-public class MemberChartDataDto {
-  @JsonProperty("success")
-  private Boolean success;
-  @JsonProperty("cust_id")
-  private Long custId;
-  @JsonProperty("blackout")
-  private Boolean blackout;
-  @JsonProperty("category_id")
-  private Long categoryId;
-  @JsonProperty("chart_type")
-  private Long chartType;
-  @JsonProperty("data")
-  private DataEntryDto[] data;
+public class ZonedDateTimeSearchParameter extends SearchParameter<ZonedDateTime> {
+
+    public ZonedDateTimeSearchParameter(String parameterName) {
+        super(parameterName);
+    }
+
+    @Override
+    public String getParameterValue() {
+        if(parameterValue != null) {
+            ZonedDateTime utc = parameterValue.withZoneSameInstant(ZoneId.of("UTC"));
+            return utc.format(DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm'Z'"));
+        }
+        return null;
+    }
 }

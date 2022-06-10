@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model.search;
+package de.bausdorf.simracing.irdataapi.model;
 
 /*-
  * #%L
@@ -22,14 +22,19 @@ package de.bausdorf.simracing.irdataapi.model.search;
  * #L%
  */
 
-public abstract class SearchRequestDto {
-    protected SearchRequestDto() {
-    }
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import java.util.LinkedHashMap;
 
-    public String toQueryString() {
-        return toParameterString().replaceFirst("&", "?");
-    }
-
-    protected abstract String toParameterString();
+@Data
+@NoArgsConstructor
+public class SearchResultDataDto {
+    @JsonProperty("success")
+    private Boolean success;
+    @JsonProperty("chunk_info")
+    private ChunkInfoDto chunkInfo;
+    @JsonProperty("params")
+    private LinkedHashMap<String, Object> params;
 }
