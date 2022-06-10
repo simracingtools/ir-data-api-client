@@ -23,46 +23,13 @@ package de.bausdorf.simracing.irdataapi.model.search;
  */
 
 public abstract class SearchRequestDto {
-    private final SearchParameter<Long> lowerBound;
-    private final SearchParameter<Long> upperBound;
-    private final SearchParameter<String> search;
-    private final SearchParameter<OrderType> order;
-
     protected SearchRequestDto() {
-        this.upperBound = new SearchParameter<>("upperbound");
-        this.lowerBound = new SearchParameter<>("lowerbound");
-        this.search = new SearchParameter<>("search");
-        this.order = new SearchParameter<>("order");
     }
 
-    public SearchRequestDto withLowerBound(Long lowerBound) {
-        this.lowerBound.setParameterValue(lowerBound);
-        return this;
-    }
-
-    public SearchRequestDto withUpperBound(Long upperBound) {
-        this.upperBound.setParameterValue(upperBound);
-        return this;
-    }
-
-    public SearchRequestDto withSearch(String search) {
-        this.search.setParameterValue(search);
-        return this;
-    }
-
-    public SearchRequestDto withOrder(OrderType orderType) {
-        this.order.setParameterValue(orderType);
-        return this;
-    }
 
     public String toQueryString() {
         return toParameterString().replaceFirst("&", "?");
     }
 
-    protected String toParameterString() {
-        return lowerBound.toUrlParameter()
-                + upperBound.toUrlParameter()
-                + search.toUrlParameter()
-                +order.toUrlParameter();
-    }
+    protected abstract String toParameterString();
 }

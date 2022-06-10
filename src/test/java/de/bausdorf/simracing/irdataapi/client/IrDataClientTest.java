@@ -27,6 +27,7 @@ import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
 import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
@@ -35,10 +36,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.web.client.HttpClientErrorException;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Map;
+import java.net.Authenticator;
+import java.net.PasswordAuthentication;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -637,6 +637,9 @@ class IrDataClientTest {
     }
 
     private void authenticate() {
+        if(log.isDebugEnabled()) {
+            logSystemProperties();
+        }
         if (!dataClient.isAuthenticated()) {
             LoginRequestDto dto = LoginRequestDto.builder()
                     .email(config.getUser())
@@ -647,5 +650,22 @@ class IrDataClientTest {
             AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             log.info(authResponseDto.toString());
         }
+    }
+
+    @BeforeAll
+    public static void proxyAuthentication() {
+        Authenticator.setDefault(new Authenticator() {
+            @Override
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication("proxy", "proxy".toCharArray());
+            }
+        });
+
+    }
+
+    private void logSystemProperties() {
+        System.getProperties().entrySet().stream()
+                .sorted(Comparator.comparing(p-> p.getKey().toString()))
+                .forEach(p -> log.debug("{}: {}", p.getKey(), p.getValue()));
     }
 }

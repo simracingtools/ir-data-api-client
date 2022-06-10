@@ -30,6 +30,11 @@ public class LeagueSearchRequestDto extends SearchRequestDto {
     private final SearchParameter<Long> minimumRosterCount;
     private final SearchParameter<Long> maximumRosterCount;
     private final SearchParameter<LeagueSortType> sort;
+    private final SearchParameter<Long> lowerBound;
+    private final SearchParameter<Long> upperBound;
+    private final SearchParameter<String> search;
+    private final SearchParameter<OrderType> order;
+
 
     private LeagueSearchRequestDto() {
         super();
@@ -40,6 +45,10 @@ public class LeagueSearchRequestDto extends SearchRequestDto {
         this.restrictToRecruiting = new SearchParameter<>("restrict_to_recruiting");
         this.restrictToWatched = new SearchParameter<>("restrict_to_watched");
         this.sort = new SearchParameter<>("sort");
+        this.upperBound = new SearchParameter<>("upperbound");
+        this.lowerBound = new SearchParameter<>("lowerbound");
+        this.search = new SearchParameter<>("search");
+        this.order = new SearchParameter<>("order");
     }
 
     public static LeagueSearchRequestDto create() {
@@ -81,9 +90,32 @@ public class LeagueSearchRequestDto extends SearchRequestDto {
         return this;
     }
 
+    public LeagueSearchRequestDto withLowerBound(Long lowerBound) {
+        this.lowerBound.setParameterValue(lowerBound);
+        return this;
+    }
+
+    public LeagueSearchRequestDto withUpperBound(Long upperBound) {
+        this.upperBound.setParameterValue(upperBound);
+        return this;
+    }
+
+    public LeagueSearchRequestDto withSearch(String search) {
+        this.search.setParameterValue(search);
+        return this;
+    }
+
+    public LeagueSearchRequestDto withOrder(OrderType orderType) {
+        this.order.setParameterValue(orderType);
+        return this;
+    }
+
     @Override
     protected String toParameterString() {
-        return super.toParameterString()
+        return lowerBound.toUrlParameter()
+                + upperBound.toUrlParameter()
+                + search.toUrlParameter()
+                + order.toUrlParameter()
                 + sort.toUrlParameter()
                 + restrictToWatched.toUrlParameter()
                 + restrictToRecruiting.toUrlParameter()

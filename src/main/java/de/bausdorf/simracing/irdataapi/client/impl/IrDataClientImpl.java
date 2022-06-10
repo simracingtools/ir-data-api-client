@@ -26,7 +26,7 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
+import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
 import de.bausdorf.simracing.irdataapi.tools.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -739,7 +739,7 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public LeagueDirectoryDto searchLeagueDirectory(SearchRequestDto searchRequest) {
+    public LeagueDirectoryDto searchLeagueDirectory(LeagueSearchRequestDto searchRequest) {
         try {
             String uri = DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + searchRequest.toQueryString();
             LinkResponseDto linkResponse = getLinkResponse(uri);
@@ -913,6 +913,7 @@ public class IrDataClientImpl implements IrDataClient {
             if (cookie != null) {
                 request.getHeaders().addAll(HttpHeaders.COOKIE, cookie);
             }
+
             HttpHeaders requestHeaders = request.getHeaders();
             log.debug("REQUEST-HEADERS");
             requestHeaders.forEach((k, v) -> log.debug("{}={}", k, v));
