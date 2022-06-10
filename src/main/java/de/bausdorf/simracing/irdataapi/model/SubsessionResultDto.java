@@ -40,7 +40,7 @@ public class SubsessionResultDto {
     @JsonProperty("season_name")
     private String seasonName;
     @JsonProperty("season_short_name")
-    private String SeasonShortName;
+    private String seasonShortName;
     @JsonProperty("season_year")
     private Long seasonYear;
     @JsonProperty("season_quarter")
