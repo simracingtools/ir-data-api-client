@@ -22,7 +22,7 @@ package de.bausdorf.simracing.irdataapi.model.search;
  * #L%
  */
 
-public class LeagueSearchRequestDto extends SearchRequestDto {
+public class LeagueSearchRequest extends SearchRequest {
     private final SearchParameter<Boolean> restrictToMember;
     private final SearchParameter<Boolean> restrictToRecruiting;
     private final SearchParameter<Boolean> restrictToFriends;
@@ -36,7 +36,7 @@ public class LeagueSearchRequestDto extends SearchRequestDto {
     private final SearchParameter<OrderType> order;
 
 
-    private LeagueSearchRequestDto() {
+    private LeagueSearchRequest() {
         super();
         this.maximumRosterCount = new SearchParameter<>("maximum_roster_count");
         this.minimumRosterCount = new SearchParameter<>("minimum_roster_count");
@@ -51,61 +51,61 @@ public class LeagueSearchRequestDto extends SearchRequestDto {
         this.order = new SearchParameter<>("order");
     }
 
-    public static LeagueSearchRequestDto create() {
-        return new LeagueSearchRequestDto();
+    public static LeagueSearchRequest create() {
+        return new LeagueSearchRequest();
     }
 
-    public LeagueSearchRequestDto withSort(LeagueSortType sortType) {
+    public LeagueSearchRequest withSort(LeagueSortType sortType) {
         this.sort.setParameterValue(sortType);
         return this;
     }
 
-    public LeagueSearchRequestDto withMaximumRosterCount(Long maximumRosterCount) {
+    public LeagueSearchRequest withMaximumRosterCount(Long maximumRosterCount) {
         this.maximumRosterCount.setParameterValue(maximumRosterCount);
         return this;
     }
 
-    public LeagueSearchRequestDto withMinimumRosterCount(Long minimumRosterCount) {
+    public LeagueSearchRequest withMinimumRosterCount(Long minimumRosterCount) {
         this.minimumRosterCount.setParameterValue(minimumRosterCount);
         return this;
     }
 
-    public LeagueSearchRequestDto withRestrictToFriends(Boolean restrictToFriends) {
+    public LeagueSearchRequest withRestrictToFriends(Boolean restrictToFriends) {
         this.restrictToFriends.setParameterValue(restrictToFriends);
         return this;
     }
 
-    public LeagueSearchRequestDto withRestrictToWatched(Boolean restrictToWatched) {
+    public LeagueSearchRequest withRestrictToWatched(Boolean restrictToWatched) {
         this.restrictToWatched.setParameterValue(restrictToWatched);
         return this;
     }
 
-    public LeagueSearchRequestDto withRestrictToMember(Boolean restrictToMember) {
+    public LeagueSearchRequest withRestrictToMember(Boolean restrictToMember) {
         this.restrictToMember.setParameterValue(restrictToMember);
         return this;
     }
 
-    public LeagueSearchRequestDto withRestrictToRecruiting(Boolean restrictToRecruiting) {
+    public LeagueSearchRequest withRestrictToRecruiting(Boolean restrictToRecruiting) {
         this.restrictToRecruiting.setParameterValue(restrictToRecruiting);
         return this;
     }
 
-    public LeagueSearchRequestDto withLowerBound(Long lowerBound) {
+    public LeagueSearchRequest withLowerBound(Long lowerBound) {
         this.lowerBound.setParameterValue(lowerBound);
         return this;
     }
 
-    public LeagueSearchRequestDto withUpperBound(Long upperBound) {
+    public LeagueSearchRequest withUpperBound(Long upperBound) {
         this.upperBound.setParameterValue(upperBound);
         return this;
     }
 
-    public LeagueSearchRequestDto withSearch(String search) {
+    public LeagueSearchRequest withSearch(String search) {
         this.search.setParameterValue(search);
         return this;
     }
 
-    public LeagueSearchRequestDto withOrder(OrderType orderType) {
+    public LeagueSearchRequest withOrder(OrderType orderType) {
         this.order.setParameterValue(orderType);
         return this;
     }

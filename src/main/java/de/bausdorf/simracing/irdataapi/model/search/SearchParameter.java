@@ -29,17 +29,21 @@ import lombok.Setter;
 public class SearchParameter<T> {
     @Getter
     private final String parameterName;
-    @Getter
+
     @Setter
-    private T parameterValue;
+    protected T parameterValue;
 
     public SearchParameter(String parameterName) {
         this.parameterName = parameterName;
     }
 
+    public String getParameterValue() {
+        return parameterValue == null ? null : parameterValue.toString();
+    }
+
     public String toUrlParameter() {
         if(parameterValue != null) {
-            return "&" + parameterName  + "=" + parameterValue;
+            return "&" + parameterName  + "=" + getParameterValue();
         }
         return "";
     }

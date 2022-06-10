@@ -1,0 +1,311 @@
+[
+  {
+    "session_id": 166044584,
+    "subsession_id": 42919803,
+    "start_time": "2021-12-01T18:00:43Z",
+    "end_time": "2021-12-01T20:13:36Z",
+    "license_category_id": 2,
+    "num_drivers": 45,
+    "num_cautions": -1,
+    "num_caution_laps": -1,
+    "num_lead_changes": -1,
+    "event_laps_complete": -1,
+    "driver_changes": true,
+    "winner_group_id": -163409,
+    "winner_ai": false,
+    "track": {
+      "track_id": 252,
+      "track_name": "Nürburgring Combined",
+      "config_name": "Gesamtstrecke 24h"
+    },
+    "private_session_id": 2589637,
+    "session_name": "Winter 24h of the Nürburgring",
+    "league_id": 3693,
+    "league_name": "Winter 24h of the Nürburgring",
+    "league_season_id": 66994,
+    "league_season_name": "Winter 24h of the Nürburgring 2021",
+    "created": "2021-11-19T22:28:47Z",
+    "practice_length": 0,
+    "qualify_length": 120,
+    "qualify_laps": 0,
+    "race_length": 0,
+    "race_laps": 0,
+    "heat_race": false,
+    "host": {
+      "cust_id": 229120,
+      "display_name": "Robert Bausdorf"
+    },
+    "cars": [
+      {
+        "car_id": 112,
+        "car_name": "Audi RS 3 LMS",
+        "car_class_id": 1450,
+        "car_class_name": "Audi RS 3 LMS",
+        "car_class_short_name": "Audi RS 3 LMS",
+        "car_name_abbreviated": "RS3"
+      },
+      {
+        "car_id": 132,
+        "car_name": "BMW M4 GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "M4GT3"
+      },
+      {
+        "car_id": 133,
+        "car_name": "Lamborghini Huracán GT3 EVO",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "LGT3"
+      },
+      {
+        "car_id": 137,
+        "car_name": "Porsche 911 GT3 R",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "PGTR"
+      },
+      {
+        "car_id": 72,
+        "car_name": "[Legacy] Mercedes-AMG GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "MGT3"
+      },
+      {
+        "car_id": 122,
+        "car_name": "BMW M4 GT4",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "BMWM4"
+      },
+      {
+        "car_id": 119,
+        "car_name": "Porsche 718 Cayman GT4 Clubsport MR",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "P718"
+      },
+      {
+        "car_id": 143,
+        "car_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_id": 3104,
+        "car_class_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_short_name": "Porsche 992",
+        "car_name_abbreviated": "P992"
+      }
+    ]
+  },
+  {
+    "session_id": 166250983,
+    "subsession_id": 42965553,
+    "start_time": "2021-12-04T13:09:31Z",
+    "end_time": "2021-12-04T18:54:42Z",
+    "license_category_id": 2,
+    "num_drivers": 152,
+    "num_cautions": 0,
+    "num_caution_laps": 0,
+    "num_lead_changes": 6,
+    "event_laps_complete": 29,
+    "driver_changes": true,
+    "winner_group_id": -187488,
+    "winner_ai": false,
+    "track": {
+      "track_id": 252,
+      "track_name": "Nürburgring Combined",
+      "config_name": "Gesamtstrecke 24h"
+    },
+    "private_session_id": 2609300,
+    "session_name": "Winter 24h of the Nürburgring",
+    "league_id": 3693,
+    "league_name": "Winter 24h of the Nürburgring",
+    "league_season_id": 66994,
+    "league_season_name": "Winter 24h of the Nürburgring 2021",
+    "created": "2021-12-02T20:37:58Z",
+    "practice_length": 10,
+    "qualify_length": 50,
+    "qualify_laps": 0,
+    "race_length": 0,
+    "race_laps": 240,
+    "heat_race": false,
+    "host": {
+      "cust_id": 229120,
+      "display_name": "Robert Bausdorf"
+    },
+    "cars": [
+      {
+        "car_id": 112,
+        "car_name": "Audi RS 3 LMS",
+        "car_class_id": 1450,
+        "car_class_name": "Audi RS 3 LMS",
+        "car_class_short_name": "Audi RS 3 LMS",
+        "car_name_abbreviated": "RS3"
+      },
+      {
+        "car_id": 132,
+        "car_name": "BMW M4 GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "M4GT3"
+      },
+      {
+        "car_id": 133,
+        "car_name": "Lamborghini Huracán GT3 EVO",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "LGT3"
+      },
+      {
+        "car_id": 137,
+        "car_name": "Porsche 911 GT3 R",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "PGTR"
+      },
+      {
+        "car_id": 72,
+        "car_name": "[Legacy] Mercedes-AMG GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "MGT3"
+      },
+      {
+        "car_id": 122,
+        "car_name": "BMW M4 GT4",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "BMWM4"
+      },
+      {
+        "car_id": 119,
+        "car_name": "Porsche 718 Cayman GT4 Clubsport MR",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "P718"
+      },
+      {
+        "car_id": 143,
+        "car_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_id": 3104,
+        "car_class_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_short_name": "Porsche 992",
+        "car_name_abbreviated": "P992"
+      }
+    ]
+  },
+  {
+    "session_id": 166825261,
+    "subsession_id": 43352007,
+    "start_time": "2021-12-18T13:08:41Z",
+    "end_time": "2021-12-19T14:49:06Z",
+    "license_category_id": 2,
+    "num_drivers": 258,
+    "num_cautions": 0,
+    "num_caution_laps": 0,
+    "num_lead_changes": 24,
+    "event_laps_complete": 172,
+    "driver_changes": true,
+    "winner_group_id": -187488,
+    "winner_ai": false,
+    "track": {
+      "track_id": 252,
+      "track_name": "Nürburgring Combined",
+      "config_name": "Gesamtstrecke 24h"
+    },
+    "private_session_id": 2635689,
+    "session_name": "Winter 24h of the Nürburgring",
+    "league_id": 3693,
+    "league_name": "Winter 24h of the Nürburgring",
+    "league_season_id": 66994,
+    "league_season_name": "Winter 24h of the Nürburgring 2021",
+    "created": "2021-12-12T00:01:09Z",
+    "practice_length": 20,
+    "qualify_length": 25,
+    "qualify_laps": 2,
+    "race_length": 0,
+    "race_laps": 1440,
+    "heat_race": false,
+    "host": {
+      "cust_id": 229120,
+      "display_name": "Robert Bausdorf"
+    },
+    "cars": [
+      {
+        "car_id": 112,
+        "car_name": "Audi RS 3 LMS",
+        "car_class_id": 1450,
+        "car_class_name": "Audi RS 3 LMS",
+        "car_class_short_name": "Audi RS 3 LMS",
+        "car_name_abbreviated": "RS3"
+      },
+      {
+        "car_id": 132,
+        "car_name": "BMW M4 GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "M4GT3"
+      },
+      {
+        "car_id": 133,
+        "car_name": "Lamborghini Huracán GT3 EVO",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "LGT3"
+      },
+      {
+        "car_id": 137,
+        "car_name": "Porsche 911 GT3 R",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "PGTR"
+      },
+      {
+        "car_id": 72,
+        "car_name": "[Legacy] Mercedes-AMG GT3",
+        "car_class_id": 2708,
+        "car_class_name": "GT3 Class",
+        "car_class_short_name": "GT3 Class",
+        "car_name_abbreviated": "MGT3"
+      },
+      {
+        "car_id": 122,
+        "car_name": "BMW M4 GT4",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "BMWM4"
+      },
+      {
+        "car_id": 119,
+        "car_name": "Porsche 718 Cayman GT4 Clubsport MR",
+        "car_class_id": 2268,
+        "car_class_name": "GT4 Class",
+        "car_class_short_name": "GT4 Class",
+        "car_name_abbreviated": "P718"
+      },
+      {
+        "car_id": 143,
+        "car_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_id": 3104,
+        "car_class_name": "Porsche 911 GT3 Cup (992)",
+        "car_class_short_name": "Porsche 992",
+        "car_name_abbreviated": "P992"
+      }
+    ]
+  }
+]

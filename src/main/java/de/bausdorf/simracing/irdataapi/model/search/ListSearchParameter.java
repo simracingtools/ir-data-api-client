@@ -1,4 +1,4 @@
-package de.bausdorf.simracing.irdataapi.model;
+package de.bausdorf.simracing.irdataapi.model.search;
 
 /*-
  * #%L
@@ -22,23 +22,21 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
-import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import java.util.List;
 
-@Data
-@NoArgsConstructor
-public class MemberChartDataDto {
-  @JsonProperty("success")
-  private Boolean success;
-  @JsonProperty("cust_id")
-  private Long custId;
-  @JsonProperty("blackout")
-  private Boolean blackout;
-  @JsonProperty("category_id")
-  private Long categoryId;
-  @JsonProperty("chart_type")
-  private Long chartType;
-  @JsonProperty("data")
-  private DataEntryDto[] data;
+public class ListSearchParameter<T> extends SearchParameter<List<T>> {
+    public ListSearchParameter(String parameterName) {
+        super(parameterName);
+    }
+
+    @Override
+    public String getParameterValue() {
+        if(parameterValue != null) {
+            StringBuilder listStringBuilder = new StringBuilder();
+            parameterValue.forEach(cat -> listStringBuilder.append(cat.toString()).append(','));
+            String listString = listStringBuilder.toString();
+            return listString.substring(0, listString.length() - 1);
+        }
+        return null;
+    }
 }

@@ -23,8 +23,8 @@ package de.bausdorf.simracing.irdataapi.client;
  */
 
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
-import de.bausdorf.simracing.irdataapi.model.search.SearchRequestDto;
+import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequest;
+import de.bausdorf.simracing.irdataapi.model.search.ResultSearchRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
@@ -145,7 +145,7 @@ public interface IrDataClient {
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine);
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId);
 
-    LeagueDirectoryDto searchLeagueDirectory(@NonNull LeagueSearchRequestDto searchRequest);
+    LeagueDirectoryDto searchLeagueDirectory(@NonNull LeagueSearchRequest searchRequest);
 
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, Long seasonId);
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId);
@@ -159,4 +159,10 @@ public interface IrDataClient {
 
     LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Boolean resultsOnly);
     LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId);
+
+    SearchResultDto searchHostedSeries(@NonNull ResultSearchRequest searchRequest);
+    List<HostedSessionSearchResultDto> getHostedResultEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    SearchResultDto searchIRacingSeries(@NonNull ResultSearchRequest searchRequest);
+//    List<HostedSessionSearchResultDto> getHostedResultEntries(@NonNull ChunkInfoDto chunkInfo);
 }

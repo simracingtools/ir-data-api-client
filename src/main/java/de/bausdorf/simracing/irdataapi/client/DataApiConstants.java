@@ -73,6 +73,8 @@ public class DataApiConstants {
     public static final String GET_LEAGUE_SESSIONS_URL =        "https://members-ng.iracing.com/data/league/season_sessions";
     public static final String GET_SERIES_URL =                 "https://members-ng.iracing.com/data/series/get";
     public static final String GET_SERIES_ASSETS_URL =          "https://members-ng.iracing.com/data/series/assets";
+    public static final String SEARCH_SERIES_RESULTS_URL =      "https://members-ng.iracing.com/data/results/search_series";
+    public static final String SEARCH_HOSTED_RESULTS_URL =      "https://members-ng.iracing.com/data/results/search_hosted";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
             GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL,
@@ -87,7 +89,8 @@ public class DataApiConstants {
             GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL,
             GET_TEAM_MEMBERS_URL,
             GET_CUST_LEAGUE_SESSIONS_URL,
-            SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL, GET_LEAGUE_SESSIONS_URL
+            SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL, GET_LEAGUE_SESSIONS_URL,
+            SEARCH_SERIES_RESULTS_URL, SEARCH_HOSTED_RESULTS_URL
     );
 
     // Date and time format constants for json deserialization

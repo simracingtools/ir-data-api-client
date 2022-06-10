@@ -26,7 +26,8 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
-import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequestDto;
+import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequest;
+import de.bausdorf.simracing.irdataapi.model.search.ResultSearchRequest;
 import de.bausdorf.simracing.irdataapi.tools.LoginHelper;
 import lombok.extern.slf4j.Slf4j;
 import org.slf4j.Logger;
@@ -213,8 +214,8 @@ public class IrDataClientImpl implements IrDataClient {
     public MemberChartDataDto getMemberChartData(Long custId, CategoryType category, ChartType chartType) {
         try {
             StringBuilder uri = new StringBuilder(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CHART_URL, custId));
-            uri.append("&category_id=").append(category.toCode());
-            uri.append("&chart_type=").append(chartType.toCode());
+            uri.append("&category_id=").append(category.toString());
+            uri.append("&chart_type=").append(chartType.toString());
 
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
             if (linkResponse!= null) {
@@ -739,7 +740,7 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
-    public LeagueDirectoryDto searchLeagueDirectory(LeagueSearchRequestDto searchRequest) {
+    public LeagueDirectoryDto searchLeagueDirectory(LeagueSearchRequest searchRequest) {
         try {
             String uri = DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + searchRequest.toQueryString();
             LinkResponseDto linkResponse = getLinkResponse(uri);
@@ -852,6 +853,31 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public LeagueSeasonSessionsDto getLeagueSeasonSessions(Long leagueId, Long seasonId) {
         return getLeagueSeasonSessions(leagueId, seasonId, null);
+    }
+
+    @Override
+    public SearchResultDto searchHostedSeries(ResultSearchRequest searchRequest) {
+        try {
+            String uri = DataApiConstants.SEARCH_HOSTED_RESULTS_URL + searchRequest.toQueryString();
+            return getStructuredData(uri, new TypeReference<SearchResultDto>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public List<HostedSessionSearchResultDto> getHostedResultEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<HostedSessionSearchResultDto[]>() {});
+    }
+
+    @Override
+    public SearchResultDto searchIRacingSeries(ResultSearchRequest searchRequest) {
+        try {
+            String uri = DataApiConstants.SEARCH_SERIES_RESULTS_URL + searchRequest.toQueryString();
+            return getStructuredData(uri, new TypeReference<SearchResultDto>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
     }
 
     public JsonNode getApiDocs() {
