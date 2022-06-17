@@ -2,6 +2,34 @@
 
 Changelog of ir-data-api-client.
 
+## v2.3.0 (2022-06-17)
+
+
+
+### Features
+
+-  Search for hosted series ([c5c48](https://github.com/simracingtools/ir-data-api-client/commit/c5c48c114f9278d) Robert Bausdorf)  
+-  search_series endpoint added. ([26680](https://github.com/simracingtools/ir-data-api-client/commit/26680b0ce3936ed) Robert Bausdorf)  
+
+
+### Bug Fixes
+
+-  TrackMapLayers added to TrackAssetDto ([6b8d3](https://github.com/simracingtools/ir-data-api-client/commit/6b8d387fa47ca1d) robert)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.3.0**
+
+
+[ff4d4](https://github.com/simracingtools/ir-data-api-client/commit/ff4d44cc4103d04) Robert Bausdorf *2022-06-17 14:08:24*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[16236](https://github.com/simracingtools/ir-data-api-client/commit/162365f3c358467) Robert Bausdorf *2022-06-09 21:07:40*
+
+
 ## v2.2.0 (2022-06-09)
 
 
