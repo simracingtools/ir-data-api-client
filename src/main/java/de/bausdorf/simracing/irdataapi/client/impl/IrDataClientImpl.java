@@ -880,6 +880,11 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public List<SeriesSessionSearchResultDto> getSeriesResultEntries(ChunkInfoDto chunkInfo) {
+        return getChunkedEntries(chunkInfo, new TypeReference<SeriesSessionSearchResultDto[]>() {});
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {});
