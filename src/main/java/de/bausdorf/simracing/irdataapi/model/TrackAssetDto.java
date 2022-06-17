@@ -57,4 +57,6 @@ public class TrackAssetDto {
     private Long trackId;
     @JsonProperty("track_map")
     private String trackMap;
+    @JsonProperty("track_map_layers")
+    private TrackMapLayersDto trackMapLayers;
 }
