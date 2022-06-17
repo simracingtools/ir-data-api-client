@@ -639,18 +639,19 @@ class IrDataClientTest {
                 .withOfficialOnly(true)
                 .withEventTypes(List.of(EventType.RACE))
                 .withCategories(List.of(CategoryType.ROAD))
-                .withStartRangeBegin(ZonedDateTime.now().minusDays(30));
+                .withStartRangeBegin(ZonedDateTime.now().minusHours(8));
 
         SearchResultDto resultDto = dataClient.searchIRacingSeries(searchRequest);
         assertNotNull(resultDto);
         assertEquals(true, resultDto.getData().getSuccess());
 
-//        List<HostedSessionSearchResultDto> results = dataClient.getHostedResultEntries(resultDto.getData().getChunkInfo());
-//        log.info("fetched {} session results", results.size());
-//        results.stream()
-//                .sorted(Comparator.comparing(HostedSessionSearchResultDto::getStartTime))
-//                .forEach(result -> log.info(result.toString()));
-//        assertEquals(resultDto.getData().getChunkInfo().getRows(), results.size());
+        List<SeriesSessionSearchResultDto> results = dataClient.getSeriesResultEntries(resultDto.getData().getChunkInfo());
+        log.info("fetched {} session results", results.size());
+        results.stream()
+                .sorted(Comparator.comparing(SeriesSessionSearchResultDto::getStartTime))
+                .forEach(result -> log.info(result.toString()));
+        assertEquals(resultDto.getData().getChunkInfo().getRows(), results.size());
+        log.info("fetched {} results", results.size());
     }
 
     @Test

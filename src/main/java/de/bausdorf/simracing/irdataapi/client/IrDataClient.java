@@ -164,5 +164,5 @@ public interface IrDataClient {
     List<HostedSessionSearchResultDto> getHostedResultEntries(@NonNull ChunkInfoDto chunkInfo);
 
     SearchResultDto searchIRacingSeries(@NonNull ResultSearchRequest searchRequest);
-//    List<HostedSessionSearchResultDto> getHostedResultEntries(@NonNull ChunkInfoDto chunkInfo);
+    List<SeriesSessionSearchResultDto> getSeriesResultEntries(@NonNull ChunkInfoDto chunkInfo);
 }

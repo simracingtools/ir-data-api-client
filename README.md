@@ -30,9 +30,8 @@ https://members-ng.iracing.com/data/results/season_results - does not work for l
  
 ## Endpoints currently not supported
 
-https://members-ng.iracing.com/data/results/search_hosted
+None - all endpoints supported.
 
-https://members-ng.iracing.com/data/results/search_series
 
 ## Hints
 
