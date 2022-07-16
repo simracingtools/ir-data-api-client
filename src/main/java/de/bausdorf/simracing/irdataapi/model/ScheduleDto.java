@@ -76,4 +76,6 @@ public class ScheduleDto {
     private CarRestrictionDto[] carRestrictions;
     @JsonProperty("start_zone")
     private Boolean startZone;
+    @JsonProperty("race_time_descriptors")
+    private RaceTimeDesciptorDto[] raceTimeDescriptors;
 }

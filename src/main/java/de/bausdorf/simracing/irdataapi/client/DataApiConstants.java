@@ -97,6 +97,7 @@ public class DataApiConstants {
     public static final String UTC_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss'Z'";
     public static final String UTC_PRECISE_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss.n'Z'";
     public static final String LOCAL_DATE_FORMAT = "yyyy-MM-dd";
+    public static final String LOCAL_TIME_FORMAT = "HH:mm:ss";
     public static final String LOCAL_DATETIME_FORMAT = "yyyy-MM-dd'T'HH:mm:ss";
 
     // constants for event_type

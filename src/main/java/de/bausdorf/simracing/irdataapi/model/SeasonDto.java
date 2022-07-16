@@ -29,6 +29,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.ZonedDateTime;
+import java.util.Map;
 
 @Data
 @NoArgsConstructor
@@ -36,7 +37,7 @@ public class SeasonDto {
     @JsonProperty("active")
     private Boolean active;
     @JsonProperty("allowed_season_members")
-    private String allowedSeasonMembers;
+    private Map<String, SeasonMemberDto> allowedSeasonMembers;
     @JsonProperty("car_class_ids")
     private Long[] carClassIds;
     @JsonProperty("car_types")
@@ -99,6 +100,8 @@ public class SeasonDto {
     private Long openPracticeSessionTypeId;
     @JsonProperty("qualifier_must_start_race")
     private Boolean qualifierMustStartRace;
+    @JsonProperty("race_points")
+    private Long racePoints;
     @JsonProperty("race_week")
     private Long raceWeek;
     @JsonProperty("race_week_to_make_divisions")
