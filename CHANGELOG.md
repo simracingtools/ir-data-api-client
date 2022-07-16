@@ -2,6 +2,30 @@
 
 Changelog of ir-data-api-client.
 
+## v2.3.1 (2022-07-16)
+
+
+
+
+
+### Bug Fixes
+
+-  race_time_descriptors and missing fields added to SeasonDto and substructures ([6e370](https://github.com/simracingtools/ir-data-api-client/commit/6e370cd835161d2) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.3.1**
+
+
+[ffa3d](https://github.com/simracingtools/ir-data-api-client/commit/ffa3d6cd095da3c) Robert Bausdorf *2022-07-16 13:04:52*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[cc9f1](https://github.com/simracingtools/ir-data-api-client/commit/cc9f1d13528a8ac) Robert Bausdorf *2022-06-17 14:08:27*
+
+
 ## v2.3.0 (2022-06-17)
 
 
