@@ -49,6 +49,10 @@ public class DriverStandingsDto {
     private Long carClassId;
     @JsonProperty("race_week_num")
     private Long raceWeekNum;
+    @JsonProperty("division")
+    private Long division;
+    @JsonProperty("club_id")
+    private Long clubId;
     @JsonProperty("last_updated")
     @JsonFormat(pattern = DataApiConstants.UTC_PRECISE_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime lastUpdated;

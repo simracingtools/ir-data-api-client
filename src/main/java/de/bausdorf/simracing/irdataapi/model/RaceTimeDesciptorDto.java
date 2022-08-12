@@ -17,6 +17,8 @@ public class RaceTimeDesciptorDto {
     private Boolean repeating;
     @JsonProperty("super_session")
     private Boolean superSession;
+    @JsonProperty("session_minutes")
+    private Long session_minutes;
     @JsonProperty("start_date")
     @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
     private LocalDate startDate;
