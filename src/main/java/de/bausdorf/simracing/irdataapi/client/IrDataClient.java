@@ -112,6 +112,10 @@ public interface IrDataClient {
 
     LookupDto[] getLookup(List<LookupTypes> lookupTypes);
 
+    ClubHistoryDto[] getClubHistory(@NonNull Long seasonYear, @NonNull Long seasonQuarter);
+
+    CountryDto[] getCountries();
+
     SubsessionResultDto getSubsessionResult(@NonNull Long subsessionId);
 
     LapChartDto getLapChartData(@NonNull Long subsessionId, @NonNull Long simsessionNumber);
@@ -133,6 +137,8 @@ public interface IrDataClient {
     List<DriverTtStandingDto> getTimeTrialStandingEntries(@NonNull ChunkInfoDto chunkInfo);
 
     List<DriverQualifyStandingDto> getQualifyStandingEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    SeasonListDto getSeasonList(@NonNull Long seasonYear, @NonNull Long seasonQuarter);
 
     SeasonResultsDto getSeasonResults(@NonNull Long seasonId);
 
@@ -165,4 +171,8 @@ public interface IrDataClient {
 
     SearchResultDto searchIRacingSeries(@NonNull ResultSearchRequest searchRequest);
     List<SeriesSessionSearchResultDto> getSeriesResultEntries(@NonNull ChunkInfoDto chunkInfo);
+
+    MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId);
+    MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId, Long seasonYear, Long seasonQuarter);
+    List<DriverRecordDto> getDriverRecords(@NonNull ChunkInfoDto chunkInfo);
 }

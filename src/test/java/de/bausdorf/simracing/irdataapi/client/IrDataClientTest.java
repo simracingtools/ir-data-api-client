@@ -655,6 +655,54 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetClubHistory() {
+        authenticate();
+        ClubHistoryDto[] clubHistory = dataClient.getClubHistory(2022L, 2L);
+
+        assertNotNull(clubHistory);
+        assertTrue(clubHistory.length > 0);
+
+        Arrays.stream(clubHistory).forEach(entry -> log.info("{}", entry));
+    }
+
+    @Test
+    void testGetCountries() {
+        authenticate();
+        CountryDto[] countries = dataClient.getCountries();
+
+        assertNotNull(countries);
+        assertTrue(countries.length > 0);
+
+        Arrays.stream(countries).forEach(entry -> log.info("{}", entry));
+    }
+
+    @Test
+    void testGetSeasonList() {
+        authenticate();
+        SeasonListDto seasonList = dataClient.getSeasonList(2022L, 2L);
+
+        assertNotNull(seasonList);
+        assertTrue(seasonList.getSeasons().length > 0);
+
+        Arrays.stream(seasonList.getSeasons()).forEach(entry -> log.info("{}", entry));
+    }
+
+    @Test
+    void testGetWorldRecords() {
+        authenticate();
+        MessagingDto<WorldRecordsDataDto> recordDataDto = dataClient.getWorldRecords(143L, 252L);
+        assertNotNull(recordDataDto);
+        assertTrue(recordDataDto.getData().getSuccess());
+
+        log.info("lap chart session info: {}", recordDataDto.getData());
+
+        List<DriverRecordDto> chartEntries = dataClient.getDriverRecords(recordDataDto.getData().getChunkInfo());
+        assertFalse(chartEntries.isEmpty());
+
+        chartEntries.forEach(entry -> log.info(entry.toString()));
+    }
+
+    @Test
     void testInvalidAuthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")

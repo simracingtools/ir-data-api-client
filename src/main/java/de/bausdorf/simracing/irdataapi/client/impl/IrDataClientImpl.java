@@ -60,6 +60,8 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String CAR_CLASS_ID_URL_PARAM = "&car_class_id=";
     public static final String LEAGUE_ID_URL_PARAM = "?league_id=";
     public static final String SEASON_ID_URL_PARAM2 = "&season_id=";
+    public static final String SEASON_YEAR_URL_PARAM = "?season_year=";
+    public static final String SEASON_QUARTER_URL_PARAM = "&season_quarter=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -595,6 +597,36 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public ClubHistoryDto[] getClubHistory(Long seasonYear, Long seasonQuarter) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(
+                    DataApiConstants.GET_CLUB_HISTORY_URL + SEASON_YEAR_URL_PARAM + seasonYear
+                            + SEASON_QUARTER_URL_PARAM + seasonQuarter);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<ClubHistoryDto[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_CLUB_HISTORY_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public CountryDto[] getCountries() {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_COUNTRIES_URL);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CountryDto[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_COUNTRIES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public SubsessionResultDto getSubsessionResult(Long subsessionId) {
         try {
             LinkResponseDto linkResponse = getLinkResponse(
@@ -707,6 +739,22 @@ public class IrDataClientImpl implements IrDataClient {
     public List<DriverQualifyStandingDto> getQualifyStandingEntries(ChunkInfoDto chunkInfo) {
         return getChunkedEntries(chunkInfo, new TypeReference<DriverQualifyStandingDto[]>() {
         });
+    }
+
+    @Override
+    public SeasonListDto getSeasonList(Long seasonYear, Long seasonQuarter) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(
+                    DataApiConstants.GET_SEASON_LIST_URL + SEASON_YEAR_URL_PARAM + seasonYear +
+                            SEASON_QUARTER_URL_PARAM + seasonQuarter);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonListDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_SEASON_LIST_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
     }
 
     @Override
@@ -935,6 +983,38 @@ public class IrDataClientImpl implements IrDataClient {
     public List<SeriesSessionSearchResultDto> getSeriesResultEntries(ChunkInfoDto chunkInfo) {
         return getChunkedEntries(chunkInfo, new TypeReference<SeriesSessionSearchResultDto[]>() {
         });
+    }
+
+    @Override
+    public MessagingDto<WorldRecordsDataDto> getWorldRecords(Long carId, Long trackId) {
+        return getWorldRecords(carId, trackId, null, null);
+    }
+
+    @Override
+    public MessagingDto<WorldRecordsDataDto> getWorldRecords(Long carId, Long trackId, Long seasonYear, Long seasonQuarter) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_WORLD_RECORDS_URL)
+                    .append("?car_id=").append(carId)
+                    .append("&track_id=").append(trackId);
+            if (seasonYear != null) {
+                uri.append("&season_year=").append(seasonYear);
+            }
+            if (seasonQuarter != null) {
+                uri.append(SEASON_QUARTER_URL_PARAM).append(seasonQuarter);
+            }
+            return getStructuredData(uri.toString(), new TypeReference<MessagingDto<WorldRecordsDataDto>>() {});
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public List<DriverRecordDto> getDriverRecords(ChunkInfoDto chunkInfo) {
+        if(chunkInfo != null) {
+            return getChunkedEntries(chunkInfo, new TypeReference<DriverRecordDto[]>() {
+            });
+        }
+        return List.of();
     }
 
     public JsonNode getApiDocs() {

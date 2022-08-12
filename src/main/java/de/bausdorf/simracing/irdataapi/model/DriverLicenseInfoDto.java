@@ -45,4 +45,8 @@ public class DriverLicenseInfoDto {
     private Long safetyRating;
     @JsonProperty("color")
     private String color;
+    @JsonProperty("irating")
+    private Long irating;
+    @JsonProperty("tt_rating")
+    private Long ttRating;
 }
