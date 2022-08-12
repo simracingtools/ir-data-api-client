@@ -6,11 +6,12 @@ on:
     - cron:  '30 5 * * 6'
   workflow_dispatch:
 
-
 jobs:
-  build:
+  tests:
+    name: Test API compliance
     runs-on: ubuntu-latest
-
+    outputs:
+      test-output: ${{steps.compliance-test.result}}
     steps:
       - uses: actions/checkout@v3
       - name: Set up JDK 11
@@ -26,5 +27,24 @@ jobs:
         env:
           IRDATAAPI_USER: ${{secrets.IR_USERNAME}}
           IRDATAAPI_PASSWORD: ${{secrets.IR_PASSWORD}}
-      - name: Test Compliance
-        run: mvn --batch-mode --update-snapshots verify -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest
+      - name: Compliance Test
+        id: compliance-test
+        run: |
+          mvn --batch-mode --update-snapshots verify -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest
+          echo "::set-output name=result::$(cat target/surefire-reports/*.txt)"
+
+  notify:
+    name: Notify failed tests
+    needs: tests
+    if: failure()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: jayqi/failed-build-issue-action@v1
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          title-template: "Compliance test failed"
+          label-name: "Failed test"
+          body-template: |
+            GitHub Actions workflow [{{workflow}} #{{runNumber}}](https://github.com/{{repo.owner}}/{{repo.repo}}/actions/runs/{{runNumber}}) failed.
+
+            ${{needs.tests.outputs.test-output}}
