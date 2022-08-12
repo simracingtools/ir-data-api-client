@@ -20,8 +20,8 @@ jobs:
           distribution: 'adopt'
       - name: Provide test properties
         run: |
-          echo  "irdataapi_user=" > src/test/resources/application-test.properties
-          echo  "irdataapi_password=" >> src/test/resources/application-test.properties
+          echo  "irdataap.user=" > src/test/resources/application-test.properties
+          echo  "irdataapi.password=" >> src/test/resources/application-test.properties
           cat src/test/resources/application-test.properties
         env:
           irdataapi_user: ${{secrets.IR_USERNAME}}
