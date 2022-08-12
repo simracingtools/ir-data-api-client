@@ -78,6 +78,7 @@ class IrDataClientCompletenessTest {
 
     private void authenticate() {
         if (!dataClient.isAuthenticated()) {
+            log.info("Authenticate with user {}", config.getUser());
             LoginRequestDto dto = LoginRequestDto.builder()
                     .email(config.getUser())
                     .password(config.getPassword())
