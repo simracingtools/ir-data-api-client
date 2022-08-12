@@ -20,12 +20,14 @@ jobs:
           distribution: 'adopt'
       - name: Provide test properties
         run: |
-          echo $irdataapi_user
-          echo  "irdataapi_user=$irdataapi_user" > src/test/resources/application-test.properties
-          echo  "irdataapi_password=$irdataapi_password" >> src/test/resources/application-test.properties
+          echo  "irdataapi_user=" > src/test/resources/application-test.properties
+          echo  "irdataapi_password=" >> src/test/resources/application-test.properties
           cat src/test/resources/application-test.properties
         env:
           irdataapi_user: ${{secrets.IR_USERNAME}}
           irdataapi_password: ${{secrets.IR_PASSWORD}}
       - name: Build with Maven
         run: mvn --batch-mode --update-snapshots verify -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest
+        env:
+          irdataapi_user: ${{secrets.IR_USERNAME}}
+          irdataapi_password: ${{secrets.IR_PASSWORD}}
