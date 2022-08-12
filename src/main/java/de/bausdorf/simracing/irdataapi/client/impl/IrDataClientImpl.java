@@ -10,12 +10,12 @@ package de.bausdorf.simracing.irdataapi.client.impl;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -24,6 +24,7 @@ package de.bausdorf.simracing.irdataapi.client.impl;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.exc.UnrecognizedPropertyException;
 import de.bausdorf.simracing.irdataapi.client.*;
 import de.bausdorf.simracing.irdataapi.model.*;
 import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequest;
@@ -106,7 +107,7 @@ public class IrDataClientImpl implements IrDataClient {
             String responseBody = response.getBody();
             if (responseBody != null) {
                 authResponse = mapper.readValue(responseBody, AuthResponseDto.class);
-                if(authResponse.getAuthcode().equalsIgnoreCase("0")) {
+                if (authResponse.getAuthcode().equalsIgnoreCase("0")) {
                     throw new AuthorizationException(requestDto.getEmail() + " not authorized");
                 }
                 log.info("iRacing DataApi authenticated for custId: {}", authResponse.getCustId());
@@ -128,9 +129,9 @@ public class IrDataClientImpl implements IrDataClient {
     public MembersInfoDto getMembersInfo(@NonNull List<Long> custIds) {
         var uri = new StringBuilder(DataApiConstants.GET_MEMBERS_URL);
         uri.append("?cust_ids=");
-        for(var i = 0; i < custIds.size(); i++) {
+        for (var i = 0; i < custIds.size(); i++) {
             uri.append(custIds.get(i));
-            if(i < custIds.size() - 1) {
+            if (i < custIds.size() - 1) {
                 uri.append(',');
             }
         }
@@ -138,8 +139,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MembersInfoDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MembersInfoDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBERS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -152,8 +154,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_USERINFO_URL);
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<UserInfoDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<UserInfoDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_USERINFO_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -173,8 +176,9 @@ public class IrDataClientImpl implements IrDataClient {
                     ? uriWithCustIdParameter(DataApiConstants.GET_MEMBER_SUMMARY_URL, custId)
                     : DataApiConstants.GET_MEMBER_SUMMARY_URL);
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberSummaryDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_SUMMARY_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -187,8 +191,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_YEARLY_URL, custId));
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberYearlyDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberYearlyDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_YEARLY_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -201,8 +206,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CAREER_URL, custId));
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberCareerDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberCareerDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_CAREER_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -218,8 +224,9 @@ public class IrDataClientImpl implements IrDataClient {
             uri.append("&chart_type=").append(chartType.toString());
 
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberChartDataDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberChartDataDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_CHART_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -229,12 +236,13 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public MemberDivisonDto getMemberDivision(Long seasonId, Long eventType) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_MEMBER_DIVISION_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + EVENT_TYPE_URL_PARAM + eventType.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberDivisonDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberDivisonDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_DIVISION_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -249,13 +257,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonDriverStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_DRIVER_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_DRIVER_STANDINGS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -270,13 +279,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonSupersessionStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SUPERSESSION_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SUPERSESSION_STANDINGS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -291,13 +301,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonTimeTrialStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TT_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TT_STANDINGS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -307,13 +318,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonTimeTrialResults(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TT_RESULTS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TT_RESULTS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -323,13 +335,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonQualifyResults(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_QUALIFY_RESULTS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + RACE_WEEK_NUM_URL_PARAM + raceWeekNum.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_QUALIFY_RESULTS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -344,13 +357,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public DriverStandingsDto getSeasonTeamStandings(Long seasonId, Long carClassId, Long raceWeekNum) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TEAM_STANDINGS_URL
                     + SEASON_ID_URL_PARAM + seasonId.toString()
                     + CAR_CLASS_ID_URL_PARAM + carClassId.toString()
                     + (raceWeekNum != null ? RACE_WEEK_NUM_URL_PARAM + raceWeekNum : ""));
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<DriverStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TEAM_STANDINGS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -363,8 +377,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             LinkResponseDto linkResponse = getLinkResponse(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_RECENT_RACES_URL, custId));
 
-            if (linkResponse!= null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberRecentRacesDto>(){});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberRecentRacesDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_RECENT_RACES_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -376,8 +391,9 @@ public class IrDataClientImpl implements IrDataClient {
     public CarInfoDto[] getCarInfo() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CARS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<CarInfoDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CarInfoDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_CARS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -389,8 +405,9 @@ public class IrDataClientImpl implements IrDataClient {
     public CarClassDto[] getCarClasses() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_CLASSES_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<CarClassDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CarClassDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_CAR_CLASSES_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -401,7 +418,8 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public ConstantDto[] getDivisions() {
         try {
-            return getStructuredData(DataApiConstants.GET_DIVISIONS_URL, new TypeReference<ConstantDto[]>() {});
+            return getStructuredData(DataApiConstants.GET_DIVISIONS_URL, new TypeReference<ConstantDto[]>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -410,7 +428,8 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public ConstantDto[] getCategories() {
         try {
-            return getStructuredData(DataApiConstants.GET_CATEGORIES_URL, new TypeReference<ConstantDto[]>() {});
+            return getStructuredData(DataApiConstants.GET_CATEGORIES_URL, new TypeReference<ConstantDto[]>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -419,7 +438,8 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public ConstantDto[] getEventTypes() {
         try {
-            return getStructuredData(DataApiConstants.GET_EVENT_TYPES_URL, new TypeReference<ConstantDto[]>() {});
+            return getStructuredData(DataApiConstants.GET_EVENT_TYPES_URL, new TypeReference<ConstantDto[]>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -429,8 +449,9 @@ public class IrDataClientImpl implements IrDataClient {
     public Map<Long, CarAssetDto> getCarAssets() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_CAR_ASSETS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, CarAssetDto>>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, CarAssetDto>>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_CAR_ASSETS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -442,8 +463,9 @@ public class IrDataClientImpl implements IrDataClient {
     public Map<Long, TrackAssetDto> getTrackAssets() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACK_ASSETS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, TrackAssetDto>>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, TrackAssetDto>>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TRACK_ASSETS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -455,8 +477,9 @@ public class IrDataClientImpl implements IrDataClient {
     public Map<Long, SeriesAssetDto> getSeriesAssets() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_ASSETS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, SeriesAssetDto>>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<HashMap<Long, SeriesAssetDto>>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SERIES_ASSETS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -466,10 +489,11 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public LeagueInfoDto getLeagueInfo(long leagueId) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LEAGUE_URL + LEAGUE_ID_URL_PARAM + leagueId);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueInfoDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueInfoDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -479,10 +503,11 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public SeasonDto[] getSeasonInfo(Boolean includeSeries) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SEASONS_URL + "?include_series=" + includeSeries.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SEASONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -492,10 +517,11 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public SeriesInfoDto[] getSeriesStats() {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_STATS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesInfoDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesInfoDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SERIES_STATS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -505,10 +531,11 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public SeriesDto[] getSeries() {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_SERIES_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SERIES_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -520,8 +547,9 @@ public class IrDataClientImpl implements IrDataClient {
     public TrackInfoDto[] getTrackInfos() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<TrackInfoDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<TrackInfoDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TRACKS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -533,8 +561,9 @@ public class IrDataClientImpl implements IrDataClient {
     public LicenseGroupDto[] getLicenseGroups() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LICENSES_URL);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LicenseGroupDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LicenseGroupDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LICENSES_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -555,8 +584,9 @@ public class IrDataClientImpl implements IrDataClient {
                 url.append(lookupTypes.get(i).toUrlParameters());
             }
             LinkResponseDto linkResponse = getLinkResponse(url.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LookupDto[]>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LookupDto[]>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LOOKUP_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -566,11 +596,12 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public SubsessionResultDto getSubsessionResult(Long subsessionId) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(
                     DataApiConstants.GET_SUBSESSION_RESULT_URL + SUBSESSION_ID_URL_PARAM + subsessionId.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SubsessionResultDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SubsessionResultDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SUBSESSION_RESULT_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -580,12 +611,13 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public LapChartDto getLapChartData(Long subsessionId, Long simsessionNumber) {
-        try{
+        try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_LAP_CHART_DATA_URL
                     + SUBSESSION_ID_URL_PARAM + subsessionId.toString()
                     + SIMSESSION_NUMBER_URL_PARAM + simsessionNumber.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LapChartDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LAP_CHART_DATA_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -600,12 +632,12 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public LapDataDto getLapData(Long subsessionId, Long simsessionNumber, Long driverOrTeamId, boolean isTeamId) {
-        try{
+        try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LAP_DATA_URL)
                     .append(SUBSESSION_ID_URL_PARAM).append(subsessionId)
                     .append(SIMSESSION_NUMBER_URL_PARAM).append(simsessionNumber);
-            if(driverOrTeamId != null) {
-                if(isTeamId) {
+            if (driverOrTeamId != null) {
+                if (isTeamId) {
                     uri.append("&team_id=").append(driverOrTeamId);
                 } else {
                     uri.append("&cust_id=").append(driverOrTeamId);
@@ -613,8 +645,9 @@ public class IrDataClientImpl implements IrDataClient {
             }
 
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LapDataDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LapDataDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LAP_DATA_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -624,14 +657,15 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public EventLogDto getEventLog(Long subsessionId, Long simsessionNumber) {
-        try{
+        try {
             String uri = DataApiConstants.GET_EVENT_LOG_URL +
                     SUBSESSION_ID_URL_PARAM + subsessionId +
                     SIMSESSION_NUMBER_URL_PARAM + simsessionNumber;
 
             LinkResponseDto linkResponse = getLinkResponse(uri);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<EventLogDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<EventLogDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LAP_DATA_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -641,32 +675,38 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public List<LapChartEntryDto> getLapEntries(@NonNull ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<LapChartEntryDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<LapChartEntryDto[]>() {
+        });
     }
 
     @Override
     public List<EventLogEntryDto> getEventLogEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<EventLogEntryDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<EventLogEntryDto[]>() {
+        });
     }
 
     @Override
     public List<DriverStandingDto> getDriverStandingEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<DriverStandingDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverStandingDto[]>() {
+        });
     }
 
     @Override
     public List<TeamStandingDto> getTeamStandingEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<TeamStandingDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<TeamStandingDto[]>() {
+        });
     }
 
     @Override
     public List<DriverTtStandingDto> getTimeTrialStandingEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<DriverTtStandingDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverTtStandingDto[]>() {
+        });
     }
 
     @Override
     public List<DriverQualifyStandingDto> getQualifyStandingEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<DriverQualifyStandingDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<DriverQualifyStandingDto[]>() {
+        });
     }
 
     @Override
@@ -681,19 +721,20 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public SeasonResultsDto getSeasonResults(Long seasonId, Long eventType, Long raceWeekNum) {
-        try{
+        try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_SEASON_RESULTS_URL)
                     .append(SEASON_ID_URL_PARAM).append(seasonId);
-            if(eventType != null) {
+            if (eventType != null) {
                 uri.append(EVENT_TYPE_URL_PARAM).append(eventType);
             }
-            if(raceWeekNum !=  null) {
+            if (raceWeekNum != null) {
                 uri.append(RACE_WEEK_NUM_URL_PARAM).append(raceWeekNum);
             }
 
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonResultsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonResultsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_SEASON_RESULTS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -707,8 +748,9 @@ public class IrDataClientImpl implements IrDataClient {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_TEAM_MEMBERS_URL)
                     .append("?team_id=").append(teamId);
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<TeamInfoDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<TeamInfoDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_TEAM_MEMBERS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -726,12 +768,13 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_CUST_LEAGUE_SESSIONS_URL)
                     .append("?mine=").append(mine);
-            if(packageId != null) {
+            if (packageId != null) {
                 uri.append("&package_id=").append(packageId);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<CustLeagueSessionsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<CustLeagueSessionsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_CUST_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -744,8 +787,9 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             String uri = DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + searchRequest.toQueryString();
             LinkResponseDto linkResponse = getLinkResponse(uri);
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueDirectoryDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueDirectoryDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.SEARCH_LEAGUE_DIRECTORY_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -758,12 +802,13 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId);
-            if(seasonId != null) {
+            if (seasonId != null) {
                 uri.append(SEASON_ID_URL_PARAM2).append(seasonId);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LeaguePointSystemsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeaguePointSystemsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_POINT_SYSTEMS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -781,12 +826,13 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SEASONS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId);
-            if(retired != null) {
+            if (retired != null) {
                 uri.append("&retired=").append(retired);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_SEASONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -805,15 +851,16 @@ public class IrDataClientImpl implements IrDataClient {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SEASON_STANDINGS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId)
                     .append(SEASON_ID_URL_PARAM2).append(seasonId);
-            if(carClassId != null) {
+            if (carClassId != null) {
                 uri.append(CAR_CLASS_ID_URL_PARAM).append(carClassId);
             }
-            if(carId != null) {
+            if (carId != null) {
                 uri.append("&car_id=").append(carId);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonStandingsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeasonStandingsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_SEASON_STANDINGS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -837,12 +884,13 @@ public class IrDataClientImpl implements IrDataClient {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_LEAGUE_SESSIONS_URL)
                     .append(LEAGUE_ID_URL_PARAM).append(leagueId)
                     .append(SEASON_ID_URL_PARAM2).append(seasonId);
-            if(resultsOnly != null) {
+            if (resultsOnly != null) {
                 uri.append("&results_only=").append(resultsOnly);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
-            if(linkResponse != null) {
-                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonSessionsDto>() {});
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueSeasonSessionsDto>() {
+                });
             }
             throw new DataApiException(DataApiConstants.GET_LEAGUE_SESSIONS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
@@ -859,7 +907,8 @@ public class IrDataClientImpl implements IrDataClient {
     public SearchResultDto searchHostedSeries(ResultSearchRequest searchRequest) {
         try {
             String uri = DataApiConstants.SEARCH_HOSTED_RESULTS_URL + searchRequest.toQueryString();
-            return getStructuredData(uri, new TypeReference<SearchResultDto>() {});
+            return getStructuredData(uri, new TypeReference<SearchResultDto>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -867,14 +916,16 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public List<HostedSessionSearchResultDto> getHostedResultEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<HostedSessionSearchResultDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<HostedSessionSearchResultDto[]>() {
+        });
     }
 
     @Override
     public SearchResultDto searchIRacingSeries(ResultSearchRequest searchRequest) {
         try {
             String uri = DataApiConstants.SEARCH_SERIES_RESULTS_URL + searchRequest.toQueryString();
-            return getStructuredData(uri, new TypeReference<SearchResultDto>() {});
+            return getStructuredData(uri, new TypeReference<SearchResultDto>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -882,12 +933,14 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public List<SeriesSessionSearchResultDto> getSeriesResultEntries(ChunkInfoDto chunkInfo) {
-        return getChunkedEntries(chunkInfo, new TypeReference<SeriesSessionSearchResultDto[]>() {});
+        return getChunkedEntries(chunkInfo, new TypeReference<SeriesSessionSearchResultDto[]>() {
+        });
     }
 
     public JsonNode getApiDocs() {
         try {
-            return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {});
+            return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -895,7 +948,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     private LinkResponseDto getLinkResponse(@NonNull String uri) throws IOException {
         String response = restTemplate.getForEntity(URI.create(uri), String.class).getBody();
-        if(response != null && response.contains("Unauthorized")) {
+        if (response != null && response.contains("Unauthorized")) {
             authResponse = null;
             throw new AuthorizationException("No longer authorized, call authenticate()");
         } else if (response == null) {
@@ -909,11 +962,17 @@ public class IrDataClientImpl implements IrDataClient {
         var uriBuilder = UriComponentsBuilder.fromUriString(link);
         ResponseEntity<String> infoResponse = restTemplate.getForEntity(uriBuilder.build(true).toUri(), String.class);
         String infoResponseBody = infoResponse.getBody();
-        if(isLogResponseJson()) {
+        if (isLogResponseJson()) {
             jsonLogger.info("{}: {}", targetType.getType().getTypeName(), infoResponseBody);
         }
         if (infoResponseBody != null) {
-            return mapper.readValue(infoResponseBody, targetType);
+            try {
+                return mapper.readValue(infoResponseBody, targetType);
+            } catch (UnrecognizedPropertyException e) {
+                log.error(e.getMessage());
+                log.info(infoResponseBody);
+                return null;
+            }
         } else {
             throw new DataApiException("Null body from AWS, status code " + infoResponse.getStatusCode());
         }
