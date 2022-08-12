@@ -2,6 +2,51 @@
 
 Changelog of ir-data-api-client.
 
+## v2.4.0 (2022-08-12)
+
+
+
+### Features
+
+-  Missing endpoints added ([0adee](https://github.com/simracingtools/ir-data-api-client/commit/0adee7fee75d9da) Robert Bausdorf)  
+
+
+### Bug Fixes
+
+-  License file header added ([5b90f](https://github.com/simracingtools/ir-data-api-client/commit/5b90f0b0b6ee8ac) Robert Bausdorf)  
+-  Missing properties added ([19506](https://github.com/simracingtools/ir-data-api-client/commit/1950661d062ba43) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.4.0**
+
+
+[5775c](https://github.com/simracingtools/ir-data-api-client/commit/5775c5328c55ec4) Robert Bausdorf *2022-08-12 18:10:46*
+
+**Merge remote-tracking branch 'origin/main' into main**
+
+
+[1a146](https://github.com/simracingtools/ir-data-api-client/commit/1a1463266b87ad8) Robert Bausdorf *2022-08-12 16:43:01*
+
+**Update test-action.yaml**
+
+* fix: Syntax in application-test.properties 
+
+[f822a](https://github.com/simracingtools/ir-data-api-client/commit/f822a2ff8bab3e5) Robert Bausdorf *2022-08-12 14:34:45*
+
+**Update test-action.yaml**
+
+* build: Fix test properties 
+
+[f05d3](https://github.com/simracingtools/ir-data-api-client/commit/f05d30fd7c9805d) Robert Bausdorf *2022-08-12 14:32:14*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[a3c12](https://github.com/simracingtools/ir-data-api-client/commit/a3c1253cad69329) Robert Bausdorf *2022-07-16 13:04:55*
+
+
 ## v2.3.1 (2022-07-16)
 
 
