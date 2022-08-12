@@ -1002,7 +1002,8 @@ public class IrDataClientImpl implements IrDataClient {
             if (seasonQuarter != null) {
                 uri.append(SEASON_QUARTER_URL_PARAM).append(seasonQuarter);
             }
-            return getStructuredData(uri.toString(), new TypeReference<MessagingDto<WorldRecordsDataDto>>() {});
+            return getStructuredData(uri.toString(), new TypeReference<MessagingDto<WorldRecordsDataDto>>() {
+            });
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -1010,7 +1011,7 @@ public class IrDataClientImpl implements IrDataClient {
 
     @Override
     public List<DriverRecordDto> getDriverRecords(ChunkInfoDto chunkInfo) {
-        if(chunkInfo != null) {
+        if (chunkInfo != null) {
             return getChunkedEntries(chunkInfo, new TypeReference<DriverRecordDto[]>() {
             });
         }

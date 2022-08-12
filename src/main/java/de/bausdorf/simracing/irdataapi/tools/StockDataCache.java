@@ -10,12 +10,12 @@ package de.bausdorf.simracing.irdataapi.tools;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -87,7 +87,7 @@ public class StockDataCache {
     }
 
     public Long cacheLastModified() {
-        if(cacheExists()) {
+        if (cacheExists()) {
             File cacheFile = new File(cacheDir.toFile().getAbsolutePath() + File.separator + TRACKS_JSON);
             return cacheFile.lastModified();
         }
@@ -95,7 +95,7 @@ public class StockDataCache {
     }
 
     public void fetchFromService(IrDataClient dataClient) {
-        if(!dataClient.isAuthenticated()) {
+        if (!dataClient.isAuthenticated()) {
             throw new AuthorizationException("StockDataCache cannot be fetched from unauthorized client");
         }
         tracks = dataClient.getTrackInfos();
@@ -107,7 +107,7 @@ public class StockDataCache {
         licenseGroups = dataClient.getLicenseGroups();
 
         try {
-            if(!cacheExists()) {
+            if (!cacheExists()) {
                 Files.createDirectories(cacheDir);
             }
             writeToFile(cacheDir.toFile().getAbsolutePath() + File.separator + TRACKS_JSON, tracks);
@@ -123,17 +123,24 @@ public class StockDataCache {
     }
 
     public void fetchFromCache() throws IOException {
-        tracks = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + TRACKS_JSON, new TypeReference<TrackInfoDto[]>() {});
-        trackAssets = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + TRACK_ASSETS_JSON, new TypeReference<Map<Long, TrackAssetDto>>() {});
-        cars = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CARS_JSON, new TypeReference<CarInfoDto[]>() {});
-        carClasses = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_CLASSES_JSON, new TypeReference<CarClassDto[]>() {});
-        carAssets = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_ASSETS_JSON, new TypeReference<Map<Long, CarAssetDto>>() {});
-        divisions = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + DIVISIONS_JSON, new TypeReference<ConstantDto[]>() {});
-        licenseGroups = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + LICENSE_GROUPS_JSON, new TypeReference<LicenseGroupDto[]>() {});
+        tracks = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + TRACKS_JSON, new TypeReference<TrackInfoDto[]>() {
+        });
+        trackAssets = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + TRACK_ASSETS_JSON, new TypeReference<Map<Long, TrackAssetDto>>() {
+        });
+        cars = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CARS_JSON, new TypeReference<CarInfoDto[]>() {
+        });
+        carClasses = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_CLASSES_JSON, new TypeReference<CarClassDto[]>() {
+        });
+        carAssets = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + CAR_ASSETS_JSON, new TypeReference<Map<Long, CarAssetDto>>() {
+        });
+        divisions = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + DIVISIONS_JSON, new TypeReference<ConstantDto[]>() {
+        });
+        licenseGroups = readFromFile(cacheDir.toFile().getAbsolutePath() + File.separator + LICENSE_GROUPS_JSON, new TypeReference<LicenseGroupDto[]>() {
+        });
     }
 
     private <T> T readFromFile(String fileName, TypeReference<T> targetType) throws IOException {
-        try(InputStream fis = new FileInputStream(fileName)) {
+        try (InputStream fis = new FileInputStream(fileName)) {
             return mapper.readValue(fis, targetType);
         }
     }

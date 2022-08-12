@@ -10,12 +10,12 @@ package de.bausdorf.simracing.irdataapi.tools;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -63,7 +63,7 @@ public class JsonFileCache<T> {
     }
 
     public long cacheLastModified() {
-        if(cacheExists()) {
+        if (cacheExists()) {
             File cacheFile = new File(getFilePath());
             return cacheFile.lastModified();
         }
@@ -75,9 +75,9 @@ public class JsonFileCache<T> {
         try {
             WriteCacheWrapper<T> writeCacheWrapper = new WriteCacheWrapper<>();
             writeCacheWrapper.setData(data);
-            if(data instanceof Collection<?>) {
+            if (data instanceof Collection<?>) {
                 writeCacheWrapper.setCollectionTypeName(data.getClass().getName());
-                Optional<?> firstElement = ((Collection<?>)data).stream().findFirst();
+                Optional<?> firstElement = ((Collection<?>) data).stream().findFirst();
                 firstElement.ifPresent(o -> writeCacheWrapper.setElementTypeName(o.getClass().getName()));
             } else {
                 writeCacheWrapper.setElementTypeName(data.getClass().getName());
@@ -89,11 +89,11 @@ public class JsonFileCache<T> {
     }
 
     private T readFromFile(String fileName) throws IOException, ClassNotFoundException {
-        try(InputStream fis = new FileInputStream(fileName)) {
+        try (InputStream fis = new FileInputStream(fileName)) {
             ReadCacheWrapper<T> cacheWrapper = mapper.readValue(fis, ReadCacheWrapper.class);
             Class<?> elementClass = Class.forName(cacheWrapper.getElementTypeName());
-            if(cacheWrapper.getCollectionTypeName() == null) {
-                return (T)mapper.convertValue(cacheWrapper.getData(), elementClass);
+            if (cacheWrapper.getCollectionTypeName() == null) {
+                return (T) mapper.convertValue(cacheWrapper.getData(), elementClass);
             } else {
                 Class<? extends Collection> collectionClass =
                         (Class<? extends Collection>) Class.forName(cacheWrapper.getCollectionTypeName());

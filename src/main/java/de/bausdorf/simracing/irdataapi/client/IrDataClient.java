@@ -10,12 +10,12 @@ package de.bausdorf.simracing.irdataapi.client;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- * 
+ *
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- * 
+ *
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -149,30 +149,40 @@ public interface IrDataClient {
     TeamInfoDto getTeamMembers(@NonNull Long teamId);
 
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine);
+
     CustLeagueSessionsDto getLeagueSessions(@NonNull Boolean mine, @Nullable Long packageId);
 
     LeagueDirectoryDto searchLeagueDirectory(@NonNull LeagueSearchRequest searchRequest);
 
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, Long seasonId);
+
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId);
 
     LeagueSeasonsDto getLeagueSeasons(@NonNull Long leagueId, @Nullable Boolean retired);
+
     LeagueSeasonsDto getLeagueSeasons(@NonNull Long leagueId);
 
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Long carClassId, @Nullable Long carId);
+
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Long carClassId);
+
     SeasonStandingsDto getLeagueSeasonStandings(@NonNull Long leagueId, @NonNull Long seasonId);
 
     LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId, @Nullable Boolean resultsOnly);
+
     LeagueSeasonSessionsDto getLeagueSeasonSessions(@NonNull Long leagueId, @NonNull Long seasonId);
 
     SearchResultDto searchHostedSeries(@NonNull ResultSearchRequest searchRequest);
+
     List<HostedSessionSearchResultDto> getHostedResultEntries(@NonNull ChunkInfoDto chunkInfo);
 
     SearchResultDto searchIRacingSeries(@NonNull ResultSearchRequest searchRequest);
+
     List<SeriesSessionSearchResultDto> getSeriesResultEntries(@NonNull ChunkInfoDto chunkInfo);
 
     MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId);
+
     MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId, Long seasonYear, Long seasonQuarter);
+
     List<DriverRecordDto> getDriverRecords(@NonNull ChunkInfoDto chunkInfo);
 }
