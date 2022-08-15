@@ -46,6 +46,8 @@ public class TeamInfoDto {
     private ZonedDateTime created;
     @JsonProperty("hidden")
     private Boolean hidden;
+    @JsonProperty("message")
+    private String message;
     @JsonProperty("about")
     private String about;
     @JsonProperty("url")
