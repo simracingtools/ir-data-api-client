@@ -252,6 +252,8 @@ public class CustomSessionInfoDto {
     private SessionTypeDto[] sessionTypes;
     @JsonProperty("can_join")
     private Boolean canJoin;
+    @JsonProperty("sess_admin")
+    private Boolean sessionAdmin;
     @JsonProperty("image")
     private ImageDto image;
     @JsonProperty("owner")

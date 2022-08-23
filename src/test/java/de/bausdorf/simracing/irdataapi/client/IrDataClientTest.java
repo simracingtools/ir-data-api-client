@@ -616,6 +616,31 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetJoinableLeagueSessionsForPackageId() {
+        authenticate();
+        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(197L);
+        assertNotNull(sessionsDto);
+        assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
+        assertEquals(197L, sessionsDto.getPackageId());
+        assertNotEquals(0, sessionsDto.getSessions().length);
+
+        Arrays.stream(sessionsDto.getSessions()).forEach(session -> log.info("{}: {}", session.getLeagueName(), session.getSessionName()));
+        log.info("fetched {} joinable sessions", sessionsDto.getSessions().length);
+    }
+
+    @Test
+    void testGetAllJoinableLeagueSessions() {
+        authenticate();
+        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions();
+        assertNotNull(sessionsDto);
+        assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
+        assertNotEquals(0, sessionsDto.getSessions().length);
+
+        Arrays.stream(sessionsDto.getSessions()).forEach(session -> log.info("{}: {}", session.getLeagueName(), session.getSessionName()));
+        log.info("fetched {} joinable sessions", sessionsDto.getSessions().length);
+    }
+
+    @Test
     void testGetSpecialLeagueSessions() {
         authenticate();
         CustLeagueSessionsDto sessionsDto = dataClient.getLeagueSessions(false, 186L);

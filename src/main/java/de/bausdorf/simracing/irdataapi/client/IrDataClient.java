@@ -189,4 +189,8 @@ public interface IrDataClient {
     LeagueMembershipDto[] getLeagueMembership();
 
     LeagueMembershipDto[] getLeagueMembership(@NonNull Boolean includeCompleteLeagueInfo);
+
+    JoinableSessionsDto getJoinableHostedSessions();
+
+    JoinableSessionsDto getJoinableHostedSessions(@NonNull Long packageId);
 }

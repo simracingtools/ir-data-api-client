@@ -1038,6 +1038,29 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public JoinableSessionsDto getJoinableHostedSessions() {
+        return getJoinableHostedSessions(null);
+    }
+
+    @Override
+    public JoinableSessionsDto getJoinableHostedSessions(Long packageId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_COMBINED_SESSIONS_URL);
+            if (packageId != null) {
+                uri.append("?package_id=").append(packageId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<JoinableSessionsDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_COMBINED_SESSIONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {

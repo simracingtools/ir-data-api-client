@@ -10,12 +10,12 @@ package de.bausdorf.simracing.irdataapi.model;
  * it under the terms of the GNU General Public License as
  * published by the Free Software Foundation, either version 3 of the
  * License, or (at your option) any later version.
- *
+ * 
  * This program is distributed in the hope that it will be useful,
  * but WITHOUT ANY WARRANTY; without even the implied warranty of
  * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  * GNU General Public License for more details.
- *
+ * 
  * You should have received a copy of the GNU General Public
  * License along with this program.  If not, see
  * <http://www.gnu.org/licenses/gpl-3.0.html>.
@@ -25,22 +25,18 @@ package de.bausdorf.simracing.irdataapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
-public class HeatSpecDto {
-    @JsonProperty("grid_id")
-    private Long gridId;
-    @JsonProperty("num_servers")
-    private Long numServers;
-    @JsonProperty("added_drivers")
-    private Boolean addedDrivers;
-    @JsonProperty("heat_final")
-    private Boolean heatFinal;
-    @JsonProperty("root_private_session_id")
-    private Long rootPrivateSessionId;
-    @JsonProperty("session_type")
-    private Long sessionType;
+public class JoinableSessionsDto {
+    @JsonProperty("subscribed")
+    private Boolean subscribed;
+    @JsonProperty("sequence")
+    private Long sequence;
+    @JsonProperty("sessions")
+    private CustomSessionInfoDto[] sessions;
+    @JsonProperty("success")
+    private Boolean success;
+    @JsonProperty("package_id")
+    private Long packageId;
 }
