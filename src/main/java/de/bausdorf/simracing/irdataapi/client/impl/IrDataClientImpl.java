@@ -1107,6 +1107,24 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public MemberProfileDto getMemberProfile(Long custId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_MEMBER_PROFILE_URL);
+            if (custId != null) {
+                uri.append("?cust_id=").append(custId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberProfileDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_PROFILE_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {

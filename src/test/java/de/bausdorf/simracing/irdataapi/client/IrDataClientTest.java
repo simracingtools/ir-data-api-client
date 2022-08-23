@@ -32,6 +32,9 @@ import de.bausdorf.simracing.irdataapi.model.search.SeriesResultSearchRequest;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullSource;
+import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -76,6 +79,19 @@ class IrDataClientTest {
         MemberSummaryDto memberSummaryDto = dataClient.getMemberSummary(CUST_ID);
         assertNotNull(memberSummaryDto);
         log.info(memberSummaryDto.toString());
+    }
+
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(longs = {185159L, 372473L})
+    void testGetMemberProfile(Long custId) {
+        authenticate();
+        MemberProfileDto memberProfile = dataClient.getMemberProfile(custId);
+        assertNotNull(memberProfile);
+        assertTrue(memberProfile.getSuccess());
+
+        log.info("{}: {}, last login {}", memberProfile.getCustId(),
+                memberProfile.getMemberInfo().getDisplayName(), memberProfile.getMemberInfo().getLastLogin());
     }
 
     @Test

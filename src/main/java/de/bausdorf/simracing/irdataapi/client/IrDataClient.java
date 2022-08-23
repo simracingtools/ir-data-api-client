@@ -63,19 +63,19 @@ public interface IrDataClient {
 
     DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId);
 
-    DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+    DriverStandingsDto getSeasonDriverStandings(@NonNull Long seasonId, @NonNull Long carClassId, @Nullable Long raceWeekNum);
 
     DriverStandingsDto getSeasonSupersessionStandings(@NonNull Long seasonId, @NonNull Long carClassId);
 
-    DriverStandingsDto getSeasonSupersessionStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+    DriverStandingsDto getSeasonSupersessionStandings(@NonNull Long seasonId, @NonNull Long carClassId, @Nullable Long raceWeekNum);
 
     DriverStandingsDto getSeasonTeamStandings(@NonNull Long seasonId, @NonNull Long carClassId);
 
-    DriverStandingsDto getSeasonTimeTrialStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+    DriverStandingsDto getSeasonTimeTrialStandings(@NonNull Long seasonId, @NonNull Long carClassId, @Nullable Long raceWeekNum);
 
     DriverStandingsDto getSeasonTimeTrialStandings(@NonNull Long seasonId, @NonNull Long carClassId);
 
-    DriverStandingsDto getSeasonTeamStandings(@NonNull Long seasonId, @NonNull Long carClassId, Long raceWeekNum);
+    DriverStandingsDto getSeasonTeamStandings(@NonNull Long seasonId, @NonNull Long carClassId, @Nullable Long raceWeekNum);
 
     DriverStandingsDto getSeasonTimeTrialResults(@NonNull Long seasonId, @NonNull Long carClassId, @NonNull Long raceWeekNum);
 
@@ -101,7 +101,7 @@ public interface IrDataClient {
 
     LeagueInfoDto getLeagueInfo(long leagueId);
 
-    SeasonDto[] getSeasonInfo(Boolean includeSeries);
+    SeasonDto[] getSeasonInfo(@NonNull Boolean includeSeries);
 
     SeriesInfoDto[] getSeriesStats();
 
@@ -111,7 +111,7 @@ public interface IrDataClient {
 
     LicenseGroupDto[] getLicenseGroups();
 
-    LookupDto[] getLookup(List<LookupTypes> lookupTypes);
+    LookupDto[] getLookup(@NonNull List<LookupTypes> lookupTypes);
 
     ClubHistoryDto[] getClubHistory(@NonNull Long seasonYear, @NonNull Long seasonQuarter);
 
@@ -145,7 +145,7 @@ public interface IrDataClient {
 
     SeasonResultsDto getSeasonResults(@NonNull Long seasonId, @NonNull Long eventType);
 
-    SeasonResultsDto getSeasonResults(@NonNull Long seasonId, Long eventType, Long raceWeekNum);
+    SeasonResultsDto getSeasonResults(@NonNull Long seasonId, @Nullable Long eventType, @Nullable Long raceWeekNum);
 
     TeamInfoDto getTeamMembers(@NonNull Long teamId);
 
@@ -155,7 +155,7 @@ public interface IrDataClient {
 
     LeagueDirectoryDto searchLeagueDirectory(@NonNull LeagueSearchRequest searchRequest);
 
-    LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, Long seasonId);
+    LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId, @Nullable Long seasonId);
 
     LeaguePointSystemsDto getLeaguePointSystems(@NonNull Long leagueId);
 
@@ -183,7 +183,7 @@ public interface IrDataClient {
 
     MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId);
 
-    MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId, Long seasonYear, Long seasonQuarter);
+    MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId, @Nullable Long seasonYear, @Nullable Long seasonQuarter);
 
     List<DriverRecordDto> getDriverRecords(@NonNull ChunkInfoDto chunkInfo);
 
@@ -199,7 +199,9 @@ public interface IrDataClient {
 
     RaceGuideDto getRaceGuide();
 
-    RaceGuideDto getRaceGuide(ZonedDateTime from);
+    RaceGuideDto getRaceGuide(@Nullable ZonedDateTime from);
 
-    RaceGuideDto getRaceGuide(ZonedDateTime from, @NonNull Boolean includeEndAfterFrom);
+    RaceGuideDto getRaceGuide(@Nullable ZonedDateTime from, @NonNull Boolean includeEndAfterFrom);
+
+    MemberProfileDto getMemberProfile(@Nullable Long custId);
 }
