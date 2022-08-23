@@ -2,6 +2,40 @@
 
 Changelog of ir-data-api-client.
 
+## v2.5.0 (2022-08-23)
+
+
+
+### Features
+
+-  /data/lookup/drivers endpoint added ([f9ed1](https://github.com/simracingtools/ir-data-api-client/commit/f9ed1e08fb58bec) Robert Bausdorf)  
+-  /data/stats/member_bests endpoint added ([22a6b](https://github.com/simracingtools/ir-data-api-client/commit/22a6be6a286f2b3) Robert Bausdorf)  
+-  /data/member/profile endpoint added ([8a276](https://github.com/simracingtools/ir-data-api-client/commit/8a2760d9364f2eb) Robert Bausdorf)  
+-  /data/season/race_guide endpoint added ([7ea38](https://github.com/simracingtools/ir-data-api-client/commit/7ea383df9c7cefa) Robert Bausdorf)  
+-  /data/hosted/sessions endpoint added ([5b97a](https://github.com/simracingtools/ir-data-api-client/commit/5b97ac686dd990e) Robert Bausdorf)  
+-  /data/hosted/combined_sessions endpoint added ([bbd11](https://github.com/simracingtools/ir-data-api-client/commit/bbd11988c02770c) Robert Bausdorf)  
+-  /data/league/membership endpoint added ([2b692](https://github.com/simracingtools/ir-data-api-client/commit/2b69234ec9f945a) Robert Bausdorf)  
+
+
+### Bug Fixes
+
+-  ZonedDateTime parsing supports various precisions ([13ebe](https://github.com/simracingtools/ir-data-api-client/commit/13ebeac2e1dbcfc) Robert Bausdorf)  
+-  Missing message property added to LinkResponseDto and DriverStandingsDto ([66109](https://github.com/simracingtools/ir-data-api-client/commit/66109afc6a9a881) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.5.0**
+
+
+[84131](https://github.com/simracingtools/ir-data-api-client/commit/841315a8483ef40) Robert Bausdorf *2022-08-23 17:16:08*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[d4d5a](https://github.com/simracingtools/ir-data-api-client/commit/d4d5a05609eaba0) Robert Bausdorf *2022-08-15 09:54:53*
+
+
 ## v2.4.1 (2022-08-15)
 
 
