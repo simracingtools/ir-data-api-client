@@ -193,4 +193,6 @@ public interface IrDataClient {
     JoinableSessionsDto getJoinableHostedSessions();
 
     JoinableSessionsDto getJoinableHostedSessions(@NonNull Long packageId);
+
+    JoinableSessionsDto getDrivableHostedSessions();
 }
