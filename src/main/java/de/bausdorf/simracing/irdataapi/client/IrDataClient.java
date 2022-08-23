@@ -204,4 +204,6 @@ public interface IrDataClient {
     RaceGuideDto getRaceGuide(@Nullable ZonedDateTime from, @NonNull Boolean includeEndAfterFrom);
 
     MemberProfileDto getMemberProfile(@Nullable Long custId);
+
+    MemberBestsDto getMemberBests(@Nullable Long custId, @Nullable Long carId);
 }

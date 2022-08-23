@@ -64,6 +64,7 @@ public class IrDataClientImpl implements IrDataClient {
     public static final String SEASON_ID_URL_PARAM2 = "&season_id=";
     public static final String SEASON_YEAR_URL_PARAM = "?season_year=";
     public static final String SEASON_QUARTER_URL_PARAM = "&season_quarter=";
+    public static final String CUST_ID_URL_PARAM = "?cust_id=";
     private final RestTemplate restTemplate;
     private final StatefulRestTemplateInterceptor restTemplateInterceptor;
     private final IRacingObjectMapper mapper;
@@ -1112,7 +1113,7 @@ public class IrDataClientImpl implements IrDataClient {
         try {
             StringBuilder uri = new StringBuilder(DataApiConstants.GET_MEMBER_PROFILE_URL);
             if (custId != null) {
-                uri.append("?cust_id=").append(custId);
+                uri.append(CUST_ID_URL_PARAM).append(custId);
             }
             LinkResponseDto linkResponse = getLinkResponse(uri.toString());
             if (linkResponse != null) {
@@ -1120,6 +1121,31 @@ public class IrDataClientImpl implements IrDataClient {
                 });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_PROFILE_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public MemberBestsDto getMemberBests(Long custId, Long carId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_MEMBER_BEST_URL);
+            if (custId != null) {
+                uri.append(CUST_ID_URL_PARAM).append(custId);
+            }
+            if (carId != null) {
+                if (custId == null) {
+                    uri.append("?car_id=").append(carId);
+                } else {
+                    uri.append("&car_id=").append(carId);
+                }
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberBestsDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_BEST_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -1180,7 +1206,7 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     private String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
-        return baseUri + "?cust_id=" + custId;
+        return baseUri + CUST_ID_URL_PARAM + custId;
     }
 
     public static class StatefulRestTemplateInterceptor implements ClientHttpRequestInterceptor {

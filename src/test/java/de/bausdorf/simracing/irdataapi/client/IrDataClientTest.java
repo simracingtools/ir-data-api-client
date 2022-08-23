@@ -95,6 +95,17 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberBests() {
+        authenticate();
+        MemberBestsDto memberBests = dataClient.getMemberBests(229120L, 143L);
+        assertNotNull(memberBests);
+
+        log.info("car id: {}", memberBests.getCarId());
+        Arrays.stream(memberBests.getBests())
+                .forEach(best -> log.info("{} ({}): {} ({})", best.getTrack().getTrackName(), best.getTrack().getConfigName(), best.getBestLapTime(), best.getEventType()));
+    }
+
+    @Test
     void testGetUserInfo() {
         authenticate();
         UserInfoDto userInfo = dataClient.getUserInfo();

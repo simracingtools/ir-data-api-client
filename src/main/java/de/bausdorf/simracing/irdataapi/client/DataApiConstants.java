@@ -84,9 +84,10 @@ public class DataApiConstants {
     public static final String GET_DRIVABLE_SESSIONS_URL = "https://members-ng.iracing.com/data/hosted/sessions";
     public static final String GET_RACE_GUIDE_URL = "https://members-ng.iracing.com/data/season/race_guide";
     public static final String GET_MEMBER_PROFILE_URL = "https://members-ng.iracing.com/data/member/profile";
+    public static final String GET_MEMBER_BEST_URL = "https://members-ng.iracing.com/data/stats/member_bests";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
-            GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL, GET_MEMBER_PROFILE_URL,
+            GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL, GET_MEMBER_PROFILE_URL, GET_MEMBER_BEST_URL,
             GET_MEMBER_SUMMARY_URL, GET_MEMBER_YEARLY_URL, GET_MEMBER_CAREER_URL, GET_MEMBER_RECENT_RACES_URL, GET_MEMBER_DIVISION_URL,
             GET_DRIVER_STANDINGS_URL, GET_TEAM_STANDINGS_URL, GET_TT_STANDINGS_URL, GET_TT_RESULTS_URL, GET_QUALIFY_RESULTS_URL, GET_SUPERSESSION_STANDINGS_URL,
             GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
