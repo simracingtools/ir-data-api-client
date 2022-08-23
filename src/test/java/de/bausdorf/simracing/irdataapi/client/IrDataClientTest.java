@@ -334,6 +334,27 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetLeagueMembershipFull() {
+        authenticate();
+        LeagueMembershipDto[] leagueInfoDto = dataClient.getLeagueMembership(true);
+        assertNotNull(leagueInfoDto);
+        assertNotNull(leagueInfoDto[0]);
+        assertTrue(leagueInfoDto[0].getFullLeagueInfo().getRoster().length > 0);
+
+        log.info("got league {} infos", leagueInfoDto[0].getLeagueName());
+        Arrays.stream(leagueInfoDto[0].getFullLeagueInfo().getRoster())
+                .filter(LeagueMemberDto::getAdmin)
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetLeagueMembershipShort() {
+        authenticate();
+        LeagueMembershipDto[] leagueInfoDto = dataClient.getLeagueMembership(false);
+        assertNotNull(leagueInfoDto);
+    }
+
+    @Test
     void testGetLeaguePointSystem() {
         authenticate();
         LeaguePointSystemsDto pointSystemDto = dataClient.getLeaguePointSystems(3693L, 66994L);

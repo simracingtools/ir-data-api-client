@@ -79,6 +79,7 @@ public class DataApiConstants {
     public static final String GET_COUNTRIES_URL = "https://members-ng.iracing.com/data/lookup/countries";
     public static final String GET_SEASON_LIST_URL = "https://members-ng.iracing.com/data/season/list";
     public static final String GET_WORLD_RECORDS_URL = "https://members-ng.iracing.com/data/stats/world_records";
+    public static final String GET_LEAGUE_MEMBERSHIP_URL = "https://members-ng.iracing.com/data/league/membership";
 
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
             GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL,
@@ -92,7 +93,7 @@ public class DataApiConstants {
             GET_SEASONS_URL, GET_SERIES_STATS_URL, GET_SERIES_URL, GET_SERIES_ASSETS_URL,
             GET_SUBSESSION_RESULT_URL, GET_LAP_CHART_DATA_URL, GET_LAP_DATA_URL, GET_SEASON_RESULTS_URL, GET_EVENT_LOG_URL, GET_SEASON_LIST_URL,
             GET_TEAM_MEMBERS_URL,
-            GET_CUST_LEAGUE_SESSIONS_URL,
+            GET_CUST_LEAGUE_SESSIONS_URL, GET_LEAGUE_MEMBERSHIP_URL,
             SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL, GET_LEAGUE_SESSIONS_URL,
             SEARCH_SERIES_RESULTS_URL, SEARCH_HOSTED_RESULTS_URL
     );

@@ -1018,6 +1018,26 @@ public class IrDataClientImpl implements IrDataClient {
         return List.of();
     }
 
+    @Override
+    public LeagueMembershipDto[] getLeagueMembership() {
+        return getLeagueMembership(false);
+    }
+
+    @Override
+    public LeagueMembershipDto[] getLeagueMembership(Boolean includeCompleteLeagueInfo) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(
+                    DataApiConstants.GET_LEAGUE_MEMBERSHIP_URL + "?include_league=" + includeCompleteLeagueInfo);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<LeagueMembershipDto[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_LEAGUE_MEMBERSHIP_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {

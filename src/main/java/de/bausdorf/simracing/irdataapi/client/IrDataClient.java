@@ -185,4 +185,8 @@ public interface IrDataClient {
     MessagingDto<WorldRecordsDataDto> getWorldRecords(@NonNull Long carId, @NonNull Long trackId, Long seasonYear, Long seasonQuarter);
 
     List<DriverRecordDto> getDriverRecords(@NonNull ChunkInfoDto chunkInfo);
+
+    LeagueMembershipDto[] getLeagueMembership();
+
+    LeagueMembershipDto[] getLeagueMembership(@NonNull Boolean includeCompleteLeagueInfo);
 }
