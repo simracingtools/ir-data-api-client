@@ -22,9 +22,7 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -75,10 +73,8 @@ public class CustomSessionInfoDto {
     @JsonProperty("session_desc")
     private String sessionDescription;
     @JsonProperty("open_reg_expires")
-    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime openRegExpires;
     @JsonProperty("launch_at")
-    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime launchAt;
     @JsonProperty("full_course_cautions")
     private Boolean fullCourseCautions;

@@ -26,6 +26,8 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.ZonedDateTime;
+
 
 @Data
 @NoArgsConstructor
@@ -37,7 +39,7 @@ public class MemberInfoDto {
     @JsonProperty("helmet")
     private HelmetDto helmet;
     @JsonProperty("last_login")
-    private String lastLogin;
+    private ZonedDateTime lastLogin;
     @JsonProperty("member_since")
     private String memberSince;
     @JsonProperty("club_id")

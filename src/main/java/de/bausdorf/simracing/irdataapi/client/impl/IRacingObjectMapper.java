@@ -24,13 +24,22 @@ package de.bausdorf.simracing.irdataapi.client.impl;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+
+import java.time.ZonedDateTime;
 
 public class IRacingObjectMapper extends ObjectMapper {
 
     public IRacingObjectMapper() {
         super();
         registerModule(new JavaTimeModule());
+
+        SimpleModule zonedDateTimeModule = new SimpleModule("Relaxed ZonedDateTime");
+        zonedDateTimeModule.addDeserializer(ZonedDateTime.class, new ZonedDateTimeDeserializer());
+        zonedDateTimeModule.addSerializer(ZonedDateTime.class, new ZonedDateTimeSerializer());
+        registerModule(zonedDateTimeModule);
+
         enable(SerializationFeature.INDENT_OUTPUT);
     }
 }
