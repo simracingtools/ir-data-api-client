@@ -22,11 +22,18 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
+
+import java.time.ZonedDateTime;
 
 @Data
 public class LinkResponseDto {
     @JsonProperty("link")
     private String link;
+    @JsonProperty("expires")
+    @JsonFormat(pattern = DataApiConstants.UTC_PRECISE_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime expires;
 }

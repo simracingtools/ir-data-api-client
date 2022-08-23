@@ -56,6 +56,8 @@ public class DriverStandingsDto {
     @JsonProperty("last_updated")
     @JsonFormat(pattern = DataApiConstants.UTC_PRECISE_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime lastUpdated;
+    @JsonProperty("customer_rank")
+    private Long customerRank;
     @JsonProperty("chunk_info")
     private ChunkInfoDto chunkInfo;
 }
