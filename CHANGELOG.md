@@ -2,6 +2,30 @@
 
 Changelog of ir-data-api-client.
 
+## v2.4.1 (2022-08-15)
+
+
+
+
+
+### Bug Fixes
+
+-  Missing message property added to TeamInfoDto ([577bf](https://github.com/simracingtools/ir-data-api-client/commit/577bfe7097471b6) Robert Bausdorf)  
+
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.4.1**
+
+
+[ec3e5](https://github.com/simracingtools/ir-data-api-client/commit/ec3e5deb1ae6a7e) Robert Bausdorf *2022-08-15 09:54:49*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[ce4b0](https://github.com/simracingtools/ir-data-api-client/commit/ce4b0313f354b54) Robert Bausdorf *2022-08-12 18:10:49*
+
+
 ## v2.4.0 (2022-08-12)
 
 
