@@ -1151,6 +1151,30 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public MemberInfoDto[] getDriverLookup(String searchTerm) {
+        return getDriverLookup(searchTerm, null);
+    }
+
+    @Override
+    public MemberInfoDto[] getDriverLookup(String searchTerm, Long leagueId) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_LOOKUP_DRIVERS_URL);
+            uri.append("?search_term=").append(searchTerm);
+            if (leagueId != null) {
+                uri.append("&league_id=").append(leagueId);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberInfoDto[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_LOOKUP_DRIVERS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {

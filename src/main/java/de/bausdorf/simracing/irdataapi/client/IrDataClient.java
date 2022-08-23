@@ -206,4 +206,8 @@ public interface IrDataClient {
     MemberProfileDto getMemberProfile(@Nullable Long custId);
 
     MemberBestsDto getMemberBests(@Nullable Long custId, @Nullable Long carId);
+
+    MemberInfoDto[] getDriverLookup(@NonNull String searchTerm);
+
+    MemberInfoDto[] getDriverLookup(@NonNull String searchTerm, @Nullable Long leagueId);
 }

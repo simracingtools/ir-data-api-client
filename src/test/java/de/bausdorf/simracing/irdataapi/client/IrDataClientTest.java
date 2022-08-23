@@ -106,6 +106,15 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetMemberLookup() {
+        authenticate();
+        MemberInfoDto[] memberInfos = dataClient.getDriverLookup("Bausdorf");
+        assertNotNull(memberInfos);
+
+        Arrays.stream(memberInfos).forEach(info -> log.info("{}", info));
+    }
+
+    @Test
     void testGetUserInfo() {
         authenticate();
         UserInfoDto userInfo = dataClient.getUserInfo();
