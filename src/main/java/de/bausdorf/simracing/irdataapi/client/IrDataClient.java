@@ -28,6 +28,7 @@ import de.bausdorf.simracing.irdataapi.model.search.ResultSearchRequest;
 import org.springframework.lang.NonNull;
 import org.springframework.lang.Nullable;
 
+import java.time.ZonedDateTime;
 import java.util.List;
 import java.util.Map;
 
@@ -195,4 +196,10 @@ public interface IrDataClient {
     JoinableSessionsDto getJoinableHostedSessions(@NonNull Long packageId);
 
     JoinableSessionsDto getDrivableHostedSessions();
+
+    RaceGuideDto getRaceGuide();
+
+    RaceGuideDto getRaceGuide(ZonedDateTime from);
+
+    RaceGuideDto getRaceGuide(ZonedDateTime from, @NonNull Boolean includeEndAfterFrom);
 }

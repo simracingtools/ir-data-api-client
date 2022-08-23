@@ -46,6 +46,8 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 import java.io.IOException;
 import java.net.URI;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Slf4j
@@ -1071,6 +1073,35 @@ public class IrDataClientImpl implements IrDataClient {
                 });
             }
             throw new DataApiException(DataApiConstants.GET_DRIVABLE_SESSIONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public RaceGuideDto getRaceGuide() {
+        return getRaceGuide(null );
+    }
+
+    @Override
+    public RaceGuideDto getRaceGuide(ZonedDateTime from) {
+        return getRaceGuide(from, false);
+    }
+
+    @Override
+    public RaceGuideDto getRaceGuide(ZonedDateTime from, Boolean includeEndAfterFrom) {
+        try {
+            StringBuilder uri = new StringBuilder(DataApiConstants.GET_RACE_GUIDE_URL);
+            uri.append("?include_end_after_from=").append(includeEndAfterFrom);
+            if (from != null) {
+                uri.append("&from=").append(DateTimeFormatter.ofPattern(DataApiConstants.UTC_DATETIME_FORMAT).format(from));
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<RaceGuideDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_RACE_GUIDE_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }

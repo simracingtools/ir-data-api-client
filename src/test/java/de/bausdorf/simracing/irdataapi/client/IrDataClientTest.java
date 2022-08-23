@@ -747,6 +747,49 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetRaceGuideAll() {
+        authenticate();
+        RaceGuideDto raceGuide = dataClient.getRaceGuide();
+
+        assertNotNull(raceGuide);
+        assertEquals(Boolean.TRUE, raceGuide.getSuccess());
+        assertTrue(raceGuide.getSessions().length > 0);
+
+        Arrays.stream(raceGuide.getSessions()).forEach(entry -> log.info("{}", entry));
+    }
+
+    @Test
+    void testGetRaceGuideForTomorrow() {
+        ZonedDateTime from = ZonedDateTime.now().plusDays(1);
+
+        authenticate();
+        RaceGuideDto raceGuide = dataClient.getRaceGuide(from);
+
+        assertNotNull(raceGuide);
+        assertEquals(Boolean.TRUE, raceGuide.getSuccess());
+        assertTrue(raceGuide.getSessions().length > 0);
+
+        Arrays.stream(raceGuide.getSessions()).forEach(entry -> {
+            log.info("{}", entry);
+            assertTrue(entry.getStartTime().isAfter(from));
+        });
+    }
+
+    @Test
+    void testGetRaceGuideIncludeEnding() {
+        ZonedDateTime from = ZonedDateTime.now().plusDays(1);
+
+        authenticate();
+        RaceGuideDto raceGuide = dataClient.getRaceGuide(from, true);
+
+        assertNotNull(raceGuide);
+        assertEquals(Boolean.TRUE, raceGuide.getSuccess());
+        assertTrue(raceGuide.getSessions().length > 0);
+
+        Arrays.stream(raceGuide.getSessions()).forEach(entry -> log.info("{}", entry));
+    }
+
+    @Test
     void testGetWorldRecords() {
         authenticate();
         MessagingDto<WorldRecordsDataDto> recordDataDto = dataClient.getWorldRecords(143L, 252L);
