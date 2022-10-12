@@ -44,12 +44,17 @@ public class MemberAwardDto {
     @JsonProperty("award_date")
     @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
     private LocalDate awardDate;
+    @JsonProperty("display_date")
+    @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
+    private LocalDate displayDate;
     @JsonProperty("description")
     private String description;
     @JsonProperty("awarded_description")
     private String awardedDescription;
     @JsonProperty("viewed")
     private Boolean viewed;
+    @JsonProperty("pdf_url")
+    private String pdfUrl;
     @JsonProperty("name")
     private String name;
     @JsonProperty("group_name")
@@ -60,6 +65,10 @@ public class MemberAwardDto {
     private String iconUrlLarge;
     @JsonProperty("icon_url_unawarded")
     private String iconUrlUnawarded;
+    @JsonProperty("icon_background_color")
+    private String iconBackgroundColor;
+    @JsonProperty("certificate_file_name")
+    private String certificateFileName;
     @JsonProperty("weight")
     private Long weight;
     @JsonProperty("award_count")
@@ -74,4 +83,8 @@ public class MemberAwardDto {
     private Long progress;
     @JsonProperty("progress_label")
     private String progressLabel;
+    @JsonProperty("progress_text")
+    private String progressText;
+    @JsonProperty("progress_text_label")
+    private String progressTextLabel;
 }

@@ -83,6 +83,8 @@ public interface IrDataClient {
 
     MemberRecentRacesDto getMemberRecentRaces(@NonNull Long custId);
 
+    MemberAwardDto[] getMemberAwards(@Nullable Long custId);
+
     CarInfoDto[] getCarInfo();
 
     CarClassDto[] getCarClasses();

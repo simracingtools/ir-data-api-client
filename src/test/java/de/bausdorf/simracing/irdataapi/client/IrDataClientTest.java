@@ -30,9 +30,11 @@ import de.bausdorf.simracing.irdataapi.model.search.LeagueSearchRequest;
 import de.bausdorf.simracing.irdataapi.model.search.ResultSearchRequest;
 import de.bausdorf.simracing.irdataapi.model.search.SeriesResultSearchRequest;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.util.Lists;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.jupiter.params.provider.NullSource;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -166,10 +168,37 @@ class IrDataClientTest {
         log.info(memberDivisionDto.toString());
     }
 
+    @ParameterizedTest
+    @NullSource
+    @ValueSource(longs = {97120L, 372473L})
+    void testGetMemberAwards(Long custId) {
+        authenticate();
+        MemberAwardDto[] memberAwards = dataClient.getMemberAwards(custId);
+        assertNotNull(memberAwards);
+        assertNotEquals(0, memberAwards.length);
+
+        long achievedAwards = Arrays.stream(memberAwards)
+                .filter(MemberAwardDto::getAchievement)
+                .count();
+        log.info("custId {} has {} awards", memberAwards[0].getCustId(), achievedAwards);
+    }
+
     @Test
-    void testGetDriverSeasonStandings() {
+    void testGetDriverSeasonStandingsRaceWeek() {
         authenticate();
         DriverStandingsDto driverStandingInfo = dataClient.getSeasonDriverStandings(3225L, 1860L, 7L);
+        assertNotNull(driverStandingInfo);
+
+        List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
+        assertNotNull(driverStandings);
+        assertEquals(driverStandingInfo.getChunkInfo().getRows(), driverStandings.size());
+        log.info("fetched {} driver standings", driverStandings.size());
+    }
+
+    @Test
+    void testGetDriverSeasonStandingsAll() {
+        authenticate();
+        DriverStandingsDto driverStandingInfo = dataClient.getSeasonDriverStandings(3225L, 1860L);
         assertNotNull(driverStandingInfo);
 
         List<DriverStandingDto> driverStandings = dataClient.getDriverStandingEntries(driverStandingInfo.getChunkInfo());
@@ -386,12 +415,12 @@ class IrDataClientTest {
     @Test
     void testGetLeagueMembershipShort() {
         authenticate();
-        LeagueMembershipDto[] leagueInfoDto = dataClient.getLeagueMembership(false);
+        LeagueMembershipDto[] leagueInfoDto = dataClient.getLeagueMembership();
         assertNotNull(leagueInfoDto);
     }
 
     @Test
-    void testGetLeaguePointSystem() {
+    void testGetLeaguePointSystemLeagueAndSeason() {
         authenticate();
         LeaguePointSystemsDto pointSystemDto = dataClient.getLeaguePointSystems(3693L, 66994L);
         assertNotNull(pointSystemDto);
@@ -402,7 +431,18 @@ class IrDataClientTest {
     }
 
     @Test
-    void testGetLeagueSeasons() {
+    void testGetLeaguePointSystemLeague() {
+        authenticate();
+        LeaguePointSystemsDto pointSystemDto = dataClient.getLeaguePointSystems(3693L);
+        assertNotNull(pointSystemDto);
+        assertTrue(pointSystemDto.getPointSystems().length > 0);
+
+        Arrays.stream(pointSystemDto.getPointSystems())
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetLeagueSeasonsAll() {
         authenticate();
         LeagueSeasonsDto leagueSeasons = dataClient.getLeagueSeasons(3693L, true);
         assertNotNull(leagueSeasons);
@@ -413,7 +453,18 @@ class IrDataClientTest {
     }
 
     @Test
-    void testGetLeagueSeasonStandings() {
+    void testGetLeagueSeasonsOnlyActive() {
+        authenticate();
+        LeagueSeasonsDto leagueSeasons = dataClient.getLeagueSeasons(3693L);
+        assertNotNull(leagueSeasons);
+        assertTrue(leagueSeasons.getSeasons().length > 0);
+
+        Arrays.stream(leagueSeasons.getSeasons())
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetLeagueSeasonStandingsCar() {
         authenticate();
         SeasonStandingsDto seasonStandings = dataClient.getLeagueSeasonStandings(3693L, 66994L, 2708L);
         assertNotNull(seasonStandings);
@@ -424,9 +475,31 @@ class IrDataClientTest {
     }
 
     @Test
-    void testGetLeagueSeasonSessions() {
+    void testGetLeagueSeasonStandings() {
+        authenticate();
+        SeasonStandingsDto seasonStandings = dataClient.getLeagueSeasonStandings(3693L, 66994L);
+        assertNotNull(seasonStandings);
+        assertTrue(seasonStandings.getSuccess());
+
+        Arrays.stream(seasonStandings.getStandings().getDriverStandings())
+                .forEach(s -> log.info(s.toString()));
+    }
+
+    @Test
+    void testGetLeagueSeasonSessionsResiltsOnly() {
         authenticate();
         LeagueSeasonSessionsDto seasonSessions = dataClient.getLeagueSeasonSessions(3693L, 66994L, true);
+        assertNotNull(seasonSessions);
+        assertTrue(seasonSessions.getSuccess());
+
+        Arrays.stream(seasonSessions.getSessions())
+                .forEach(s -> log.info(s.getLaunchAt().toString()));
+    }
+
+    @Test
+    void testGetLeagueSeasonSessions() {
+        authenticate();
+        LeagueSeasonSessionsDto seasonSessions = dataClient.getLeagueSeasonSessions(3693L, 66994L);
         assertNotNull(seasonSessions);
         assertTrue(seasonSessions.getSuccess());
 
@@ -555,7 +628,7 @@ class IrDataClientTest {
     @Test
     void testGetOfficialLapData() {
         authenticate();
-        LapDataDto lapDataDto = dataClient.getLapData(44975865L, 0L, null, false);
+        LapDataDto lapDataDto = dataClient.getLapData(44975865L, 0L);
         assertNotNull(lapDataDto);
         assertTrue(lapDataDto.getSuccess());
 
@@ -615,13 +688,41 @@ class IrDataClientTest {
     }
 
     @Test
-    void testGetSeasonResults() {
+    void testGetSeasonResultsSeason() {
         authenticate();
-        SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L, DataApiConstants.EVENT_TYPE_RACE, 11L);
+        SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L);
         assertNotNull(seasonResults);
         assertTrue(seasonResults.getSuccess());
 
         log.info("{} races in week 11", seasonResults.getResultsList().length);
+    }
+
+    @Test
+    void testGetSeasonResultsRace() {
+        authenticate();
+        SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L, DataApiConstants.EVENT_TYPE_RACE);
+        assertNotNull(seasonResults);
+        assertTrue(seasonResults.getSuccess());
+
+        log.info("{} races in week 11", seasonResults.getResultsList().length);
+    }
+
+    @ParameterizedTest
+    @MethodSource("eventTypeProvider")
+    void testGetSeasonResultsRaceWeek(Long eventType) {
+        authenticate();
+        SeasonResultsDto seasonResults = dataClient.getSeasonResults(3390L, eventType, 11L);
+        assertNotNull(seasonResults);
+        assertTrue(seasonResults.getSuccess());
+
+        log.info("{} races in week 11", seasonResults.getResultsList().length);
+    }
+
+    static List<Long> eventTypeProvider() {
+        return Lists.list(DataApiConstants.EVENT_TYPE_RACE,
+                DataApiConstants.EVENT_TYPE_PRACTICE,
+                DataApiConstants.EVENT_TYPE_QUALIFY,
+                DataApiConstants.EVENT_TYPE_TT);
     }
 
     @Test
@@ -654,10 +755,11 @@ class IrDataClientTest {
     @Test
     void testGetJoinableLeagueSessionsForPackageId() {
         authenticate();
-        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(197L);
+//        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(197L);
+        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(67L);
         assertNotNull(sessionsDto);
         assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
-        assertEquals(197L, sessionsDto.getPackageId());
+        assertEquals(67L, sessionsDto.getPackageId());
         assertNotEquals(0, sessionsDto.getSessions().length);
 
         Arrays.stream(sessionsDto.getSessions()).forEach(session -> log.info("{}: {}", session.getLeagueName(), session.getSessionName()));
