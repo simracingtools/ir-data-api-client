@@ -2,9 +2,26 @@
 
 Changelog of ir-data-api-client.
 
+## v2.6.0 (2022-10-12)
+
+### Features
+
+-  Added /data/member/awards endpoint ([a4120](https://github.com/simracingtools/ir-data-api-client/commit/a41208f5a920c64) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.6.0**
+
+
+[41b67](https://github.com/simracingtools/ir-data-api-client/commit/41b673a68ad254f) Robert Bausdorf *2022-10-12 12:49:56*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[ddda6](https://github.com/simracingtools/ir-data-api-client/commit/ddda65675b5f1d4) Robert Bausdorf *2022-08-23 17:16:13*
+
+
 ## v2.5.0 (2022-08-23)
-
-
 
 ### Features
 
@@ -16,12 +33,10 @@ Changelog of ir-data-api-client.
 -  /data/hosted/combined_sessions endpoint added ([bbd11](https://github.com/simracingtools/ir-data-api-client/commit/bbd11988c02770c) Robert Bausdorf)  
 -  /data/league/membership endpoint added ([2b692](https://github.com/simracingtools/ir-data-api-client/commit/2b69234ec9f945a) Robert Bausdorf)  
 
-
 ### Bug Fixes
 
 -  ZonedDateTime parsing supports various precisions ([13ebe](https://github.com/simracingtools/ir-data-api-client/commit/13ebeac2e1dbcfc) Robert Bausdorf)  
 -  Missing message property added to LinkResponseDto and DriverStandingsDto ([66109](https://github.com/simracingtools/ir-data-api-client/commit/66109afc6a9a881) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -38,14 +53,9 @@ Changelog of ir-data-api-client.
 
 ## v2.4.1 (2022-08-15)
 
-
-
-
-
 ### Bug Fixes
 
 -  Missing message property added to TeamInfoDto ([577bf](https://github.com/simracingtools/ir-data-api-client/commit/577bfe7097471b6) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -62,18 +72,14 @@ Changelog of ir-data-api-client.
 
 ## v2.4.0 (2022-08-12)
 
-
-
 ### Features
 
 -  Missing endpoints added ([0adee](https://github.com/simracingtools/ir-data-api-client/commit/0adee7fee75d9da) Robert Bausdorf)  
-
 
 ### Bug Fixes
 
 -  License file header added ([5b90f](https://github.com/simracingtools/ir-data-api-client/commit/5b90f0b0b6ee8ac) Robert Bausdorf)  
 -  Missing properties added ([19506](https://github.com/simracingtools/ir-data-api-client/commit/1950661d062ba43) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -107,14 +113,9 @@ Changelog of ir-data-api-client.
 
 ## v2.3.1 (2022-07-16)
 
-
-
-
-
 ### Bug Fixes
 
 -  race_time_descriptors and missing fields added to SeasonDto and substructures ([6e370](https://github.com/simracingtools/ir-data-api-client/commit/6e370cd835161d2) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -131,18 +132,14 @@ Changelog of ir-data-api-client.
 
 ## v2.3.0 (2022-06-17)
 
-
-
 ### Features
 
 -  Search for hosted series ([c5c48](https://github.com/simracingtools/ir-data-api-client/commit/c5c48c114f9278d) Robert Bausdorf)  
 -  search_series endpoint added. ([26680](https://github.com/simracingtools/ir-data-api-client/commit/26680b0ce3936ed) Robert Bausdorf)  
 
-
 ### Bug Fixes
 
 -  TrackMapLayers added to TrackAssetDto ([6b8d3](https://github.com/simracingtools/ir-data-api-client/commit/6b8d387fa47ca1d) robert)  
-
 
 ### Other changes
 
@@ -159,8 +156,6 @@ Changelog of ir-data-api-client.
 
 ## v2.2.0 (2022-06-09)
 
-
-
 ### Features
 
 -  Endpoint for directory search added. ([fdb4b](https://github.com/simracingtools/ir-data-api-client/commit/fdb4b1d37738642) Robert Bausdorf)  
@@ -171,9 +166,6 @@ Changelog of ir-data-api-client.
 -  Endpoint for getting member chart data added. ([3734b](https://github.com/simracingtools/ir-data-api-client/commit/3734b9752f3818e) Robert Bausdorf)  
 -  Endpoint for getting series assets added. ([34860](https://github.com/simracingtools/ir-data-api-client/commit/34860d9848786ed) Robert Bausdorf)  
 -  Endpoint for league season sessions added. ([26c09](https://github.com/simracingtools/ir-data-api-client/commit/26c0916169e3338) Robert Bausdorf)  
-
-
-
 
 ### Other changes
 
@@ -190,14 +182,9 @@ Changelog of ir-data-api-client.
 
 ## v2.1.1 (2022-06-09)
 
-
-
-
-
 ### Bug Fixes
 
 -  New fields added (grid/heat_spec) ([b14d4](https://github.com/simracingtools/ir-data-api-client/commit/b14d4e5a31f4d4d) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -214,17 +201,13 @@ Changelog of ir-data-api-client.
 
 ## v2.1.0 (2022-06-08)
 
-
-
 ### Features
 
 -  Constant endpoints for categories and event types added ([a02be](https://github.com/simracingtools/ir-data-api-client/commit/a02bef63444c0e8) Robert Bausdorf)  
 
-
 ### Bug Fixes
 
 -  Endpoint cust_league_sessions replces membersite endpoint ([ec38b](https://github.com/simracingtools/ir-data-api-client/commit/ec38b8600a4b272) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -245,17 +228,14 @@ Changelog of ir-data-api-client.
 
 -  getTeamMembers changed to use data API ([579cd](https://github.com/simracingtools/ir-data-api-client/commit/579cdf6106a6033) Robert Bausdorf)  
 
-
 ### Features
 
 -  getTeamMembers changed to use data API ([579cd](https://github.com/simracingtools/ir-data-api-client/commit/579cdf6106a6033) Robert Bausdorf)  
 -  Hash password according to 2022 season 3 release ([34641](https://github.com/simracingtools/ir-data-api-client/commit/3464112a3906741) Robert Bausdorf)  
 
-
 ### Bug Fixes
 
 -  2022 Season 3 changes ([a9499](https://github.com/simracingtools/ir-data-api-client/commit/a9499f85d592128) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -272,17 +252,13 @@ Changelog of ir-data-api-client.
 
 ## v1.1.0 (2022-05-09)
 
-
-
 ### Features
 
 -  Endpoints for team members and league sessions added (using old website) ([69dce](https://github.com/simracingtools/ir-data-api-client/commit/69dcefbe6f7e2cd) robert)  
 
-
 ### Bug Fixes
 
 -  TrackMap was missing tracks with same sku ([df741](https://github.com/simracingtools/ir-data-api-client/commit/df7411712e42f83) robert)  
-
 
 ### Other changes
 
@@ -299,8 +275,6 @@ Changelog of ir-data-api-client.
 
 ## v1.0.0 (2022-04-13)
 
-
-
 ### Features
 
 -  all endpoints supported ([030cf](https://github.com/simracingtools/ir-data-api-client/commit/030cf47ee4d6f8b) Robert Bausdorf)  
@@ -308,13 +282,11 @@ Changelog of ir-data-api-client.
 -  lookup/get endpoint added ([79b1c](https://github.com/simracingtools/ir-data-api-client/commit/79b1c2f8458c356) robert)  
 -  Provide ability to cache API results in json file ([b7679](https://github.com/simracingtools/ir-data-api-client/commit/b7679621bbb31ac) robert)  
 
-
 ### Bug Fixes
 
 -  Code cleanup ([a5fd4](https://github.com/simracingtools/ir-data-api-client/commit/a5fd4a8a1d842e8) Robert Bausdorf)  
 -  Wrong checking for chunk rows ([c1cd0](https://github.com/simracingtools/ir-data-api-client/commit/c1cd0e695f2f776) Robert Bausdorf)  
 -  Reading from file used wrong types due to Java type erasure ([3440f](https://github.com/simracingtools/ir-data-api-client/commit/3440fc72852dfa1) robert)  
-
 
 ### Other changes
 
@@ -341,12 +313,6 @@ Changelog of ir-data-api-client.
 
 ## v0.10.1 (2022-04-12)
 
-
-
-
-
-
-
 ### Other changes
 
 **[maven-release-plugin] prepare release v0.10.1**
@@ -364,18 +330,14 @@ Changelog of ir-data-api-client.
 
 ## v0.10.0 (2022-04-10)
 
-
-
 ### Features
 
 -  event_log endoint added ([ec853](https://github.com/simracingtools/ir-data-api-client/commit/ec8531b6ccb4b46) Robert Bausdorf)  
 -  More filtering tools for cars / tracks ([21811](https://github.com/simracingtools/ir-data-api-client/commit/218119cef7939da) Robert Bausdorf)  
 
-
 ### Bug Fixes
 
 -  added starting_position_in_class to MemberSessionResultDto ([7eb85](https://github.com/simracingtools/ir-data-api-client/commit/7eb8580b4ff2671) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -392,14 +354,9 @@ Changelog of ir-data-api-client.
 
 ## v0.9.1 (2022-04-01)
 
-
-
-
-
 ### Bug Fixes
 
 -  Old cookies prevented re-authorization ([03113](https://github.com/simracingtools/ir-data-api-client/commit/03113abb38f6e0e) robert)  
-
 
 ### Other changes
 
@@ -416,8 +373,6 @@ Changelog of ir-data-api-client.
 
 ## v0.9.0 (2022-03-30)
 
-
-
 ### Features
 
 -  season_results endpoint added ([2c860](https://github.com/simracingtools/ir-data-api-client/commit/2c860ec2d55cf64) Robert Bausdorf)  
@@ -427,11 +382,9 @@ Changelog of ir-data-api-client.
 -  Tool for getting cars in a class list ([08abb](https://github.com/simracingtools/ir-data-api-client/commit/08abb3045edd995) robert)  
 -  Tooling for season data ([bbd56](https://github.com/simracingtools/ir-data-api-client/commit/bbd568d92182be1) robert)  
 
-
 ### Bug Fixes
 
 -  Result data fixed for team sessions ([7bb47](https://github.com/simracingtools/ir-data-api-client/commit/7bb4714f206c242) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -453,15 +406,10 @@ Changelog of ir-data-api-client.
 
 ## v0.8.0 (2022-03-25)
 
-
-
-
-
 ### Bug Fixes
 
 -  Test fixes ([e9085](https://github.com/simracingtools/ir-data-api-client/commit/e90851f20877216) Robert Bausdorf)  
 -  License info added ([fadce](https://github.com/simracingtools/ir-data-api-client/commit/fadcefc7234f140) Robert Bausdorf)  
-
 
 ### Other changes
 
@@ -504,12 +452,6 @@ Changelog of ir-data-api-client.
 
 
 ## v0.7.0 (2022-03-24)
-
-
-
-
-
-
 
 ### Other changes
 
@@ -596,12 +538,6 @@ Changelog of ir-data-api-client.
 
 ## ir-data-api-client-0.5.0 (2022-03-14)
 
-
-
-
-
-
-
 ### Other changes
 
 **[maven-release-plugin] prepare release ir-data-api-client-0.5.0**
@@ -621,12 +557,6 @@ Changelog of ir-data-api-client.
 
 
 ## ir-data-api-client-0.1.2 (2022-03-14)
-
-
-
-
-
-
 
 ### Other changes
 
@@ -652,12 +582,6 @@ Changelog of ir-data-api-client.
 
 
 ## ir-data-api-client-0.1.1 (2022-03-14)
-
-
-
-
-
-
 
 ### Other changes
 
@@ -693,12 +617,6 @@ Changelog of ir-data-api-client.
 
 
 ## ir-data-api-client-0.1.0 (2022-03-14)
-
-
-
-
-
-
 
 ### Other changes
 
