@@ -106,7 +106,7 @@ public class IrDataClientImpl implements IrDataClient {
     public AuthResponseDto authenticate(@NonNull LoginRequestDto requestDto) {
         restTemplateInterceptor.flushCookies();
         ResponseEntity<String> response = restTemplate.postForEntity(DataApiConstants.AUTH_URL,
-                hashPassword ? LoginHelper.hashPassword(requestDto) : requestDto,
+                isHashPassword() ? LoginHelper.hashPassword(requestDto) : requestDto,
                 String.class);
         try {
             String responseBody = response.getBody();
@@ -224,11 +224,11 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public MemberChartDataDto getMemberChartData(Long custId, CategoryType category, ChartType chartType) {
         try {
-            StringBuilder uri = new StringBuilder(uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CHART_URL, custId));
-            uri.append("&category_id=").append(category.toString());
-            uri.append("&chart_type=").append(chartType.toString());
+            String uri = uriWithCustIdParameter(DataApiConstants.GET_MEMBER_CHART_URL, custId)
+                    + "&category_id=" + category.toString()
+                    + "&chart_type=" + chartType.toString();
 
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(uri);
             if (linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<MemberChartDataDto>() {
                 });
@@ -387,6 +387,22 @@ public class IrDataClientImpl implements IrDataClient {
                 });
             }
             throw new DataApiException(DataApiConstants.GET_MEMBER_RECENT_RACES_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public MemberAwardDto[] getMemberAwards(Long custId) {
+
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_MEMBER_AWARDS_URL
+                    + (custId == null ? "" : CUST_ID_URL_PARAM + custId));
+
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberAwardDto[]>() {});
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_AWARDS_URL + RETURNED_NULL_BODY);
         } catch (IOException e) {
             throw new DataApiException(e);
         }
@@ -796,9 +812,8 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public TeamInfoDto getTeamMembers(Long teamId) {
         try {
-            StringBuilder uri = new StringBuilder(DataApiConstants.GET_TEAM_MEMBERS_URL)
-                    .append("?team_id=").append(teamId);
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            String uri = DataApiConstants.GET_TEAM_MEMBERS_URL + "?team_id=" + teamId;
+            LinkResponseDto linkResponse = getLinkResponse(uri);
             if (linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<TeamInfoDto>() {
                 });
@@ -1067,8 +1082,7 @@ public class IrDataClientImpl implements IrDataClient {
     @Override
     public JoinableSessionsDto getDrivableHostedSessions() {
         try {
-            StringBuilder uri = new StringBuilder(DataApiConstants.GET_DRIVABLE_SESSIONS_URL);
-            LinkResponseDto linkResponse = getLinkResponse(uri.toString());
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_DRIVABLE_SESSIONS_URL);
             if (linkResponse != null) {
                 return getStructuredData(linkResponse.getLink(), new TypeReference<JoinableSessionsDto>() {
                 });
@@ -1221,7 +1235,11 @@ public class IrDataClientImpl implements IrDataClient {
         Arrays.stream(chunkInfo.getChunkFileNames()).forEach(chunk -> {
             try {
                 T[] chunkEntries = getStructuredData(chunkInfo.getBaseDownloadUrl() + chunk, targetType);
-                resultList.addAll(List.of(chunkEntries));
+                if (chunkEntries != null) {
+                    resultList.addAll(List.of(chunkEntries));
+                } else {
+                    throw new DataApiException("Got null chunk while fetching " + targetType.getType().getTypeName());
+                }
             } catch (IOException e) {
                 throw new DataApiException(e);
             }
