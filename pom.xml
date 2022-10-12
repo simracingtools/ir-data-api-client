@@ -164,7 +164,7 @@
                                     </excludes>
                                     <message>Please consider using the maven-invoker-plugin (http://maven.apache.org/plugins/maven-invoker-plugin/)!</message>
                                 </bannedPlugins>
-                                <dependencyConvergence />
+                                <dependencyConvergence/>
                             </rules>
                         </configuration>
                     </execution>
