@@ -755,12 +755,11 @@ class IrDataClientTest {
     @Test
     void testGetJoinableLeagueSessionsForPackageId() {
         authenticate();
-//        JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(197L);
         JoinableSessionsDto sessionsDto = dataClient.getJoinableHostedSessions(67L);
         assertNotNull(sessionsDto);
         assertEquals(Boolean.TRUE, sessionsDto.getSuccess());
         assertEquals(67L, sessionsDto.getPackageId());
-        assertNotEquals(0, sessionsDto.getSessions().length);
+        assertNotNull(sessionsDto.getSessions());
 
         Arrays.stream(sessionsDto.getSessions()).forEach(session -> log.info("{}: {}", session.getLeagueName(), session.getSessionName()));
         log.info("fetched {} joinable sessions", sessionsDto.getSessions().length);
