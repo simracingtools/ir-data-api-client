@@ -59,6 +59,16 @@ class StockDataCacheTest {
 
     @Test
     void initializeFromUnauthorizedDataClient() {
+        try {
+            LoginRequestDto dto = LoginRequestDto.builder()
+                    .email("kirk@starfleet.com")
+                    .password("spock")
+                    .build();
+            dataClient.authenticate(dto);
+        } catch (AuthorizationException e) {
+            log.info("Valid login removed");
+        }
+
         StockDataCache cache = new StockDataCache(".cache");
         try {
             cache.fetchFromService(dataClient);

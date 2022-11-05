@@ -188,7 +188,7 @@ class StockDataToolsTest {
         if (dataCache == null) {
             dataCache = new StockDataCache(config.getCacheDirectory());
             try {
-                if (!dataCache.cacheExists()) {
+                if (!dataCache.isInitialized()) {
                     dataCache.fetchFromService(dataClient);
                 }
                 dataCache.fetchFromCache();

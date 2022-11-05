@@ -263,6 +263,9 @@
                             junit.platform.reporting.output.dir = target/surefire-reports
                         </configurationParameters>
                     </properties>
+                    <threadCount>1</threadCount>
+                    <perCoreThreadCount>false</perCoreThreadCount>
+                    <parallel>none</parallel>
                 </configuration>
             </plugin>
             <plugin>

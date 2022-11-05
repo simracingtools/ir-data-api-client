@@ -39,6 +39,8 @@ jobs:
           echo "irdataapi.cache-directory=.cache" >> src/test/resources/application-test.properties
           echo "irdataapi.hashPassword=true" >> src/test/resources/application-test.properties
           echo "logging.level.root=WARN" >> src/test/resources/application-test.properties
+          echo "logging.level.de.bausdorf.simracing.irdataapi=WARN" >> src/test/resources/application-test.properties
+
           cat src/test/resources/application-test.properties
         env:
           IRDATAAPI_USER: ${{secrets.IR_USERNAME}}
