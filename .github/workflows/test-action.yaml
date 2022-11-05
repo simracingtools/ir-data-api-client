@@ -49,7 +49,7 @@ jobs:
         run: |
           mvn --batch-mode --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simracingtools_ir-data-api-client -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest
           export OUTPUT_VALUE=$(cat target/surefire-reports/*.txt)
-          echo "{result}"="{$OUTPUT_VALUE}" >> $GITHUB_OUTPUT
+          echo "{result}={$OUTPUT_VALUE}" >> $GITHUB_OUTPUT
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
         with:
