@@ -47,8 +47,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn --batch-mode --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simracingtools_ir-data-api-client -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest 
-          echo "{result}"="{$(cat target/surefire-reports/*.txt)}" >> $GITHUB_OUTPUT
+          mvn --batch-mode --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simracingtools_ir-data-api-client -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest
+          export OUTPUT_VALUE=$(cat target/surefire-reports/*.txt)
+          echo "{result}"="{$OUTPUT_VALUE}" >> $GITHUB_OUTPUT
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
         with:
