@@ -2,6 +2,28 @@
 
 Changelog of ir-data-api-client.
 
+## v2.6.1 (2022-11-05)
+
+### Bug Fixes
+
+-  Typo misleading context. ([a906c](https://github.com/simracingtools/ir-data-api-client/commit/a906c298ed34d20) Robert Bausdorf)  
+-  Camel case naming. ([350d5](https://github.com/simracingtools/ir-data-api-client/commit/350d57f64e10d35) Robert Bausdorf)  
+-  Missing fields added. ([3d0a4](https://github.com/simracingtools/ir-data-api-client/commit/3d0a4ecf7d17919) Robert Bausdorf)  
+-  Test assertion not applicable. ([fde2c](https://github.com/simracingtools/ir-data-api-client/commit/fde2cdd458bdc4e) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.6.1**
+
+
+[35ae5](https://github.com/simracingtools/ir-data-api-client/commit/35ae5ca20fa2133) Robert Bausdorf *2022-11-05 12:15:17*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[1e064](https://github.com/simracingtools/ir-data-api-client/commit/1e064b264cbd104) Robert Bausdorf *2022-10-12 12:50:00*
+
+
 ## v2.6.0 (2022-10-12)
 
 ### Features
