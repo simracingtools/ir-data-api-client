@@ -77,7 +77,7 @@ public class LeagueSessionInfoDto {
     @JsonProperty("league_name")
     private String leagueName;
     @JsonProperty("league_season_id")
-    private Long leagueSessionId;
+    private Long leagueSeasonId;
     @JsonProperty("league_season_name")
     private String leagueSeasonName;
     @JsonProperty("status")
