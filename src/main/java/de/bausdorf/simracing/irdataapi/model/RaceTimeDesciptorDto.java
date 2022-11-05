@@ -40,7 +40,7 @@ public class RaceTimeDesciptorDto {
     @JsonProperty("super_session")
     private Boolean superSession;
     @JsonProperty("session_minutes")
-    private Long session_minutes;
+    private Long sessionMinutes;
     @JsonProperty("start_date")
     @JsonFormat(pattern = DataApiConstants.LOCAL_DATE_FORMAT)
     private LocalDate startDate;
@@ -48,7 +48,7 @@ public class RaceTimeDesciptorDto {
     private Integer[] dayOffset;
     @JsonProperty("first_session_time")
     @JsonFormat(pattern = DataApiConstants.LOCAL_TIME_FORMAT)
-    private LocalTime first_session_time;
+    private LocalTime firstSessionTime;
     @JsonProperty("repeat_minutes")
     private Integer repeatMinutes;
     @JsonProperty("session_times")
