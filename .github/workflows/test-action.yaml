@@ -10,8 +10,6 @@ jobs:
   tests:
     name: Test API compliance
     runs-on: ubuntu-latest
-    outputs:
-      test-output: ${{steps.compliance-test.result}}
     steps:
       - uses: actions/checkout@v3
         with:
@@ -47,9 +45,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
-          mvn --batch-mode --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simracingtools_ir-data-api-client -Dmaven.test.skip=false -Dtest=IrDataClientCompletenessTest,IrDataClientTest
-          export OUTPUT_VALUE=$(cat target/surefire-reports/*.txt)
-          echo "{result}={$OUTPUT_VALUE}" >> $GITHUB_OUTPUT
+          mvn --batch-mode --update-snapshots verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=simracingtools_ir-data-api-client -Dmaven.test.skip=false -Pcoverage
       - name: Publish Test Report
         uses: scacap/action-surefire-report@v1
         with:
@@ -68,5 +64,3 @@ jobs:
           label-name: "Failed test"
           body-template: |
             GitHub Actions workflow [{{workflow}} #{{runNumber}}](https://github.com/{{repo.owner}}/{{repo.repo}}/actions/runs/{{runNumber}}) failed.
-
-            ${{needs.tests.outputs.test-output}}
