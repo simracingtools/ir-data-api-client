@@ -38,7 +38,8 @@ jobs:
           echo "irdataapi.logResponseJson=false" >> src/test/resources/application-test.properties
           echo "irdataapi.cache-directory=.cache" >> src/test/resources/application-test.properties
           echo "irdataapi.hashPassword=true" >> src/test/resources/application-test.properties
-          echo "logging.level.root=INFO" >> src/test/resources/application-test.properties
+          echo "logging.level.root=WARN" >> src/test/resources/application-test.properties
+          mkdir .cache
           cat src/test/resources/application-test.properties
         env:
           IRDATAAPI_USER: ${{secrets.IR_USERNAME}}
