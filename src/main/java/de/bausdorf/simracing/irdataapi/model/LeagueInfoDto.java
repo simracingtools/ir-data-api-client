@@ -66,7 +66,7 @@ public class LeagueInfoDto {
     @JsonProperty("is_admin")
     private Boolean isAdmin;
     @JsonProperty("league_applications")
-    private Object[] leagueApplications;
+    private LeagueApplicationDto[] leagueApplications;
     @JsonProperty("pending_requests")
     private Object[] pendingRequests;
     @JsonProperty("is_member")
