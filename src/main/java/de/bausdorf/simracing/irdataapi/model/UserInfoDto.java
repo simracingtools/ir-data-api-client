@@ -115,4 +115,6 @@ public class UserInfoDto {
     @JsonProperty("has_read_pp")
     @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
     private Boolean hasReadPp;
+    @JsonProperty("bypass_hosted_password")
+    private Boolean bypassHostedPassword;
 }

@@ -56,6 +56,9 @@ public class TrackInfoDto {
     @JsonProperty("created")
     @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
     private ZonedDateTime created;
+    @JsonProperty("first_sale")
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "UTC")
+    private ZonedDateTime firstSale;
     @JsonProperty("free_with_subscription")
     private Boolean freeWithSubscription;
     @JsonProperty("fully_lit")

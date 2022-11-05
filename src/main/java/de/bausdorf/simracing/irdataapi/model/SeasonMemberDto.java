@@ -37,4 +37,8 @@ public class SeasonMemberDto {
     private Long custId;
     @JsonProperty("display_name")
     private String displayName;
+    @JsonProperty("car_id")
+    private Long carId;
+    @JsonProperty("car_num")
+    private String carNumber;
 }
