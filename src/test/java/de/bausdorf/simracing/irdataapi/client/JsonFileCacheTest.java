@@ -56,13 +56,13 @@ class JsonFileCacheTest {
 
     @Test
     void initializeSingleObjectCache() {
-        JsonFileCache<LeagueInfoDto> leagueCache = new JsonFileCache<>(".cache", "fbp_league");
         authenticate();
+        JsonFileCache<LeagueInfoDto> leagueCache = new JsonFileCache<>(config.getCacheDirectory(), "fbp_league");
         leagueCache.setCachedData(dataClient.getLeagueInfo(FBP_LEAGUE_ID));
         assertNotEquals(0L, leagueCache.cacheLastModified());
         assertTrue(leagueCache.cacheExists());
 
-        JsonFileCache<LeagueInfoDto> cacheFromFile = new JsonFileCache<>(".cache", "fbp_league");
+        JsonFileCache<LeagueInfoDto> cacheFromFile = new JsonFileCache<>(config.getCacheDirectory(), "fbp_league");
         assertTrue(cacheFromFile.cacheExists());
         assertNotEquals(0L, cacheFromFile.cacheLastModified());
         assertNotNull(cacheFromFile.getCachedData());
@@ -71,13 +71,13 @@ class JsonFileCacheTest {
 
     @Test
     void initializeListObjectCache() {
-        JsonFileCache<List<LeagueMemberDto>> leagueCache = new JsonFileCache<>(".cache", "fbp_league_roster");
         authenticate();
+        JsonFileCache<List<LeagueMemberDto>> leagueCache = new JsonFileCache<>(config.getCacheDirectory(), "fbp_league_roster");
         leagueCache.setCachedData(Arrays.asList(dataClient.getLeagueInfo(FBP_LEAGUE_ID).getRoster()));
         assertNotEquals(0L, leagueCache.cacheLastModified());
         assertTrue(leagueCache.cacheExists());
 
-        JsonFileCache<List<LeagueMemberDto>> cacheFromFile = new JsonFileCache<>(".cache", "fbp_league_roster");
+        JsonFileCache<List<LeagueMemberDto>> cacheFromFile = new JsonFileCache<>(config.getCacheDirectory(), "fbp_league_roster");
         assertTrue(cacheFromFile.cacheExists());
         assertNotEquals(0L, cacheFromFile.cacheLastModified());
         List<LeagueMemberDto> roster = cacheFromFile.getCachedData();

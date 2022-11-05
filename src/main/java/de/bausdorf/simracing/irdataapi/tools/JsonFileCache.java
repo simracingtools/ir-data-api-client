@@ -51,6 +51,13 @@ public class JsonFileCache<T> {
     public JsonFileCache(@NonNull String cacheDir, @NonNull String cacheName) {
         this.cacheDir = Paths.get(cacheDir);
         this.cacheName = cacheName;
+        if (!this.cacheDir.toFile().exists()) {
+            try {
+                Files.createDirectories(this.cacheDir);
+            } catch (IOException e) {
+                log.error("Could not create cache directory {}", this.cacheDir);
+            }
+        }
         try {
             cachedData = readFromFile(getFilePath());
         } catch (IOException | ClassNotFoundException e) {
@@ -88,6 +95,7 @@ public class JsonFileCache<T> {
         }
     }
 
+    @SuppressWarnings({"unchecked", "rawtypes"})
     private T readFromFile(String fileName) throws IOException, ClassNotFoundException {
         try (InputStream fis = new FileInputStream(fileName)) {
             ReadCacheWrapper<T> cacheWrapper = mapper.readValue(fis, ReadCacheWrapper.class);
