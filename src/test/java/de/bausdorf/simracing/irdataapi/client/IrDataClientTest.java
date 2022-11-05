@@ -62,7 +62,7 @@ class IrDataClientTest {
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClientImpl();
+    static final IrDataClient dataClient = new IrDataClientImpl();
 
     @Test
     void testGetMembersInfo() {
@@ -942,7 +942,7 @@ class IrDataClientTest {
     }
 
     @Test
-    void testInvalidAuthentication() {
+    void testInvalidAuthenticationAndReauthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")
                 .password("spock")
@@ -953,10 +953,7 @@ class IrDataClientTest {
         } catch(AuthorizationException e) {
             log.info(e.getMessage());
         }
-    }
 
-    @Test
-    void testReauthentication() {
         try {
             dataClient.getMemberSummary();
             fail("gateDataMember() should throw exception when not authorized");

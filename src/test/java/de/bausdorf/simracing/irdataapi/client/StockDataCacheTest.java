@@ -40,11 +40,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @TestPropertySource("classpath:application-test.properties")
 @Slf4j
 class StockDataCacheTest {
-    public static final long CUST_ID = 229120L;
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClientImpl();
+    static final IrDataClient dataClient = new IrDataClientImpl();
 
     @Test
     void initializeFromNonexistentCache() {

@@ -52,7 +52,7 @@ class JsonFileCacheTest {
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClientImpl();
+    static final IrDataClient dataClient = new IrDataClientImpl();
 
     @Test
     void initializeSingleObjectCache() {

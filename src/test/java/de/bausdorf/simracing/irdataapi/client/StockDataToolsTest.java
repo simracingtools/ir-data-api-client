@@ -49,9 +49,9 @@ class StockDataToolsTest {
     @Autowired
     ConfigProperties config;
 
-    IrDataClient dataClient = new IrDataClientImpl();
+    static final IrDataClient dataClient = new IrDataClientImpl();
 
-    StockDataCache dataCache = null;
+    static StockDataCache dataCache = null;
 
     @Test
     void testGetTrackConfigMap() {

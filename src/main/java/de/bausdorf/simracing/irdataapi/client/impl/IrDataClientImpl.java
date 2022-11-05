@@ -113,6 +113,7 @@ public class IrDataClientImpl implements IrDataClient {
             if (responseBody != null) {
                 authResponse = mapper.readValue(responseBody, AuthResponseDto.class);
                 if (authResponse.getAuthcode().equalsIgnoreCase("0")) {
+                    authResponse = null;
                     throw new AuthorizationException(requestDto.getEmail() + " not authorized");
                 }
                 log.info("iRacing DataApi authenticated for custId: {}", authResponse.getCustId());

@@ -27,14 +27,11 @@ import de.bausdorf.simracing.irdataapi.client.impl.IrDataClientImpl;
 import de.bausdorf.simracing.irdataapi.config.ConfigProperties;
 import de.bausdorf.simracing.irdataapi.model.*;
 import lombok.extern.slf4j.Slf4j;
-import org.assertj.core.internal.bytebuddy.dynamic.DynamicType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
 import org.springframework.test.context.TestPropertySource;
-import org.springframework.web.client.HttpClientErrorException;
 
 import java.util.*;
 
@@ -47,11 +44,10 @@ import static org.junit.jupiter.api.Assertions.*;
 @Slf4j
 class IrDataClientCompletenessTest {
 
-    public static final long CUST_ID = 229120L;
     @Autowired
     ConfigProperties config;
 
-    IrDataClientImpl dataClient = new IrDataClientImpl();
+    static final IrDataClientImpl dataClient = new IrDataClientImpl();
 
 
     @Test
