@@ -38,8 +38,7 @@ import java.io.IOException;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest(classes = {IrDataClientTest.class})
 @EnableConfigurationProperties(value = ConfigProperties.class)
@@ -57,6 +56,7 @@ class StockDataToolsTest {
     @Test
     void testGetTrackConfigMap() {
         authenticate();
+        assertNotNull(dataCache);
         Map<String, List<TrackInfoDto>> trackMap = StockDataTools.trackConfigurationMap(dataCache.getTracks());
         assertFalse(trackMap.isEmpty());
 
@@ -69,6 +69,7 @@ class StockDataToolsTest {
     @Test
     void testGetCarClassMap() {
         authenticate();
+        assertNotNull(dataCache);
         Map<CarClassKey, List<CarInfoDto>> carClassMap = StockDataTools.carClassMap(dataCache.getCarClasses(), dataCache.getCars());
         assertFalse(carClassMap.isEmpty());
 
@@ -81,6 +82,7 @@ class StockDataToolsTest {
     @Test
     void testCarsInClasses() {
         authenticate();
+        assertNotNull(dataCache);
         List<Long> classIds = Lists.list(3190L, 2523L);
         List<CarInfoDto> cars = StockDataTools.carsInClasses(classIds, dataCache.getCarClasses(), dataCache.getCars());
         assertFalse(cars.isEmpty());
@@ -91,6 +93,7 @@ class StockDataToolsTest {
     @Test
     void testFetchCarTypes() {
         authenticate();
+        assertNotNull(dataCache);
         NavigableSet<String> carTypes = StockDataTools.fetchAvailableCarTypes(dataCache.getCars(), MainCarType.ROAD);
         assertFalse(carTypes.isEmpty());
 
@@ -100,6 +103,7 @@ class StockDataToolsTest {
     @Test
     void testCarsByCategory() {
         authenticate();
+        assertNotNull(dataCache);
         List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByCategory(dataCache.getCars(), CarCategoryType.ROAD, false);
         assertFalse(carInfosWithLegacy.isEmpty());
 
@@ -110,6 +114,7 @@ class StockDataToolsTest {
     @Test
     void testCarsByType() {
         authenticate();
+        assertNotNull(dataCache);
         List<CarInfoDto> carInfosWithLegacy = StockDataTools.carsByType(dataCache.getCars(), "road", true);
         assertFalse(carInfosWithLegacy.isEmpty());
 
@@ -134,6 +139,7 @@ class StockDataToolsTest {
     @Test
     void testCarsByTypes() {
         authenticate();
+        assertNotNull(dataCache);
         List<String> carTypes = List.of(Constants.GT3, Constants.GT4, Constants.TCR, "supercup");
         List<CarInfoDto> carInfos = StockDataTools.carsByType(dataCache.getCars(), carTypes, true);
         assertFalse(carInfos.isEmpty());
@@ -144,6 +150,7 @@ class StockDataToolsTest {
     @Test
     void testTracksByType() {
         authenticate();
+        assertNotNull(dataCache);
         List<TrackInfoDto> infosWithLegacy = StockDataTools.tracksByType(dataCache.getTracks(), TrackType.ROAD, true);
         assertFalse(infosWithLegacy.isEmpty());
 
@@ -161,6 +168,7 @@ class StockDataToolsTest {
     @Test
     void testCarCategories() {
         authenticate();
+        assertNotNull(dataCache);
         NavigableSet<String> categories = new TreeSet<>();
         Arrays.stream(dataCache.getCars()).forEach(car -> categories.addAll(Arrays.stream(car.getCategories()).collect(Collectors.toList())));
         assertFalse(categories.isEmpty());
@@ -176,16 +184,16 @@ class StockDataToolsTest {
             AuthResponseDto authResponseDto = dataClient.authenticate(dto);
             dataClient.setLogResponseJson(config.getLogResponseJson());
             log.info(authResponseDto.toString());
-            if (dataCache == null) {
-                dataCache = new StockDataCache(config.getCacheDirectory());
-                try {
-                    if (!dataCache.cacheExists()) {
-                        dataCache.fetchFromService(dataClient);
-                    }
-                    dataCache.fetchFromCache();
-                } catch (IOException e) {
-                    log.warn(e.getMessage());
+        }
+        if (dataCache == null) {
+            dataCache = new StockDataCache(config.getCacheDirectory());
+            try {
+                if (!dataCache.cacheExists()) {
+                    dataCache.fetchFromService(dataClient);
                 }
+                dataCache.fetchFromCache();
+            } catch (IOException e) {
+                log.warn(e.getMessage());
             }
         }
     }
