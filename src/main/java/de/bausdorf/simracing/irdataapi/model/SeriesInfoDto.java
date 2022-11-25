@@ -43,6 +43,18 @@ public class SeriesInfoDto {
     private Boolean active;
     @JsonProperty("official")
     private Boolean official;
+    @JsonProperty("fixed_setup")
+    private Boolean fixedSetup;
+    @JsonProperty("search_filters")
+    private String searchFilters;
+    @JsonProperty("logo")
+    private String logo;
+    @JsonProperty("license_group")
+    private Long licenseGroup;
+    @JsonProperty("license_group_types")
+    LicenseGroupTypeDto[] licenseGroupTypes;
+    @JsonProperty("allowed_licenses")
+    LicenseAllowedDto[] allowedLicenses;
     @JsonProperty("seasons")
     private SeasonInfoDto[] seasons;
 }

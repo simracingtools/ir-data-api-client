@@ -47,6 +47,12 @@ public class SeasonInfoDto {
     private Boolean official;
     @JsonProperty("driver_changes")
     private Boolean driverChanges;
+    @JsonProperty("fixed_setup")
+    private Boolean fixedSetup;
+    @JsonProperty("license_group")
+    private Long licenseGroup;
+    @JsonProperty("license_group_types")
+    LicenseGroupTypeDto[] licenseGroupTypes;
     @JsonProperty("car_classes")
     private CarClassDto[] carClasses;
     @JsonProperty("race_weeks")

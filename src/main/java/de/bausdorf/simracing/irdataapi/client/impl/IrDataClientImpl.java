@@ -1222,8 +1222,8 @@ public class IrDataClientImpl implements IrDataClient {
             try {
                 return mapper.readValue(infoResponseBody, targetType);
             } catch (UnrecognizedPropertyException e) {
-                log.error(e.getMessage());
                 log.info(infoResponseBody);
+                log.error(e.getMessage());
                 return null;
             }
         } else {
@@ -1248,7 +1248,7 @@ public class IrDataClientImpl implements IrDataClient {
         return resultList;
     }
 
-    private String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
+    private static String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
         return baseUri + CUST_ID_URL_PARAM + custId;
     }
 
