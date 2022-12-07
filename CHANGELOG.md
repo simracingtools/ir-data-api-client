@@ -2,6 +2,53 @@
 
 Changelog of ir-data-api-client.
 
+## v2.7.0 (2022-12-07)
+
+### Bug Fixes
+
+-  Field updates for Season 1/2023. ([b1c99](https://github.com/simracingtools/ir-data-api-client/commit/b1c99ac68beabbf) Robert Bausdorf)  
+-  Missing fields on getSeriesStats. ([6af27](https://github.com/simracingtools/ir-data-api-client/commit/6af27689b64caf9) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.7.0**
+
+
+[52f62](https://github.com/simracingtools/ir-data-api-client/commit/52f62de32632160) Robert Bausdorf *2022-12-07 16:53:47*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[63e2c](https://github.com/simracingtools/ir-data-api-client/commit/63e2c43271a73bd) Robert Bausdorf *2022-11-05 23:36:55*
+
+
+## v2.6.2 (2022-11-05)
+
+### Features
+
+-  LeagueApplicationDto added to LeagueInfoDto. ([dbd6d](https://github.com/simracingtools/ir-data-api-client/commit/dbd6d758143ec4a) Robert Bausdorf)  
+
+### Bug Fixes
+
+-  Cache tests fix. ([8cc1f](https://github.com/simracingtools/ir-data-api-client/commit/8cc1ff6506cf875) Robert Bausdorf)  
+-  Reduce iRAcing test API calls. ([055c3](https://github.com/simracingtools/ir-data-api-client/commit/055c35025ac1297) Robert Bausdorf)  
+-  NPE StockDataToolsTest fixed. ([0970c](https://github.com/simracingtools/ir-data-api-client/commit/0970ca26c0450b3) Robert Bausdorf)  
+-  Typo misleading context. ([62afb](https://github.com/simracingtools/ir-data-api-client/commit/62afb3108ddf04e) Robert Bausdorf)  
+-  JsonFileCacheTest fixed. ([7f663](https://github.com/simracingtools/ir-data-api-client/commit/7f663f6c033d4ae) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.6.2**
+
+
+[60df3](https://github.com/simracingtools/ir-data-api-client/commit/60df3207e40e8d6) Robert Bausdorf *2022-11-05 23:36:47*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[3c75a](https://github.com/simracingtools/ir-data-api-client/commit/3c75a1624f1466e) Robert Bausdorf *2022-11-05 12:15:21*
+
+
 ## v2.6.1 (2022-11-05)
 
 ### Bug Fixes
