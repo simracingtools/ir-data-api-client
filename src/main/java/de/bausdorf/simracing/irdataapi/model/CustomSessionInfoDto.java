@@ -200,6 +200,8 @@ public class CustomSessionInfoDto {
     private Boolean mustUseDiffTireTypesInRace;
     @JsonProperty("start_zone")
     private Boolean startZone;
+    @JsonProperty("enable_pitlane_collisions")
+    private Boolean enablePitlaneCollisions;
     @JsonProperty("session_full")
     private Boolean sessionFull;
     @JsonProperty("host")

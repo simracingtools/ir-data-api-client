@@ -38,6 +38,8 @@ public class MemberInfoDto {
     private String displayName;
     @JsonProperty("helmet")
     private HelmetDto helmet;
+    @JsonProperty("profile_disabled")
+    private Boolean profileDisabled;
     @JsonProperty("last_login")
     private ZonedDateTime lastLogin;
     @JsonProperty("member_since")

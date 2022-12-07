@@ -41,6 +41,8 @@ public class SeriesDto {
     private String category;
     @JsonProperty("eligible")
     private Boolean eligible;
+    @JsonProperty("forum_url")
+    private String forumUrl;
     @JsonProperty("max_starters")
     private Long maxStarters;
     @JsonProperty("min_starters")

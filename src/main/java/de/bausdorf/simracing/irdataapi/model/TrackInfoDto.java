@@ -38,6 +38,12 @@ import java.time.ZonedDateTime;
 public class TrackInfoDto {
     @JsonProperty("ai_enabled")
     private Boolean aiEnabled;
+    @JsonProperty("allow_pitlane_collisions")
+    private Boolean allowPitlaneCollisions;
+    @JsonProperty("allow_rolling_start")
+    private Boolean allowRollingStart;
+    @JsonProperty("allow_standing_start")
+    private Boolean allowStandingStart;
     @JsonProperty("award_exempt")
     private Boolean awardExempt;
     @JsonProperty("banking")
@@ -100,6 +106,8 @@ public class TrackInfoDto {
     private Long pitRoadSpeedLimit;
     @JsonProperty("price")
     private Double price;
+    @JsonProperty("price_display")
+    private String priceDisplay;
     @JsonProperty("priority")
     private Long priority;
     @JsonProperty("purchasable")

@@ -54,6 +54,8 @@ public class SeasonDto {
     private Boolean driverChanges;
     @JsonProperty("drops")
     private Long drops;
+    @JsonProperty("enable_pitlane_collisions")
+    private Boolean enablePitlaneCollisions;
     @JsonProperty("fixed_setup")
     private Boolean fixedSetup;
     @JsonProperty("green_white_checkered_limit")

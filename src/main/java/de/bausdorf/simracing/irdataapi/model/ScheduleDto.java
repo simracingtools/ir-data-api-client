@@ -80,4 +80,6 @@ public class ScheduleDto {
     private Boolean fullCourseCautions;
     @JsonProperty("race_time_descriptors")
     private RaceTimeDesciptorDto[] raceTimeDescriptors;
+    @JsonProperty("enable_pitlane_collisions")
+    private Boolean enablePitlaneCollisions;
 }

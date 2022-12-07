@@ -35,6 +35,8 @@ import java.time.ZonedDateTime;
 public class LeagueSessionInfoDto {
     @JsonProperty("driver_changes")
     private Boolean driverChanges;
+    @JsonProperty("enable_pitlane_collisions")
+    private Boolean enablePitlaneCollisions;
     @JsonProperty("private_session_id")
     private Long privateSessionId;
     @JsonProperty("session_id")
