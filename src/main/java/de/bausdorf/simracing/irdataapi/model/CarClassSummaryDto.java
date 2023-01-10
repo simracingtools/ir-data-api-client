@@ -25,30 +25,18 @@ package de.bausdorf.simracing.irdataapi.model;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 
 @Data
 @NoArgsConstructor
-@ToString
-public class DriverTtStandingDto {
-    @JsonProperty("rank")
-    private Long rank;
-    @JsonProperty("cust_id")
-    private Long custId;
-    @JsonProperty("display_name")
-    private String displayName;
-    @JsonProperty("division")
-    private Long division;
-    @JsonProperty("club_id")
-    private Long clubId;
-    @JsonProperty("club_name")
-    private String clubName;
-    @JsonProperty("license")
-    DriverLicenseInfoDto license;
-    @JsonProperty("helmet")
-    private HelmetDto helmet;
-    @JsonProperty("best_nlaps_time")
-    private Long bestNlapsTime;
-    @JsonProperty("starts")
-    private Long starts;
+public class CarClassSummaryDto {
+    @JsonProperty("car_class_id")
+    private Long carClassId;
+    @JsonProperty("name")
+    private String name;
+    @JsonProperty("short_name")
+    private String shortName;
+    @JsonProperty("num_entries")
+    private Long numEntries;
+    @JsonProperty("strength_of_field")
+    private Long sof;
 }

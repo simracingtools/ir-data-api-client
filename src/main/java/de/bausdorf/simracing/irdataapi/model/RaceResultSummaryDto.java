@@ -64,4 +64,6 @@ public class RaceResultSummaryDto {
     private Long numDrivers;
     @JsonProperty("track")
     private TrackRefDto track;
+    @JsonProperty("car_classes")
+    private CarClassSummaryDto[] carClasses;
 }

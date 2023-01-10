@@ -45,6 +45,9 @@ public class DriverQualifyStandingDto {
     private String clubName;
     @JsonProperty("license")
     DriverLicenseInfoDto license;
+    @JsonProperty("helmet")
+    private HelmetDto helmet;
+
     @JsonProperty("best_qual_lap_time")
     private Long bestQualLapTime;
 }

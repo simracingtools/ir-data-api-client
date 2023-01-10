@@ -587,7 +587,7 @@ class IrDataClientTest {
     @Test
     void testGetLeagueSubsessionResult() {
         authenticate();
-        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(43352007L);
+        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(35673002L);
 //        SubsessionResultDto subsessionResultDto = dataClient.getSubsessionResult(44975865L);
         assertNotNull(subsessionResultDto);
         assertTrue(subsessionResultDto.getSessionResults().length > 0);

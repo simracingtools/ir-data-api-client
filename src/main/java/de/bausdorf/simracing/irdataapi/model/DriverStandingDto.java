@@ -44,7 +44,9 @@ public class DriverStandingDto {
     @JsonProperty("club_name")
     private String clubName;
     @JsonProperty("license")
-    DriverLicenseInfoDto license;
+    private DriverLicenseInfoDto license;
+    @JsonProperty("helmet")
+    private HelmetDto helmet;
     @JsonProperty("weeks_counted")
     private Long weeksCounted;
     @JsonProperty("starts")
