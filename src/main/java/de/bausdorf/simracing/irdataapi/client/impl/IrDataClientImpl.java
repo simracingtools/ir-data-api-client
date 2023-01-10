@@ -566,6 +566,20 @@ public class IrDataClientImpl implements IrDataClient {
     }
 
     @Override
+    public SeriesPastSeasonsDto getSeriesPastSeasons(Long seriesId) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_PAST_SEASONS_URL + "?series_id=" + seriesId);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SeriesPastSeasonsDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_PAST_SEASONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
     public TrackInfoDto[] getTrackInfos() {
         try {
             LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TRACKS_URL);

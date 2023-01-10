@@ -109,6 +109,8 @@ public interface IrDataClient {
 
     SeriesDto[] getSeries();
 
+    SeriesPastSeasonsDto getSeriesPastSeasons(@NonNull Long seriesId);
+
     TrackInfoDto[] getTrackInfos();
 
     LicenseGroupDto[] getLicenseGroups();

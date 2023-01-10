@@ -570,8 +570,20 @@ class IrDataClientTest {
         assertNotNull(series);
         assertTrue(series.length > 0);
 
-        Arrays.stream(series).forEach(stats -> log.info("{}", stats.getSeriesName()));
+        Arrays.stream(series).forEach(stats -> log.info("{} ({})", stats.getSeriesName(), stats.getSeriesId()));
         log.info("got {} series stats", series.length);
+    }
+
+    @Test
+    void testGetSeriesPastSeasons() {
+        authenticate();
+        SeriesPastSeasonsDto series = dataClient.getSeriesPastSeasons(139L);
+        assertNotNull(series);
+        assertTrue(series.getSuccess());
+        assertTrue(series.getSeries().getSeasons().length > 0);
+
+        Arrays.stream(series.getSeries().getSeasons()).forEach(stats -> log.info("{} ({})", stats.getSeasonName(), stats.getSeasonId()));
+        log.info("got {} series seasons", series.getSeries().getSeasons().length);
     }
 
     @Test
