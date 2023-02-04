@@ -81,6 +81,8 @@ public class TrackInfoDto {
     private Boolean isDirt;
     @JsonProperty("is_oval")
     private Boolean isOval;
+    @JsonProperty("is_ps_purchasable")
+    private Boolean isPsPurchasable;
     @JsonProperty("lap_scoring")
     private Long lapScoring;
     @JsonProperty("latitude")
