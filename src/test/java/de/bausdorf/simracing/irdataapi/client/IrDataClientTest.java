@@ -954,6 +954,24 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetParticipationCredits() {
+        authenticate();
+        Map<String, Object>[] credits = dataClient.getParticipationCredits();
+
+        log.info("participation credits: {}", (Object[]) credits);
+        assertNotNull(credits);
+    }
+
+    @Test
+    void testGetTimeAttackMemberResults() {
+        authenticate();
+        Map<String, Object>[] ta_results = dataClient.getTimeAttackSeasonResults(3779L);
+
+        log.info("time attack member results: {}", (Object[]) ta_results);
+        assertNotNull(ta_results);
+    }
+
+    @Test
     void testInvalidAuthenticationAndReauthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")

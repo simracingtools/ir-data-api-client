@@ -1204,6 +1204,35 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public Map<String, Object>[] getParticipationCredits() {
+        try{
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_PARTICIPATION_CREDITS_URL);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<Map<String, Object>[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_LOOKUP_DRIVERS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public Map<String, Object>[] getTimeAttackSeasonResults(Long seasonId) {
+        try {
+            LinkResponseDto linkResponse = getLinkResponse(DataApiConstants.GET_TA_SEASON_RESULTS_URL
+                    + "?ta_comp_season_id=" + seasonId);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<Map<String, Object>[]>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_TA_SEASON_RESULTS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {

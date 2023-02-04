@@ -214,4 +214,8 @@ public interface IrDataClient {
     MemberInfoDto[] getDriverLookup(@NonNull String searchTerm);
 
     MemberInfoDto[] getDriverLookup(@NonNull String searchTerm, @Nullable Long leagueId);
+
+    Map<String, Object>[] getParticipationCredits();
+
+    Map<String, Object>[] getTimeAttackSeasonResults(@NonNull Long seasonId);
 }
