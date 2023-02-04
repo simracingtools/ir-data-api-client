@@ -2,6 +2,57 @@
 
 Changelog of ir-data-api-client.
 
+## v2.8.1 (2023-02-04)
+
+### Features
+
+-  Missing endpoints added with generic result ([0eddb](https://github.com/simracingtools/ir-data-api-client/commit/0eddbe5b6c11aa9) Robert Bausdorf)  
+
+### Bug Fixes
+
+-  Missing field in TrackInfoDto. ([4ef42](https://github.com/simracingtools/ir-data-api-client/commit/4ef42e30ba7c699) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.8.1**
+
+
+[d1ab9](https://github.com/simracingtools/ir-data-api-client/commit/d1ab9bb4c3b78c6) Robert Bausdorf *2023-02-04 14:27:51*
+
+**Merge remote-tracking branch 'origin/main' into main**
+
+
+[e1ed6](https://github.com/simracingtools/ir-data-api-client/commit/e1ed60cd4b31302) Robert Bausdorf *2023-02-04 13:22:54*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[704c6](https://github.com/simracingtools/ir-data-api-client/commit/704c65d053e2d49) Robert Bausdorf *2023-01-11 16:08:11*
+
+
+## v2.8.0 (2023-01-11)
+
+### Features
+
+-  Past seasons endpoint added. ([97751](https://github.com/simracingtools/ir-data-api-client/commit/977514b3c90dea0) Robert Bausdorf)  
+
+### Bug Fixes
+
+-  Missing fields on some standings. ([61ce2](https://github.com/simracingtools/ir-data-api-client/commit/61ce2a5e0aa27f2) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v2.8.0**
+
+
+[3a87b](https://github.com/simracingtools/ir-data-api-client/commit/3a87b3cdcf93e6a) Robert Bausdorf *2023-01-11 16:08:06*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[4b532](https://github.com/simracingtools/ir-data-api-client/commit/4b532fb714ec557) Robert Bausdorf *2022-12-07 16:53:51*
+
+
 ## v2.7.0 (2022-12-07)
 
 ### Bug Fixes
