@@ -27,6 +27,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -34,6 +35,7 @@ import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
+@ToString
 public class RaceTimeDesciptorDto {
     @JsonProperty("repeating")
     private Boolean repeating;
