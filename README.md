@@ -20,6 +20,13 @@ For usage hints see
 class IrDataClientTest
 `
 
+Main changes made by iRacing occur withing a new season rollout.
+
+Starting in March 2023 this project switches versioning coupled to iRacing's seasoning.
+A version respecting changes made in iRacing's season 2023/2 will be v23.2.0. Fixes within a seasion 
+will be 23.2.1, 23.2.2 and further on.
+
+
 ## Known endpoint restrictions
 
 https://members-ng.iracing.com/data/results/lap_chart_data - does not work for league sessions
@@ -27,10 +34,6 @@ https://members-ng.iracing.com/data/results/lap_chart_data - does not work for l
 https://members-ng.iracing.com/data/results/lap_data - does work for league sessions
 
 https://members-ng.iracing.com/data/results/season_results - does not work for league sessions
- 
-## Endpoints currently not supported
-
-None - all endpoints supported.
 
 
 ## Hints

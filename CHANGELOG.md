@@ -2,6 +2,29 @@
 
 Changelog of ir-data-api-client.
 
+## v23.2.0 (2023-03-23)
+
+### Features
+
+-  New endpoints added with season 2/2023. ([e668f](https://github.com/simracingtools/ir-data-api-client/commit/e668f9c4dd010cf) Robert Bausdorf)  
+
+### Bug Fixes
+
+-  Season 2/2023 field DTO updates. ([515e1](https://github.com/simracingtools/ir-data-api-client/commit/515e1e7d993f9fe) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v23.2.0**
+
+
+[d41e5](https://github.com/simracingtools/ir-data-api-client/commit/d41e5fad20042f7) Robert Bausdorf *2023-03-23 13:07:25*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[92455](https://github.com/simracingtools/ir-data-api-client/commit/924550e0c804fcb) Robert Bausdorf *2023-02-04 14:27:55*
+
+
 ## v2.8.1 (2023-02-04)
 
 ### Features
