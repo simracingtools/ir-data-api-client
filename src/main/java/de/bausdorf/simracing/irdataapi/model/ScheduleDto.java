@@ -82,4 +82,6 @@ public class ScheduleDto {
     private RaceTimeDesciptorDto[] raceTimeDescriptors;
     @JsonProperty("enable_pitlane_collisions")
     private Boolean enablePitlaneCollisions;
+    @JsonProperty("short_parade_lap")
+    private Boolean shortParadeLap;
 }

@@ -153,4 +153,6 @@ public class SeasonDto {
     private HeatSessionInfoDto heatSesInfo;
     @JsonProperty("start_zone")
     private Boolean startZone;
+    @JsonProperty("short_parade_lap")
+    private Boolean shortParadeLap;
 }

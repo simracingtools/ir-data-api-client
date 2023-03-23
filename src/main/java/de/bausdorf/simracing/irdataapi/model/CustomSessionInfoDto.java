@@ -270,4 +270,6 @@ public class CustomSessionInfoDto {
     private Long minIr;
     @JsonProperty("max_ir")
     private Long maxIr;
+    @JsonProperty("disallow_virtual_mirror")
+    private Boolean disallowVirtualMirror;
 }

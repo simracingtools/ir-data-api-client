@@ -22,9 +22,13 @@ package de.bausdorf.simracing.irdataapi.model;
  * #L%
  */
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import de.bausdorf.simracing.irdataapi.client.DataApiConstants;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.time.ZonedDateTime;
 
 @Data
 @NoArgsConstructor
@@ -35,4 +39,13 @@ public class MemberBestDto {
     private String eventType;
     @JsonProperty("best_lap_time")
     private Long bestLapTime;
+    @JsonProperty("subsession_id")
+    private Long subsessionId;
+    @JsonProperty("end_time")
+    @JsonFormat(pattern = DataApiConstants.UTC_DATETIME_FORMAT, timezone = "GMT")
+    private ZonedDateTime endTime;
+    @JsonProperty("season_year")
+    private Long seasonYear;
+    @JsonProperty("season_quarter")
+    private Long seasonQuarter;
 }
