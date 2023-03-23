@@ -39,4 +39,6 @@ public class CarRefLongDto {
     private String carName;
     @JsonProperty("car_class_name")
     private String carClassName;
+    @JsonProperty("car_image")
+    private String carImage;
 }

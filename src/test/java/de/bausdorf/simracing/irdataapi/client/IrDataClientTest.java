@@ -972,6 +972,56 @@ class IrDataClientTest {
     }
 
     @Test
+    void testGetSpectatorSubsessionIds() {
+        authenticate();
+        SpectatorSubsessionIdsDto spectatorSubsessionIds = dataClient.getSpectatorSubsessionIds();
+        assertNotNull(spectatorSubsessionIds);
+        assertTrue(spectatorSubsessionIds.getSuccess());
+        assertTrue(spectatorSubsessionIds.getSubsessionIds().length > 0);
+
+        spectatorSubsessionIds = dataClient.getSpectatorSubsessionIds(5L);
+        assertNotNull(spectatorSubsessionIds);
+        assertTrue(spectatorSubsessionIds.getSuccess());
+        assertTrue(spectatorSubsessionIds.getSubsessionIds().length > 0);
+        log.info("ID's for race");
+        Arrays.stream(spectatorSubsessionIds.getSubsessionIds()).forEach(id -> log.info(id.toString()));
+
+        Long[] eventTypes = new Long[2];
+        eventTypes[0] = 4L;
+        eventTypes[1] = 5L;
+        spectatorSubsessionIds = dataClient.getSpectatorSubsessionIds(eventTypes);
+        assertNotNull(spectatorSubsessionIds);
+        assertTrue(spectatorSubsessionIds.getSuccess());
+        assertTrue(spectatorSubsessionIds.getSubsessionIds().length > 0);
+        log.info("ID's for qualification and race");
+        Arrays.stream(spectatorSubsessionIds.getSubsessionIds()).forEach(id -> log.info(id.toString()));
+    }
+
+    @Test
+    void testGetMemberRecap() {
+        authenticate();
+        MemberRecapResultDto memberRecapResult = dataClient.getMemberRecap();
+        assertNotNull(memberRecapResult);
+        assertTrue(memberRecapResult.getSuccess());
+        log.info("Current member recap: {}", memberRecapResult);
+
+        memberRecapResult = dataClient.getMemberRecap(372473L);
+        assertNotNull(memberRecapResult);
+        assertTrue(memberRecapResult.getSuccess());
+        log.info("Member {} recap: {}", 372473L, memberRecapResult);
+
+        memberRecapResult = dataClient.getMemberRecap(229120L, 2022L);
+        assertNotNull(memberRecapResult);
+        assertTrue(memberRecapResult.getSuccess());
+        log.info("Member {} recap for {}: {}", 229120L, 2022, memberRecapResult);
+
+        memberRecapResult = dataClient.getMemberRecap(229120L, 2022L, 4L);
+        assertNotNull(memberRecapResult);
+        assertTrue(memberRecapResult.getSuccess());
+        log.info("Member {} recap for {}/{}: {}", 229120L, 2022, 4, memberRecapResult);
+    }
+
+    @Test
     void testInvalidAuthenticationAndReauthentication() {
         LoginRequestDto dto = LoginRequestDto.builder()
                 .email("kirk@starfleet.com")

@@ -1233,6 +1233,82 @@ public class IrDataClientImpl implements IrDataClient {
         }
     }
 
+    @Override
+    public SpectatorSubsessionIdsDto getSpectatorSubsessionIds() {
+        return getSpectatorSubsessionIds((Long[])null);
+    }
+
+    @Override
+    public SpectatorSubsessionIdsDto getSpectatorSubsessionIds(Long eventType) {
+        Long[] array = new Long[1];
+        array[0] = eventType;
+        return getSpectatorSubsessionIds(array);
+    }
+
+    @Override
+    public SpectatorSubsessionIdsDto getSpectatorSubsessionIds(Long[] eventTypes) {
+        try {
+            String uri = DataApiConstants.GET_SPECTATOR_SUBSESSIONS_URL;
+            if  (eventTypes != null) {
+                uri += '?' + listParameterFromArray("event_types", eventTypes);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri);
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<SpectatorSubsessionIdsDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_SPECTATOR_SUBSESSIONS_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
+    @Override
+    public MemberRecapResultDto getMemberRecap() {
+        return getMemberRecap(null, null, null);
+    }
+
+    @Override
+    public MemberRecapResultDto getMemberRecap(Long custId) {
+        return getMemberRecap(custId, null, null);
+    }
+
+    @Override
+    public MemberRecapResultDto getMemberRecap(Long custId, Long year) {
+        return getMemberRecap(custId, year, null);
+    }
+
+    @Override
+    public MemberRecapResultDto getMemberRecap(Long custId, Long year, Long season) {
+        try {
+            String uri = DataApiConstants.GET_MEMBER_RECAP_URL;
+            StringBuilder uriParameters = new StringBuilder();
+            if  (custId != null) {
+                uriParameters.append("cust_id=").append(custId);
+            }
+            if  (year != null) {
+                if (uriParameters.length() > 0) {
+                    uriParameters.append('&');
+                }
+                uriParameters.append("year=").append(custId);
+            }
+            if (season != null) {
+                if (uriParameters.length() > 0) {
+                    uriParameters.append('&');
+                }
+                uriParameters.append("season=").append(season);
+            }
+            LinkResponseDto linkResponse = getLinkResponse(uri + (uriParameters.length() > 0 ? '?' + uriParameters.toString() : ""));
+            if (linkResponse != null) {
+                return getStructuredData(linkResponse.getLink(), new TypeReference<MemberRecapResultDto>() {
+                });
+            }
+            throw new DataApiException(DataApiConstants.GET_MEMBER_RECAP_URL + RETURNED_NULL_BODY);
+        } catch (IOException e) {
+            throw new DataApiException(e);
+        }
+    }
+
     public JsonNode getApiDocs() {
         try {
             return getStructuredData(DataApiConstants.GET_DOCS_URL, new TypeReference<JsonNode>() {
@@ -1293,6 +1369,17 @@ public class IrDataClientImpl implements IrDataClient {
 
     private static String uriWithCustIdParameter(@NonNull String baseUri, @NonNull Long custId) {
         return baseUri + CUST_ID_URL_PARAM + custId;
+    }
+
+    private static String listParameterFromArray(String parameterName, Long[] parameterValues) {
+        StringBuilder urlParameter = new StringBuilder(parameterName + '=');
+        for (int i = 0; i < parameterValues.length; i++) {
+            urlParameter.append(parameterValues[i].toString());
+            if (i + 1 < parameterValues.length) {
+                urlParameter.append(',');
+            }
+        }
+        return urlParameter.toString();
     }
 
     public static class StatefulRestTemplateInterceptor implements ClientHttpRequestInterceptor {

@@ -218,4 +218,18 @@ public interface IrDataClient {
     Map<String, Object>[] getParticipationCredits();
 
     Map<String, Object>[] getTimeAttackSeasonResults(@NonNull Long seasonId);
+
+    SpectatorSubsessionIdsDto getSpectatorSubsessionIds();
+
+    SpectatorSubsessionIdsDto getSpectatorSubsessionIds(@NonNull Long eventType);
+
+    SpectatorSubsessionIdsDto getSpectatorSubsessionIds(@Nullable Long[] eventTypes);
+
+    MemberRecapResultDto getMemberRecap();
+
+    MemberRecapResultDto getMemberRecap(@Nullable Long custId);
+
+    MemberRecapResultDto getMemberRecap(@Nullable Long custId, @Nullable Long year);
+
+    MemberRecapResultDto getMemberRecap(@Nullable Long custId, @Nullable Long year, @Nullable Long season);
 }

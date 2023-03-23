@@ -41,4 +41,6 @@ public class TrackRefDto {
     private String category;
     @JsonProperty("category_id")
     private Long categoryId;
+    @JsonProperty("track_logo")
+    private String trackLogo;
 }

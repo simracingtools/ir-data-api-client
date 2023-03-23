@@ -90,9 +90,10 @@ public class DataApiConstants {
     public static final String GET_MEMBER_AWARDS_URL = "https://members-ng.iracing.com/data/member/awards";
     public static final String GET_TA_SEASON_RESULTS_URL = "https://members-ng.iracing.com/data/time_attack/member_season_results";
     public static final String GET_PARTICIPATION_CREDITS_URL = "https://members-ng.iracing.com/data/member/participation_credits";
-
+    public static final String GET_SPECTATOR_SUBSESSIONS_URL = "https://members-ng.iracing.com/data/season/spectator_subsessionids";
+    public static final String GET_MEMBER_RECAP_URL = "https://members-ng.iracing.com/data/stats/member_recap";
     public static final List<String> SUPPORTED_ENDPOINTS = List.of(
-            GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL, GET_MEMBER_PROFILE_URL, GET_MEMBER_BEST_URL,
+            GET_MEMBERS_URL, GET_USERINFO_URL, GET_MEMBER_CHART_URL, GET_MEMBER_PROFILE_URL, GET_MEMBER_BEST_URL, GET_MEMBER_RECAP_URL,
             GET_MEMBER_SUMMARY_URL, GET_MEMBER_YEARLY_URL, GET_MEMBER_CAREER_URL, GET_MEMBER_RECENT_RACES_URL, GET_MEMBER_DIVISION_URL, GET_MEMBER_AWARDS_URL,
             GET_DRIVER_STANDINGS_URL, GET_TEAM_STANDINGS_URL, GET_TT_STANDINGS_URL, GET_TT_RESULTS_URL, GET_QUALIFY_RESULTS_URL, GET_SUPERSESSION_STANDINGS_URL,
             GET_CARS_URL, GET_CAR_ASSETS_URL, GET_CAR_CLASSES_URL,
@@ -106,7 +107,7 @@ public class DataApiConstants {
             GET_CUST_LEAGUE_SESSIONS_URL, GET_LEAGUE_MEMBERSHIP_URL, GET_COMBINED_SESSIONS_URL, GET_DRIVABLE_SESSIONS_URL,
             SEARCH_LEAGUE_DIRECTORY_URL, GET_LEAGUE_POINT_SYSTEMS_URL, GET_LEAGUE_SEASONS_URL, GET_LEAGUE_SEASON_STANDINGS_URL, GET_LEAGUE_SESSIONS_URL,
             SEARCH_SERIES_RESULTS_URL, SEARCH_HOSTED_RESULTS_URL,
-            GET_TA_SEASON_RESULTS_URL, GET_PARTICIPATION_CREDITS_URL
+            GET_TA_SEASON_RESULTS_URL, GET_PARTICIPATION_CREDITS_URL, GET_SPECTATOR_SUBSESSIONS_URL
     );
 
     // Date and time format constants for json deserialization
