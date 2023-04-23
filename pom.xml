@@ -4,7 +4,7 @@
 
     <groupId>de.bausdorf.simracing</groupId>
     <artifactId>ir-data-api-client</artifactId>
-    <version>23.2.1</version>
+    <version>23.2.1-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <organization>
         <name>bausdorf engineering</name>
@@ -49,7 +49,7 @@
         <connection>scm:git:git@github.com:simracingtools/ir-data-api-client.git</connection>
         <url>scm:git:git@github.com:simracingtools/ir-data-api-client.git</url>
         <developerConnection>scm:git:git@github.com:simracingtools/ir-data-api-client.git</developerConnection>
-        <tag>v23.2.1</tag>
+        <tag>HEAD</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
