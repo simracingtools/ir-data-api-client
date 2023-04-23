@@ -155,4 +155,6 @@ public class SeasonDto {
     private Boolean startZone;
     @JsonProperty("short_parade_lap")
     private Boolean shortParadeLap;
+    @JsonProperty("hardcore_level")
+    private Long hardcoreLevel;
 }
