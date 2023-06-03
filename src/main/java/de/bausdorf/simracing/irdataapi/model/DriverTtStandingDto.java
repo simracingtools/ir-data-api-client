@@ -51,4 +51,6 @@ public class DriverTtStandingDto {
     private Long bestNlapsTime;
     @JsonProperty("starts")
     private Long starts;
+    @JsonProperty("points")
+    private Long points;
 }
