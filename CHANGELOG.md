@@ -2,6 +2,25 @@
 
 Changelog of ir-data-api-client.
 
+## v23.2.2 (2023-06-03)
+
+### Bug Fixes
+
+-  Points field added ([ffe91](https://github.com/simracingtools/ir-data-api-client/commit/ffe91a6342fbd17) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v23.2.2**
+
+
+[93683](https://github.com/simracingtools/ir-data-api-client/commit/93683fc57d7c62b) Robert Bausdorf *2023-06-03 12:52:05*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[e2c31](https://github.com/simracingtools/ir-data-api-client/commit/e2c31533ca21018) Robert Bausdorf *2023-05-08 07:47:06*
+
+
 ## v23.2.1 (2023-05-08)
 
 ### Bug Fixes
