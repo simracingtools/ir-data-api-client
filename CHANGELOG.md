@@ -2,6 +2,45 @@
 
 Changelog of ir-data-api-client.
 
+## v23.2.1 (2023-05-08)
+
+### Bug Fixes
+
+-  Added hardcore_level to SeasonDto ([d5559](https://github.com/simracingtools/ir-data-api-client/commit/d5559c207fb509a) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v23.2.1**
+
+
+[87378](https://github.com/simracingtools/ir-data-api-client/commit/87378d36609cbaa) Robert Bausdorf *2023-05-08 07:47:02*
+
+**[maven-release-plugin] rollback the release of v23.2.1**
+
+
+[feec3](https://github.com/simracingtools/ir-data-api-client/commit/feec3d1d3a661ba) Robert Bausdorf *2023-04-23 12:51:25*
+
+**[maven-release-plugin] prepare release v23.2.1**
+
+
+[9e433](https://github.com/simracingtools/ir-data-api-client/commit/9e433f5031c3191) Robert Bausdorf *2023-04-23 12:46:38*
+
+**[maven-release-plugin] rollback the release of v23.2.1**
+
+
+[b63ac](https://github.com/simracingtools/ir-data-api-client/commit/b63ac760ae0dcc4) Robert Bausdorf *2023-04-23 12:45:46*
+
+**[maven-release-plugin] prepare release v23.2.1**
+
+
+[aa0d2](https://github.com/simracingtools/ir-data-api-client/commit/aa0d21b4b8f8799) Robert Bausdorf *2023-04-23 12:39:00*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[b2cbd](https://github.com/simracingtools/ir-data-api-client/commit/b2cbdffb1c9252a) Robert Bausdorf *2023-03-23 13:07:29*
+
+
 ## v23.2.0 (2023-03-23)
 
 ### Features
