@@ -35,4 +35,6 @@ public class MemberRefDto {
     private Long custId;
     @JsonProperty("display_name")
     private String displayName;
+    @JsonProperty("helmet")
+    private HelmetDto helmet;
 }

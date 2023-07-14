@@ -45,4 +45,12 @@ public class BalancedCarDto {
     private Long maxDryTireSets;
     @JsonProperty("package_id")
     private Long packageId;
+    @JsonProperty("race_setup_id")
+    private Long raceSetupId;
+    @JsonProperty("race_setup_filename")
+    private String raceSetupFileName;
+    @JsonProperty("qual_setup_id")
+    private Long qualSetupId;
+    @JsonProperty("qual_setup_filename")
+    private String qualSetupFileName;
 }
