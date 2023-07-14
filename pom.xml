@@ -4,7 +4,7 @@
 
     <groupId>de.bausdorf.simracing</groupId>
     <artifactId>ir-data-api-client</artifactId>
-    <version>23.2.3-SNAPSHOT</version>
+    <version>23.2.2-SNAPSHOT</version>
     <name>${project.groupId}:${project.artifactId}</name>
     <organization>
         <name>bausdorf engineering</name>
@@ -50,7 +50,7 @@
         <connection>scm:git:git@github.com:simracingtools/ir-data-api-client.git</connection>
         <url>scm:git:git@github.com:simracingtools/ir-data-api-client.git</url>
         <developerConnection>scm:git:git@github.com:simracingtools/ir-data-api-client.git</developerConnection>
-        <tag>HEAD</tag>
+        <tag>v23.3.0</tag>
     </scm>
     <distributionManagement>
         <snapshotRepository>
@@ -259,7 +259,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
+                <version>3.11.0</version>
                 <configuration>
                     <release>${java.version}</release>
                     <encoding>UTF-8</encoding>
@@ -296,6 +296,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-release-plugin</artifactId>
+                <version>3.0.1</version>
                 <configuration>
                     <autoVersionSubmodules>true</autoVersionSubmodules>
                     <useReleaseProfile>false</useReleaseProfile>
