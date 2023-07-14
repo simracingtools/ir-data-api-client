@@ -2,6 +2,44 @@
 
 Changelog of ir-data-api-client.
 
+## v23.3.0 (2023-07-14)
+
+### Breaking changes
+
+-  Spring version upgrade due to vulnerabilities ([9810a](https://github.com/simracingtools/ir-data-api-client/commit/9810ad2b1e97496) Robert Bausdorf)  
+
+### Bug Fixes
+
+-  Added missing fields ([807f3](https://github.com/simracingtools/ir-data-api-client/commit/807f352dcdd5f9a) Robert Bausdorf)  
+
+### Other changes
+
+**[maven-release-plugin] prepare release v23.3.0**
+
+
+[ddc86](https://github.com/simracingtools/ir-data-api-client/commit/ddc86f3e8c8dbeb) Robert Bausdorf *2023-07-14 13:55:53*
+
+**[maven-release-plugin] rollback the release of v23.3.0**
+
+
+[0c07f](https://github.com/simracingtools/ir-data-api-client/commit/0c07faa894942fa) Robert Bausdorf *2023-07-14 13:53:31*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[b7be6](https://github.com/simracingtools/ir-data-api-client/commit/b7be62ba05b8c74) Robert Bausdorf *2023-07-14 13:46:55*
+
+**[maven-release-plugin] prepare release v23.3.0**
+
+
+[ef0ed](https://github.com/simracingtools/ir-data-api-client/commit/ef0ede27bca572e) Robert Bausdorf *2023-07-14 13:46:51*
+
+**[maven-release-plugin] prepare for next development iteration**
+
+
+[d045f](https://github.com/simracingtools/ir-data-api-client/commit/d045f606ff4ac85) Robert Bausdorf *2023-06-03 12:52:09*
+
+
 ## v23.2.2 (2023-06-03)
 
 ### Bug Fixes
