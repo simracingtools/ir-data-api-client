@@ -33,13 +33,14 @@
 
     <properties>
         <encoding>UTF-8</encoding>
-        <java.version>11</java.version>
+        <java.version>17</java.version>
         <maven.test.skip>true</maven.test.skip>
-        <spring.version>5.3.16</spring.version>
-        <spring.boot.version>2.6.4</spring.boot.version>
-        <lombok.version>1.18.16</lombok.version>
-        <jackson.version>2.12.6</jackson.version>
-        <slf4j.version>1.7.36</slf4j.version>
+        <spring.version>6.0.9</spring.version>
+        <spring.boot.version>3.1.0</spring.boot.version>
+        <lombok.version>1.18.22</lombok.version>
+        <jackson.version>2.12.7</jackson.version>
+        <jackson-databind.version>2.12.7.1</jackson-databind.version>
+        <slf4j.version>2.0.7</slf4j.version>
         <sonar.organization>simracingtools</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>target/site/jacoco-aggregate/jacoco.xml</sonar.coverage.jacoco.xmlReportPaths>
@@ -104,7 +105,7 @@
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
+            <version>${jackson-databind.version}</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
@@ -112,6 +113,12 @@
             <artifactId>jackson-datatype-jsr310</artifactId>
             <version>${jackson.version}</version>
             <scope>provided</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>com.fasterxml.jackson.core</groupId>
+                    <artifactId>jackson-databind</artifactId>
+                </exclusion>
+            </exclusions>
         </dependency>
 
         <dependency>
@@ -135,13 +142,31 @@
                     <groupId>org.junit.jupiter</groupId>
                     <artifactId>junit-jupiter-api</artifactId>
                 </exclusion>
+                <exclusion>
+                    <groupId>jakarta.xml.bind</groupId>
+                    <artifactId>jakarta.xml.bind-api</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>net.bytebuddy</groupId>
+                    <artifactId>byte-buddy</artifactId>
+                </exclusion>
             </exclusions>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
-            <version>5.8.2</version>
+            <version>5.9.3</version>
             <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.xml.bind</groupId>
+            <artifactId>jakarta.xml.bind-api</artifactId>
+            <version>4.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>net.bytebuddy</groupId>
+            <artifactId>byte-buddy</artifactId>
+            <version>1.14.4</version>
         </dependency>
     </dependencies>
 
